@@ -113,6 +113,6 @@ When all the projects are configured, you can use the build and run script to bu
 Authorzing user without mail
 ------------------------------
 
-When it is not possible to send a verification mail the error handling is not optimal. A user can still register at the designer you host yourself but the user will get the error message that the username is not available. 
-A user will be still be created in Beehive but needs to be given permission manually. This can be done to set Value of "Valid" in the user table to 1. The user should now be able to login.
+When the designer cant send a verification mail for whatever reason the error handling is not optimal. A new user can still register at the designer you host but the user will get the message that the username is not available. 
+The user will be still be created in Beehive but needs to be given permission manually. This can be done to set Value of "Valid" in the user table to "1". The user should now be able to login.
 
