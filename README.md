@@ -1,8 +1,6 @@
 OpenRemoteHueBridge
 ===================
 
-The implementation of the HueBridge Protocol in OpenRemote to controll the Philips HueBridge
-
 
 This project is on Github to help people setup OpenRemote fast and simple. 
 We did this because we had some problems ourselfs. 
@@ -11,7 +9,7 @@ After following the description you will have the following parts running:
 - Controller 1.0.6
 - Beehive 3.0.0 Beta1  
 
-This project also contains an extra protocol for the Hue Bridge.  
+This project also contains the implementation of the HueBridge Protocol in OpenRemote to control the Philips HueBridge.
 
 Configuring the Beehive
 ------------------------
@@ -56,12 +54,12 @@ If needed
 Change the mail settings, to the correct server. If there is no mail server available leave it empty, user accounts can be activated in the database in the user table.
 
 - Open the build.properties in Designer_2_13_9_Rosemary_20130330
-- Change the path of the gwt.sdk located in trunk\Vendor\gwt-2.4.0
+- Change the path of the gwt.sdk located in \Vendor\gwt-2.4.0
 
 Configuring the Controller
 --------------------------
 
-To configure the controller you need to change the settings in the config.properties file. This file can be found in trunk\Software\openremote106inteli\config.
+To configure the controller you need to change the settings in the config.properties file. This file can be found in openremote106inteli\config.
 At the bottom of the file you can change the urls to point to your own beehive and designer. It is also possible to point to the official website if you wish to only adjust the controller. The official beehive url is composed different then the local beehive as is seen in the beehive rest url below. The online official modeler url is composed normally but starts with http://designer.openremote.com/. Use localhostif you run beehive and designer locally.
 In the config.properties
 
@@ -107,7 +105,7 @@ When all the projects are configured, you can use the build and run script to bu
 
 - located the script in the Build-RunScript folder
 - Open the script in an editor (like notepad++)
-- On line 4 you will find the "basePath" variable, change this to reflect the path of the trunk folder. (Example: D:\openremotebridge make sure to not place any trailing slash)
+- On line 4 you will find the "basePath" variable, change this to reflect the path of the base folder where you copied these projects to. (Example: D:\openremotebridge make sure to not place any trailing slash)
 - Save the script in a location you can find it
 - Open the script by double clicking
 - Follow the steps in the script
