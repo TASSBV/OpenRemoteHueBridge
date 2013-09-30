@@ -1,0 +1,2 @@
+serviceClass: org.openremote.modeler.client.rpc.SensorRPCService
+path: 690D9DC6C50D4C1AA9423937045C2221.gwt.rpc

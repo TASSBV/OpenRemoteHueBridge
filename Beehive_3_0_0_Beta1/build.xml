@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+OpenRemote, the Home of the Digital Home.
+Copyright 2008-2009, OpenRemote Inc.
+
+See the contributors.txt file in the distribution for a
+full listing of individual contributors.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+-->
+<!--
+ |  Build file for OpenRemote Beehive
+ |
+ |  Author: Dan Cong
+ |
+ |  $Id: $
+ +-->
+<project name="beehive" default="run-test" basedir=".">
+	<property file="build.properties"/>
+	<property file="config/config.properties"/>
+	<!-- some variables used -->
+	<property name="project.name" value="beehive" />
+	<property name="src.dir" value="src"/>
+	<property name="test.dir" value="test"/>
+	<property name="lib.dir" value="lib"/>
+	<property name="build.dir" value="build"/>
+	<property name="output.dir" value="output"/>
+	<property name="javadoc.dir" value="doc"/>
+	<property name="javadoc.locale" value="en_US"/>
+	<property name="build-config.dir" value="build_config"/>
+	<property name="config.dir" value="config"/>
+	<property name="classes.dir" value="build/classes"/>
+	<property name="instrumented.dir" value="build/instrumented"/>
+	<property name="junit.reports.dir" location="build/junit_report"/>
+	<property name="checkstyle.reports.dir" location="build/checkstyle_report"/>
+	<property name="cobertura.report.dir" location="build/cobertura_report"/>
+	<property name="cobertura.datafile" value="${build.dir}/cobertura.ser"/>
+	<property name="version" value="0.1-SNAPSHOT"/>
+	<property name="sql.dir" value="sql" />
+
+	<!-- paths used for compilation and run  -->
+	<path id="compile.path.id">
+		<fileset dir="${lib.dir}/compile" includes="**/*.jar"/>
+		<fileset dir="${lib.dir}/core" includes="**/*.jar"/>
+		<path location="${classes.dir}"/>
+	</path>
+	<path id="test.path.id">
+		<fileset dir="${lib.dir}/compile" includes="**/*.jar"/>
+		<fileset dir="${lib.dir}/core" includes="**/*.jar"/>
+		<fileset dir="${lib.dir}/cobertura" includes="**/*.jar"/>
+		<path location="${classes.dir}"/>
+		<fileset dir="${lib.dir}/test" includes="**/*.jar"/>
+		<path location="${config.dir}"/>
+	</path>
+
+	<path id="cobertura.path.id">
+		<fileset dir="${lib.dir}/cobertura" includes="**/*.jar"/>
+		<path location="${classes.dir}"/>
+	</path>
+
+	<!-- define task for cobertura -->
+	<taskdef classpathref="cobertura.path.id" resource="tasks.properties"/>
+
+	<!-- define task for checkstyle -->
+	<taskdef resource="checkstyletask.properties" classpathref="test.path.id"/>
+
+	<!--
+	 | CLEAN:
+	 |
+	 | Cleans up the output directory for this project.
+	 +-->
+	<target name="clean" description="delete folder">
+		<delete dir="${build.dir}" />
+		<delete dir="${output.dir}" />
+	</target>
+
+	<!--
+     |
+     | INIT:
+     |
+     | Make directory for this project and copy libs for package.
+     +-->
+	<target name="init" depends="clean" description="create folder">
+		<mkdir dir="${build.dir}/lib" />
+		<mkdir dir="${output.dir}" />
+		<copy todir="${build.dir}/lib" flatten="true">
+			<fileset dir="${lib.dir}/core">
+				<include name="**/*.jar" />
+			</fileset>
+		</copy>
+	</target>
+
+	<!--
+	 | COMPILE:
+	 |
+	 | Run javac on all Java source.
+	 +-->
+	<target name="compile" depends="init" description="--> compile the source." >
+		<echo message="--------------------------------------------------------------------" />
+		<echo message=" Compiling Java classes..." />
+		<echo message="--------------------------------------------------------------------" />
+		<echo message="" />
+		<mkdir dir="${classes.dir}" />
+		<copy todir="${classes.dir}">
+			<fileset dir="${config.dir}">
+				<include name="**.*"/>
+			</fileset>
+			<fileset dir="${src.dir}">
+				<include name="**/*.xml"/>
+			</fileset>
+		</copy>
+		<javac destdir="${classes.dir}" classpathref="compile.path.id" debug="${build.debug}">
+			<src path="${src.dir}"/>
+		</javac>
+	</target>
+
+	<!--
+	 | COMPILE-TEST:
+	 |
+	 | Compile the test.
+	 +-->
+	<target name="compile-test" depends="compile" description="--> compile the test cases.">
+		<echo message="--------------------------------------------------------------------" />
+		<echo message=" Compiling test..." />
+		<echo message="--------------------------------------------------------------------" />
+		<echo message="" />
+		<copy todir="${classes.dir}">
+			<fileset dir="${test.dir}">
+				<include name="**/*.xml"/>
+			</fileset>
+		</copy>
+		<copy todir="${classes.dir}/fixture">
+			<fileset dir="${test.dir}/fixture">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<javac srcdir="${test.dir}" destdir="${classes.dir}" classpathref="test.path.id" debug="true"/>
+	</target>
+
+	<!--
+	 | WAR:
+	 |
+	 | Pack the war.
+	 +-->
+	<target name="war" depends="compile" description="package application to war">
+		<echo message="--------------------------------------------------------------------" />
+		<echo message=" Packing war..." />
+		<echo message="--------------------------------------------------------------------" />
+		<echo message="" />
+		<war warfile="${output.dir}/${project.name}.war" webxml="web/WEB-INF/web.xml">
+			<fileset dir="web">
+				<exclude name="WEB-INF/classes/**/*.*" />
+				<exclude name="WEB-INF/lib/**/*.*" />
+			</fileset>
+			<fileset dir=".">
+				<include name="readme.txt"/>
+			</fileset>
+			<lib dir="${build.dir}/lib" includes="*.jar"/>
+			<classes dir="${classes.dir}" />
+		</war>
+	</target>
+
+	<!--
+	 | JAVADOC:
+	 |
+	 | Run the javadoc.
+	 +-->
+	<target name="javadoc" description="Generate API docs for the DocCheck source">
+		<echo message="--------------------------------------------------------------------" />
+		<echo message=" Generating javadoc..." />
+		<echo message="--------------------------------------------------------------------" />
+		<echo message="" />
+		<mkdir dir="${javadoc.dir}" />
+		<javadoc
+		  	  locale           ="${javadoc.locale}"
+		      defaultexcludes  = "yes"
+		      use              = "yes"
+		      header           = "OpenRemote Beehive Database API"
+		      doctitle         = "OpenRemote Beehive Database API Specification V2.0"
+		      nodeprecatedlist = "yes"
+			  classpathref     = "compile.path.id" 
+		      sourcepath       = "./${src.dir}"
+		      destdir          = "./${javadoc.dir}"
+		      packagenames     = "org.openremote.beehive.api.dto, org.openremote.beehive.api.service"
+		      additionalparam  = "-breakiterator"
+		  />
+	</target>
+
+	<!--
+	 | RUN-TEST:
+	 |
+	 | Run the test.
+	 +-->
+	<target name="run-test" depends="compile-test" description="--> run the test cases.">
+		<echo message="--------------------------------------------------------------------" />
+		<echo message=" Running test..." />
+		<echo message="--------------------------------------------------------------------" />
+		<echo message="" />
+		<property name="test.targetclasspath" value="${classes.dir}"/>
+		<antcall target="test"/>
+	</target>
+
+	<!--
+	 | TEST:
+	 |
+	 | JUnit test.
+	 +-->
+	<target name="test">
+		<delete includeemptydirs="true" dir="${junit.reports.dir}"/>
+		<mkdir dir="${junit.reports.dir}"/>
+		<junit dir="${basedir}" fork="true" showoutput="true" failureproperty="tests.failed">
+			<sysproperty key="net.sourceforge.cobertura.datafile" file="${cobertura.datafile}"/>
+			<classpath location="${test.targetclasspath}"/>
+			<classpath location="${classes.dir}"/>
+			<classpath refid="test.path.id">
+			</classpath>
+			<formatter type="xml"/>
+			<batchtest todir="${junit.reports.dir}">
+				<fileset dir="${test.dir}">
+					<include name="**/*Test.java"/>
+				</fileset>
+			</batchtest>
+		</junit>
+		<junitreport todir="${junit.reports.dir}">
+			<fileset dir="${junit.reports.dir}">
+				<include name="TEST-*.xml"/>
+			</fileset>
+			<report format="frames" todir="${junit.reports.dir}"/>
+		</junitreport>
+		<fail if="tests.failed"/>
+	</target>
+
+	<!--
+	 | DEPLOY:
+	 |
+	 | Deploy the project to a directory.
+	 +-->
+	<target name="deploy" depends="war" description="--> deploy the project">
+		<echo message="--------------------------------------------------------------------" />
+		<echo message=" Deploying project..." />
+		<echo message="--------------------------------------------------------------------" />
+		<echo message="" />
+		<delete file="${deploy.dir}/beehive.war"/>
+		<delete dir="${deploy.dir}/beehive"/>
+		<copy todir="${deploy.dir}" file="${output.dir}/${project.name}.war"/>
+	</target>
+
+	<!--
+	 | COBERTURA_INSTRUMENT:
+	 |
+	 | Make instrument for cobertura.
+	 +-->
+	<target name="cobertura_instrument" depends="compile-test">
+		<delete file="${cobertura.datafile}"/>
+		<cobertura-instrument todir="${instrumented.dir}" datafile="${cobertura.datafile}">
+			<ignore regex="org.apache.log4j.*"/>
+			<fileset dir="${classes.dir}">
+				<include name="**/*.class"/>
+				<exclude name="**/*Test.class"/>
+			</fileset>
+		</cobertura-instrument>
+	</target>
+
+	<!--
+	 | REPORT-COBERTURA:
+	 |
+	 | Generate the cobertura report.
+	 +-->
+	<target name="report-cobertura" depends="cobertura_instrument"
+            description="--> generate the coverage report.">
+		<property name="test.targetclasspath" value="${instrumented.dir}"/>
+		<antcall target="test"/>
+		<delete includeemptydirs="true" dir="${cobertura.report.dir}"/>
+		<cobertura-report format="html" destdir="${cobertura.report.dir}" srcdir="${src.dir}" datafile="${cobertura.datafile}" />
+		<cobertura-report format="xml" destdir="${cobertura.report.dir}" srcdir="${src.dir}" datafile="${cobertura.datafile}" />
+		<delete file="operation.log" failonerror="false"/>
+		<delete file="exception.log" failonerror="false"/>
+	</target>
+	<!--
+	 | REPORT-CHECKSTYLE:
+	 |
+	 | Generate the checkstyle report.
+	 +-->
+	<target name="report-checkstyle" description="--> generates a report of code convention violations.">
+		<mkdir dir="${checkstyle.reports.dir}"/>
+		<checkstyle config="${build-config.dir}/openremote_checks.xml" failureProperty="checkstyle.failure"
+                    failOnViolation="false">
+			<formatter type="xml" tofile="${checkstyle.reports.dir}/checkstyle_report.xml"/>
+			<fileset dir="${src.dir}" includes="**/*.java"/>
+			<fileset dir="${test.dir}" includes="**/*.java"/>
+		</checkstyle>
+		<xslt in="${checkstyle.reports.dir}/checkstyle_report.xml"
+               out="${checkstyle.reports.dir}/checkstyle_report.html"
+               style="${build-config.dir}/checkstyle-noframes-sorted.xsl"/>
+	</target>
+
+</project>

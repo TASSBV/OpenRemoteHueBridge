@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openremote xmlns="http://www.openremote.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openremote.org http://www.openremote.org/schemas/panel.xsd">
+  <panels>
+    <panel id="1" name="iPhone">
+      <include type="group" ref="2" />
+    </panel>
+    <panel id="83" name="iPad">
+      <include type="group" ref="84" />
+    </panel>
+    <panel id="144" name="Android">
+      <include type="group" ref="145" />
+    </panel>
+  </panels>
+  <screens>
+    <screen id="3" name="Starting Screen">
+      <background relative="CENTER">
+        <image src="TASSWallpaper1920x1200.jpg" />
+      </background>
+      <absolute left="50" top="15" width="100" height="48">
+        <button id="6" name="On" hasControlCommand="true" />
+      </absolute>
+      <absolute left="160" top="15" width="100" height="50">
+        <button id="8" name="Off" hasControlCommand="true" />
+      </absolute>
+      <absolute left="50" top="75" width="100" height="50">
+        <button id="10" name="Color22" hasControlCommand="true" />
+      </absolute>
+      <absolute left="160" top="75" width="100" height="50">
+        <button id="12" name="Color44" hasControlCommand="true" />
+      </absolute>
+      <absolute left="160" top="195" width="100" height="50">
+        <button id="18" name="Sat" hasControlCommand="true" />
+      </absolute>
+      <absolute left="50" top="134" width="100" height="50">
+        <button id="14" name="Bright half" hasControlCommand="true" />
+      </absolute>
+      <absolute left="160" top="134" width="100" height="50">
+        <button id="16" name="Bright" hasControlCommand="true" />
+      </absolute>
+      <absolute left="50" top="195" width="100" height="50">
+        <button id="20" name="Sat half" hasControlCommand="true" />
+      </absolute>
+      <absolute left="25" top="270" width="270" height="44">
+        <slider id="22" vertical="false" passive="false">
+          <link type="sensor" ref="210" />
+          <min value="0" />
+          <max value="65535" />
+        </slider>
+      </absolute>
+      <absolute left="25" top="332" width="270" height="44">
+        <slider id="24" vertical="false" passive="false">
+          <link type="sensor" ref="209" />
+          <min value="0" />
+          <max value="255" />
+        </slider>
+      </absolute>
+      <absolute left="26" top="392" width="270" height="44">
+        <slider id="26" vertical="false" passive="false">
+          <link type="sensor" ref="211" />
+          <min value="0" />
+          <max value="255" />
+        </slider>
+      </absolute>
+      <absolute left="93" top="238" width="150" height="50">
+        <label id="28" fontSize="20" color="#000000" text="Color" />
+      </absolute>
+      <absolute left="75" top="298" width="150" height="50">
+        <label id="30" fontSize="20" color="#000000" text="Brightness" />
+      </absolute>
+      <absolute left="73" top="359" width="150" height="50">
+        <label id="32" fontSize="20" color="#000000" text="Saturation" />
+      </absolute>
+      <absolute left="135" top="428" width="50" height="50">
+        <button id="34" name="" hasControlCommand="true">
+          <default>
+            <image src="home.png" />
+          </default>
+        </button>
+      </absolute>
+    </screen>
+    <screen id="87" name="Starting Screen" landscape="true">
+      <background relative="CENTER">
+        <image src="TASSWallpaper1920x1200.jpg" />
+      </background>
+      <absolute left="11" top="6" width="1000" height="50">
+        <label id="95" fontSize="30" color="#000000" text="Demo Hue BridgeProtocol By Tass Technology Solutions" />
+      </absolute>
+      <absolute left="20" top="90" width="180" height="50">
+        <label id="103" fontSize="20" color="#000000" text="Lamp One Status" />
+      </absolute>
+      <absolute left="150" top="150" width="250" height="40">
+        <slider id="101" vertical="false" passive="false">
+          <link type="sensor" ref="210" />
+          <min value="0" />
+          <max value="65535" />
+        </slider>
+      </absolute>
+      <absolute left="150" top="200" width="250" height="40">
+        <slider id="105" vertical="false" passive="false">
+          <link type="sensor" ref="209" />
+          <min value="0" />
+          <max value="255" />
+        </slider>
+      </absolute>
+      <absolute left="150" top="250" width="250" height="40">
+        <slider id="107" vertical="false" passive="false">
+          <link type="sensor" ref="211" />
+          <min value="0" />
+          <max value="255" />
+        </slider>
+      </absolute>
+      <absolute left="20" top="150" width="120" height="40">
+        <label id="113" fontSize="20" color="#000000" text="Color" />
+      </absolute>
+      <absolute left="20" top="200" width="120" height="40">
+        <label id="115" fontSize="20" color="#000000" text="Brightness" />
+      </absolute>
+      <absolute left="20" top="250" width="120" height="40">
+        <label id="117" fontSize="20" color="#000000" text="Saturation" />
+      </absolute>
+      <absolute left="475" top="90" width="48" height="48">
+        <button id="109" name="" hasControlCommand="true">
+          <default>
+            <image src="home.png" />
+          </default>
+        </button>
+      </absolute>
+      <absolute left="460" top="135" width="80" height="40">
+        <label id="121" fontSize="20" color="#000000" text="Go Tass" />
+      </absolute>
+      <absolute left="600" top="150" width="250" height="40">
+        <slider id="123" vertical="false" passive="false">
+          <link type="sensor" ref="214" />
+          <min value="0" />
+          <max value="65535" />
+        </slider>
+      </absolute>
+      <absolute left="300" top="90" width="48" height="48">
+        <switch id="99">
+          <link type="sensor" ref="212">
+            <state name="on" value="power.png" />
+            <state name="off" value="power.png" />
+          </link>
+        </switch>
+      </absolute>
+      <absolute left="230" top="90" width="50" height="50">
+        <label id="97" fontSize="20" color="#000000" text="Lamp Status">
+          <link type="sensor" ref="212">
+            <state name="off" value="Off" />
+            <state name="on" value="On" />
+          </link>
+        </label>
+      </absolute>
+      <absolute left="600" top="200" width="250" height="40">
+        <slider id="125" vertical="false" passive="false">
+          <link type="sensor" ref="213" />
+          <min value="0" />
+          <max value="255" />
+        </slider>
+      </absolute>
+      <absolute left="600" top="250" width="250" height="40">
+        <slider id="127" vertical="false" passive="false">
+          <link type="sensor" ref="215" />
+          <min value="0" />
+          <max value="255" />
+        </slider>
+      </absolute>
+      <absolute left="850" top="150" width="150" height="40">
+        <label id="131" fontSize="20" color="#000000" text="Color" />
+      </absolute>
+      <absolute left="850" top="250" width="150" height="40">
+        <label id="133" fontSize="20" color="#000000" text="Saturation" />
+      </absolute>
+      <absolute left="850" top="200" width="150" height="40">
+        <label id="135" fontSize="20" color="#000000" text="Brightness" />
+      </absolute>
+      <absolute left="650" top="90" width="50" height="50">
+        <switch id="139">
+          <link type="sensor" ref="216">
+            <state name="on" value="power.png" />
+            <state name="off" value="power.png" />
+          </link>
+        </switch>
+      </absolute>
+      <absolute left="720" top="90" width="50" height="50">
+        <label id="141" fontSize="20" color="#000000" text="LPS">
+          <link type="sensor" ref="216">
+            <state name="off" value="Off" />
+            <state name="on" value="On" />
+          </link>
+        </label>
+      </absolute>
+      <absolute left="800" top="90" width="180" height="50">
+        <label id="143" fontSize="20" color="#000000" text="Lamp Two Status" />
+      </absolute>
+      <absolute left="940" top="680" width="50" height="50">
+        <button id="119" name="">
+          <default>
+            <image src="menu.png" />
+          </default>
+          <navigate to="setting" />
+        </button>
+      </absolute>
+    </screen>
+    <screen id="146" name="Starting Screen">
+      <background relative="CENTER">
+        <image src="TASSWallpaper1920x1200.jpg" />
+      </background>
+      <absolute left="50" top="15" width="100" height="48">
+        <button id="155" name="On" hasControlCommand="true" />
+      </absolute>
+      <absolute left="160" top="15" width="100" height="48">
+        <button id="157" name="Off" hasControlCommand="true" />
+      </absolute>
+      <absolute left="50" top="70" width="100" height="50">
+        <button id="159" name="Collor22" hasControlCommand="true" />
+      </absolute>
+      <absolute left="160" top="70" width="100" height="50">
+        <button id="161" name="Collor44" hasControlCommand="true" />
+      </absolute>
+      <absolute left="50" top="125" width="100" height="50">
+        <button id="163" name="Bright Half" hasControlCommand="true" />
+      </absolute>
+      <absolute left="160" top="125" width="100" height="50">
+        <button id="165" name="Bight" hasControlCommand="true" />
+      </absolute>
+      <absolute left="35" top="300" width="250" height="44">
+        <slider id="169" vertical="false" passive="false">
+          <link type="sensor" ref="209" />
+          <min value="0" />
+          <max value="255" />
+        </slider>
+      </absolute>
+      <absolute left="35" top="380" width="250" height="44">
+        <slider id="171" vertical="false" passive="false">
+          <link type="sensor" ref="211" />
+          <min value="0" />
+          <max value="255" />
+        </slider>
+      </absolute>
+      <absolute left="35" top="220" width="250" height="44">
+        <slider id="173" vertical="false" passive="false">
+          <link type="sensor" ref="210" />
+          <min value="0" />
+          <max value="65535" />
+        </slider>
+      </absolute>
+      <absolute left="110" top="195" width="98" height="28">
+        <label id="175" fontSize="20" color="#000000" text="Color" />
+      </absolute>
+      <absolute left="110" top="270" width="98" height="28">
+        <label id="177" fontSize="20" color="#000000" text="Brightness" />
+      </absolute>
+      <absolute left="110" top="355" width="100" height="30">
+        <label id="179" fontSize="20" color="#000000" text="Saturation" />
+      </absolute>
+      <absolute left="135" top="428" width="50" height="50">
+        <button id="181" name="" hasControlCommand="true">
+          <default>
+            <image src="home.png" />
+          </default>
+        </button>
+      </absolute>
+    </screen>
+  </screens>
+  <groups>
+    <group id="2" name="Default Group">
+      <include type="screen" ref="3" />
+    </group>
+    <group id="84" name="Default Group">
+      <include type="screen" ref="87" />
+    </group>
+    <group id="145" name="Default Group">
+      <include type="screen" ref="146" />
+    </group>
+  </groups>
+</openremote>
+

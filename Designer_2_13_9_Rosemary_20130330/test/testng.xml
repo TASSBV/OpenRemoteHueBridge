@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd" >
+<suite name="Modeler suite">
+
+	<test name="Modeler unit test">
+		
+		<packages>
+			<package name="org.openremote.modeler.service.*"></package>
+			<package name="org.openremote.modeler.protocol.*"></package>
+			<package name="org.openremote.modeler.touchpanel.*"></package>
+			
+			<!--<package name="org.openremote.modeler.ui.*"></package>
+			
+		--></packages>
+	</test>
+	
+</suite>

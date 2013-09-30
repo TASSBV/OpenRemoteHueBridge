@@ -1,0 +1,25 @@
+Juha Lindfors
+Marc Fleury
+Marcus Redeker
+Jerome Velociter
+Mathieu Gallissot
+David Reines
+Phillip Lavender
+Andy Oliver
+Eric Bariaux
+Olivier Gandit
+Paul Gardiner
+Fekete Kamosh
+Jaroslav Misura
+Richard Turner
+Yann Philippe
+Ivan Martinez
+Greg Rapp
+Daniel Berenguer
+Ivan Martinez
+TASS Technology Solutions - www.tass.nl
+OpenRemote, Inc. employees and contractors.
+
+Number of third party Open Source components are used in OpenRemote each
+of which has their own contributors. We wish to thank all those individuals
+who contribute their work under Open Source licenses.

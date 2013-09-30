@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rrd4j xmlns="http://www.openremote.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openremote.org http://www.openremote.org/schemas/rrd4j.xsd">
+
+  <rrdDB fileName="test.rrd" step="60">
+    <datasource name="Temp1Sensor" type="GAUGE" heartbeat="120" />
+    <datasource name="Weather sensor" type="GAUGE" heartbeat="120" />
+	<archive function="AVERAGE" xff="0.5" steps="1" rows="300" />
+	<archive function="AVERAGE" xff="0.5" steps="10" rows="144" />
+	<archive function="AVERAGE" xff="0.5" steps="15" rows="672" />
+	<archive function="AVERAGE" xff="0.5" steps="60" rows="744" />
+	<archive function="AVERAGE" xff="0.5" steps="120" rows="4380" />
+  </rrdDB>
+ 
+  <rrd_graph_def name="graph1">
+     <options>
+         <vertical_label>pmeT</vertical_label>
+         <title>OpenRemote RRD4J Example</title>
+     </options>
+     <datasources>
+         <def>
+             <name>Temp1</name>
+             <rrd>test.rrd</rrd>
+             <source>Temp1Sensor</source>
+             <cf>AVERAGE</cf>
+         </def>
+         <def>
+             <name>Temp2</name>
+             <rrd>test.rrd</rrd>
+             <source>Weather sensor</source>
+             <cf>AVERAGE</cf>
+         </def>
+     </datasources>
+     <graph>
+         <line>
+             <datasource>Temp1</datasource>
+             <color>#FF0000</color>
+             <legend>1-Wire Temp\r</legend>
+             <width>2</width>
+         </line>
+         <line>
+             <datasource>Temp2</datasource>
+             <color>#0000FF</color>
+             <legend>Google Weather Temp\r</legend>
+             <width>2</width>
+         </line>
+         <comment>This chart displays OR sensor values.</comment>
+     </graph>
+ </rrd_graph_def>
+ 
+ 
+</rrd4j>

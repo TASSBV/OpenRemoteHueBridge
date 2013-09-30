@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configs xmlns="http://www.openremote.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openremote.org http://www.openremote.org/schemas/controllerConfig.xsd">
+<category name="security">
+	<description>
+         <![CDATA[
+            configuration about security
+         ]]>
+      </description>
+	<config name="resource.upload.enable" value="true" options="true,false">
+		<hint>
+            <![CDATA[
+               If deploying the controller to public network, always disable (set to 'false') this resource upload feature.
+  This is a convenience feature for home users for easy deployment of
+  the controller in cases where all users of the network are trusted,
+  or the controller is still being configured and tested.  Even home
+  users should consider disabling this feature once they're happy and
+  want to lock down the configuration of the controller.
+
+  When this feature is disabled, copy all the controller configuration
+  files manually to a directory pointed by the 'resource.path' property
+  below. Access to this directory in the filesystem should be properly
+  secured with access restrictions.
+            ]]>
+            </hint>
+	</config>
+</category>
+	<!--
+		<category name="resource"> <description> <![CDATA[ configuration about
+		resource ]]> </description> <config name="resource.path"
+		value="../webapps/controller"> <hint> <![CDATA[ he resource path below
+		points to a directory where the controller looks for all configuration
+		files (XML files), images and other resources for panels and
+		controllers. With the default distribution of OpenRemote controller,
+		it is not necessary to change this location. ]]> </hint> </config>
+		</category>
+	-->
+	<category name="infrared">
+		<description>
+         <![CDATA[
+            configuration about infrared
+         ]]>
+      </description>
+		<config name="irsend.path" value="/usr/local/bin/irsend">
+			<hint>
+            <![CDATA[
+                 The following properties are relevant if you are using infrared
+integration via Linux LIRC project. Otherwise ignore them.  Path to LIRC irsend command. Configure this to match the location of your LIRC binary.
+            ]]>
+         </hint>
+		</config>
+		<config name="lircd.conf.path" value="/etc/lircd.conf">
+			<hint>
+            <![CDATA[
+              Default path to lircd.conf (IR commands)
+            ]]>
+         </hint>
+		</config>
+		<config name="copy.lircd.conf.on" value="true">
+			<hint>
+            <![CDATA[
+              If true, controller will copy a deployed lircd.conf to lircd.conf.path of the user
+               TODO : 
+This is disruptive to the user's system. The additional remotes
+deployed to OR controller should be concatenated to the end of an 
+existing lircd.conf file.
+            ]]>
+         </hint>
+		</config>
+	</category>
+	<category name="discovery">
+		<description>
+         <![CDATA[
+            configuration about discovery
+         ]]>
+      </description>
+		<config name="webapp.port" value="8080">
+			<hint>
+               <![CDATA[
+                  This is the port number the controller returns on a panel discovery
+  request. It *must* match the port number configured on the hosting
+  web container. If you change your web container port, change this
+  port  value to match  or the  panel  auto-discovery will not work
+  correctly.
+
+  TODO:
+   This is a duplicate configuration to the web container and should
+   be consolidated. It should only be necessary to define the port
+   number in one location. This may mean wrapping the web container
+   with a proper service container.
+               ]]>
+            </hint>
+		</config>
+	</category>
+	<category name="macro">
+		<description>
+         <![CDATA[
+            configuration about macro
+         ]]>
+      </description>
+		<config name="Macro.IR.Execution.Delay" value="500" validation="\d+">
+			<hint>
+               <![CDATA[
+                  Macro execution delay.
+ 
+  By default there's a delay between commands executed in a macro. Slow
+  receiver devices (for example most TVs controlled via infrared) won't
+  be able to process commands without significant delay. Mostly this is
+  necessary  for  infrared.  Other  protocols may  be able  to  process 
+  commands faster or without any delay at all.
+
+  The measure is in milliseconds (500ms = 0.5s).
+               ]]>
+            </hint>
+		</config>
+	</category>
+	<category name="advance">
+		<description>
+         <![CDATA[
+            advanced configuration
+         ]]>
+      </description>
+		<config name="multicast.address" value="224.0.1.100"
+			validation="((25[0-5]|2[0-4]\d|1?\d?\d)\.){3}(25[0-5]|2[0-4]\d|1?\d?\d)">
+			<hint>
+               <![CDATA[
+                  multicast address for listening to the iPhone auto discovery
+               ]]>
+            </hint>
+		</config>
+		<config name="multicast.port" value="3333" validation="\d+">
+			<hint>
+               <![CDATA[
+                  multicast port for listening to the iPhone auto discovery
+               ]]>
+            </hint>
+		</config>
+		<config name="controller.applicationname" value="controller">
+			<hint>
+               <![CDATA[
+                  controller app name
+               ]]>
+            </hint>
+		</config>
+	</category>
+
+	<category name="roundrobin">
+		<description>
+   			<![CDATA[
+   				Controller provides the RESTful service named "/rest/servers" for client(iPhone, wallpanel, ect). 
+So, client can get all available controllers'(groupmembers') url in same group.
+And there are three roles about RoundRobin mechanism implementation in Controller, 
+they are RoundRobinClient,RoundRobinUDPServer,RoundRobinTCPServer in every controllers.
+
+First of all, RoundRobinUDPServer and RoundRobinTCPServer will startup while every controllers starting up.
+While client requests the service (/rest/servers) of certain controller, 
+controller will create a RoudRobinClient instance ,
+send UDPMulticast package to detect groupmembers and wait for several milliseconds. 
+This pakage contains msgID indicated the unique request and groupname. 
+At this time, the UDPServer in the other controllers will observe the UPD package, 
+and then receive it, judge whether the package sender controller is from the same group by groupname in the package.  
+If the sender controller is, then create TCP connection and response to the sender controller with controller url and msgID in the UDP package. 
+If the sender isn't, do nothing.
+At this time, the TCPServer of sender controller will receive TCP packages contained msgID and groupmember urls, 
+then store the groupmember urls into a Map<msgID, List>, 
+So, the RoundRobinClient can get groupmembers's url from RoundRobinTCPServer by msgID after wake up. 
+At last, RoundRobinClient composes all urls into xml-formatted data and response to client(iPhone, iPod).
+   			]]>
+   		</description>
+		<config name="controller.groupmember.autodetect.on" value="true"
+			options="true,false">
+			<hint>
+   				<![CDATA[
+   					Specify whether auto-detect group member function is turned on (true/false).
+If it's false, the controller will get the groupmembers from the key named "controller.groupmember.candidate.urls" of current configuration file.
+If it's true, controller will auto-detect its groupmembers with multicast.
+   				]]>
+   			</hint>
+		</config>
+		<config name="controller.groupname" value="floor20">
+			<hint>
+   				<![CDATA[
+   					This identifies which group this controller is in.
+   				]]>
+   			</hint>
+		</config>
+		<config name="controller.roundrobin.multicast.address" value="224.0.1.200"
+			validation="((25[0-5]|2[0-4]\d|1?\d?\d)\.){3}(25[0-5]|2[0-4]\d|1?\d?\d)">
+			<hint>
+   				<![CDATA[
+					 Multicast address for roundrobin NOTE: This option is useful only on the situation of "controller.roundrobin.on" is true.
+   				]]>
+   			</hint>
+		</config>
+		<config name="controller.roundrobin.multicast.port" value="10000"
+			validation="\d+">
+			<hint>
+   				<![CDATA[
+   					Multicast port for roundrobin NOTE: This option is useful only on the situation of "controller.roundrobin.on" is true.
+   				]]>
+   			</hint>
+		</config>
+		<config name="controller.roundrobin.tcpserver.port" value="20000"
+			validation="\d+">
+			<hint>
+   				<![CDATA[
+   					Round robin tcpserver socket port of Controller
+   				]]>
+   			</hint>
+		</config>
+	</category>
+	<category name="lutron_homeworks">
+		<description>
+   			<![CDATA[
+   				Configuration for the Lutron HomeWorks Processor used by protocol of the same name.
+                A username / password must be defined in order for communication to be possible.
+                The IP and port numbers are optional, they will first try to be detected using the AMX DDDP beacon.
+   			]]>
+   		</description>
+		<config name="lutron_homeworks.username" value="openremote">
+			<hint>
+   				<![CDATA[
+   					User name used for connection to Lutron HomeWorks processor, as defined on Link 9 in HomeWorks configuration.
+   				]]>
+   			</hint>
+		</config>
+		<config name="lutron_homeworks.password" value="openremote">
+			<hint>
+   				<![CDATA[
+   					Password used for connection to Lutron HomeWorks procconfig controlleressor, as defined on Link 9 in HomeWorks configuration.
+   				]]>
+   			</hint>
+		</config>
+		<config name="lutron_homeworks.address" value="192.168.1.1"
+			validation="(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)">
+			<hint>
+   				<![CDATA[
+					 Address of the Lutron HomeWorks processor, to be filled in only of autodiscovery is not desired.
+   				]]>
+   			</hint>
+		</config>
+		<config name="lutron_homeworks.port" value="23"
+			validation="\d+">
+			<hint>
+   				<![CDATA[
+   					Telnet port of the Lutron HomeWorks processor, to be filled in only of autodiscovery is not desired.
+   				]]>
+   			</hint>
+		</config>
+	</category>
+	
+  <category name="amx_ni">
+    <description>
+        <![CDATA[
+          Configuration for the AMX NI Processor used by protocol of the AMX protocol.
+        ]]>
+      </description>
+    <config name="amx_ni.address" value="192.168.1.1"
+      validation="(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)">
+      <hint>
+          <![CDATA[
+           Address of the AMX NI processor, mandatory.
+          ]]>
+        </hint>
+    </config>
+    <config name="amx_ni.port" value="50000"
+      validation="\d+">
+      <hint>
+          <![CDATA[
+            TCP port the AMX module is listening on, mandatory.
+          ]]>
+        </hint>
+    </config>
+  </category>
+
+    <category name="Hue bridge">
+        <description>
+            <![CDATA[
+          Configuration for communication Hue bridge used by protocol of the Hue bridge protocol.
+        ]]>
+        </description>
+        <config name="huebridge.key" value="2AS12DFdfd2s">
+            <hint>
+                <![CDATA[
+            Key that is used to communicate with the Hue bridge, mandatory.
+          ]]>
+            </hint>
+        </config>
+        <config name="huebridge.address" value="192.168.1.1"
+                validation="(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)">
+            <hint>
+                <![CDATA[
+           Address of the Hue Bridge, mandatory.
+          ]]>
+            </hint>
+        </config>
+
+    </category>
+
+
+  <category name="z-wave">
+    <description>
+        <![CDATA[
+          Configuration for the Z-Wave protocol
+        ]]>
+      </description>
+    <config name="protocol.zwave.classname" value="org.openremote.controller.protocol.zwave.ZWaveCommandBuilder">
+      <hint>
+          <![CDATA[
+           Z-Wave CommandBuilder class. This entry should not be changed.
+          ]]>
+        </hint>
+    </config>
+    <config name="zwave.commLayer" value="" options="PAD,RXTX">
+      <hint>
+          <![CDATA[
+            Choose either PAD or RXTX depending on your communication layer to use.
+          ]]>
+        </hint>
+    </config>
+    <config name="zwave.comPort" value="" >
+      <hint>
+          <![CDATA[
+            Serial port the Z-Wave stick is found on. Either local serial port or serial port on PAD host depending on commLayer setting.
+          ]]>
+        </hint>
+    </config>
+    <config name="zwave.pad.host" value="localhost" >
+      <hint>
+          <![CDATA[
+            If PAD is used for communication this defines the host/ip of the machine the PAD daemon is running on.
+          ]]>
+        </hint>
+    </config>
+    <config name="zwave.pad.port" value="7876" >
+      <hint>
+          <![CDATA[
+            If PAD is used for communication this defines the port the PAD daemon is listening on.
+          ]]>
+        </hint>
+    </config>
+  </category>
+  
+  <!--
+   |
+   |  TODO : TEMPORARY
+   |
+   |    This category entry here is temporarily (and is in fact never used by controller or
+   |    included in the controller.xml configuration section). It should be eventually
+   |    removed - rules should be stand-alone artifacts to the controller (and multiple
+   |    rules supported), not a controller configuration element.
+   |
+   +-->
+	<category name="rules">
+		<description>
+   			<![CDATA[
+   				Configuration for the rules engine.
+				This is a special configuration where the content of the rules text area is written as a rules file
+				to the controller's rules folder. The filename is always 'modeler_rules.drl' 
+   			]]>
+   		</description>
+		<config name="rules.editor" value="">
+			<hint>
+   				<![CDATA[
+   					Content for the modeler_rules.drl file. This has to be a valid Drools .drl file syntax.
+   				]]>
+   			</hint>
+		</config>
+	</category>
+
+
+  <category name="lagarto_network">
+    <description>
+      <![CDATA[
+        Configuration for Lagarto network
+      ]]>
+    </description>
+    <config name="lagarto_network.broadcast" value="tcp://127.0.0.1:5001">
+      <hint>
+      <![CDATA[
+        Broadcast address and port used by all lagarto servers to publish network events (ZeroMQ pub/sub endpoint).
+      ]]>
+      </hint>
+    </config>
+  </category>
+
+</configs>

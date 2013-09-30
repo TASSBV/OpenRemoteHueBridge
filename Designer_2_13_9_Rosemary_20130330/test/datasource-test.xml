@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
+        
+        <!-- HSQL Database Engine Server Mode -->
+        <!--<property name="url" value="jdbc:hsqldb:hsql://localhost/modeler"/>-->
+        
+        <!-- HSQL Database Engine In-Memory Mode -->
+        <property name="url" value="jdbc:hsqldb:mem:modeler"/>
+        
+        <property name="username" value="sa"/>
+        <property name="password" value=""/>
+    </bean>
+
+    <bean id="hibernateProperties" class="org.openremote.modeler.utils.HibernateProperties">
+        <property name="originalProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
+                <prop key="hibernate.current_session_context_class">thread</prop>
+                <prop key="hibernate.show_sql">false</prop>
+                <prop key="hibernate.format_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <bean id="baseSessionFactory"
+          class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean" abstract="true">
+        <property name="hibernateProperties">
+            <ref bean="hibernateProperties"/>
+        </property>
+    </bean>
+
+</beans>

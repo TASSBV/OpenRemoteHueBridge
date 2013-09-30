@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openremote xmlns="http://www.openremote.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openremote.org http://www.openremote.org/schemas/status.xsd">
+<error><code>428</code><message>No such Panel :NAME = noneProfile</message></error></openremote>

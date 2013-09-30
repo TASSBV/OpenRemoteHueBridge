@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+ OpenRemote, the Home of the Digital Home.
+ Copyright 2008-2012, OpenRemote Inc.
+
+ See the contributors.txt file in the distribution for a
+ full listing of individual contributors.
+
+ This is free software; you can redistribute it and/or modify it
+ under the terms of the GNU General Public License as
+ published by the Free Software Foundation; either version 3.0 of
+ the License, or (at your option) any later version.
+
+ This software is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+ You should have received a copy of the GNU General Public
+ License along with this software; if not, write to the Free
+ Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+
+-->
+
+<!--
+ |  In-memory, virtual 'dummy' commands that can be used in testing/demoing.
+ |  These commands won't attempt to create physical connections to any devices,
+ |  all state and responses are returned from the controller's in-memory state.
+ |
+ |  Author: Juha Lindfors
+ +-->
+<openremote xmlns = "http://www.openremote.org"
+            xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+	          xsi:schemaLocation = "http://www.openremote.org protocol.xsd">
+
+	<protocol displayName = "In-memory Virtual Command" tagName = "virtual">
+
+    <!--
+     | Mandatory command parameter.
+     +-->
+    <attr name = "command" label = "Command">
+      <validations>
+        <allowBlank>false</allowBlank>
+        <maxLength>254</maxLength>
+
+        <regex message = "Use on/off or status">on|On|ON|off|Off|OFF|status|Status|STATUS</regex>
+
+      </validations>
+    </attr>
+
+
+    <!--
+     | Mandatory address parameter.
+     +-->
+    <attr name = "address" label = "Address">
+      <validations>
+        <allowBlank>false</allowBlank>
+        <maxLength>254</maxLength>
+
+        <regex message="Use any arbitrary address string. Commands that are used in the same switch component should use an identical address.">[a-zA-Z]*</regex>
+
+      </validations>
+    </attr>
+  </protocol>
+</openremote>

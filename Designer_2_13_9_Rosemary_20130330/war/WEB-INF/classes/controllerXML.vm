@@ -1,0 +1,194 @@
+##
+## OpenRemote, the Home of the Digital Home.
+## Copyright 2008-2012, OpenRemote Inc.
+## 
+## See the contributors.txt file in the distribution for a
+## full listing of individual contributors.
+## 
+## This program is free software: you can redistribute it and/or modify
+## it under the terms of the GNU Affero General Public License as
+## published by the Free Software Foundation, either version 3 of the
+## License, or (at your option) any later version.
+## 
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+## GNU Affero General Public License for more details.
+## 
+## You should have received a copy of the GNU Affero General Public License
+## along with this program. If not, see <http://www.gnu.org/licenses/>.
+##
+<?xml version="1.0" encoding="UTF-8"?>
+<openremote xmlns="http://www.openremote.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openremote.org http://www.openremote.org/schemas/controller.xsd">
+  <components>
+  ##<------------------------------------------------------------------------UISwitch------------------------------------------------------------------
+  	#foreach($swh in $switchs)
+  		<switch id="${swh.getOid()}">
+		#if(${swh.getSwitchCommand()})
+			#set($switchCmd=${swh.getSwitchCommand()})
+			<on>
+				#if(${switchCmd.getSwitchCommandOnRef()})
+	  				#set($uiCmd=${switchCmd.getSwitchCommandOnRef()})
+	  				#foreach($cmd in ${resouceServiceImpl.getCommandOwnerByUICommand($uiCmd,$eventContainer,$maxId)})
+	  					<include type="command" ref="${cmd.getId()}"/>
+					#end
+				#end
+			</on>
+			<off>
+				#if(${switchCmd.getSwitchCommandOffRef()})
+	  				#set($uiCmd=${switchCmd.getSwitchCommandOffRef()})
+	  				#foreach($cmd in ${resouceServiceImpl.getCommandOwnerByUICommand($uiCmd,$eventContainer,$maxId)})
+	  					<include type="command" ref="${cmd.getId()}"/>
+					#end
+				#end
+			</off>
+		#else
+			<on />
+			<off />
+		#end
+		#if(${swh.getSensor()})
+			<include type="sensor" ref="${swh.getSensor().getOid()}"/>
+		#end
+		</switch>
+  	#end
+  ##<------------------------------------------------------------------------UIButton------------------------------------------------------------------
+  #foreach($button in $buttons)
+	  <button id="${button.getOid()}">
+		#if(${button.getUiCommand()})
+			#set($uiCmd=${button.getUiCommand()})
+			#foreach($cmd in ${resouceServiceImpl.getCommandOwnerByUICommand($uiCmd,$eventContainer,$maxId)})
+				#if($cmd.getDelay().equals(""))
+					<include type="command" ref="${cmd.getId()}"/>
+				#else
+					<delay>${cmd.getDelay()}</delay>
+				#end
+			#end
+		#end
+		</button>
+  #end
+  ##<------------------------------------------------------------------------Gesture------------------------------------------------------------------
+  #foreach($gesture in $gestures)
+	  <gesture id="${gesture.getOid()}">
+		#if(${gesture.getUiCommand()})
+			#set($uiCmd=${gesture.getUiCommand()})
+			#foreach($cmd in ${resouceServiceImpl.getCommandOwnerByUICommand($uiCmd,$eventContainer,$maxId)})
+				#if($cmd.getDelay().equals(""))
+					<include type="command" ref="${cmd.getId()}"/>
+				#else
+					<delay>${cmd.getDelay()}</delay>
+				#end
+			#end
+		#end
+		</gesture>
+  #end
+  ##<------------------------------------------------------------------------Slider------------------------------------------------------------------
+  #foreach($uiSlider in $uiSliders)
+   #if($uiSlider.getSlider())
+      #set($slider=$uiSlider.getSlider())
+      <slider id="${uiSlider.getOid()}">
+      #if(${slider.getSetValueCmd()})
+         #set($uiCmd=${slider.getSetValueCmd()})
+         #foreach($cmd in ${resouceServiceImpl.getCommandOwnerByUICommand($uiCmd,$eventContainer,$maxId)})
+         	<setValue>
+            	<include type="command" ref="${cmd.getId()}"/>
+            </setValue>
+         #end
+      #end
+      #if(${uiSlider.getSensor()})
+         <include type="sensor" ref="${uiSlider.getSensor().getOid()}"/>
+      #end
+      </slider>
+    #end
+  #end
+  ##<------------------------------------------------------------------------Image------------------------------------------------------------------
+  #foreach($image in $images)
+   <image id="${image.getOid()}">
+      #if($image.getSensor())
+         <include type="sensor" ref="${image.getSensor().getOid()}"/>
+      #end
+    </image>
+  #end
+  ##<------------------------------------------------------------------------Label------------------------------------------------------------------
+  #foreach($label in $labels)
+   <label id="${label.getOid()}">
+      #if($label.getSensor())
+         <include type="sensor" ref="${label.getSensor().getOid()}"/>
+      #end
+    </label>
+  #end
+  </components>
+  ##<------------------------------------------------------------------------Sensors------------------------------------------------------------------
+  <sensors>
+  	#foreach($sensor in $sensors)
+  		<sensor id="${sensor.getOid()}" name="${sensor.getName()}" type="${sensor.getType()}">
+  			#if(${sensor.getSensorCommandRef()}&&${sensor.getSensorCommandRef().getDeviceCommand()})
+  				#set($deviceCmd=${sensor.getSensorCommandRef().getDeviceCommand()})
+  				#foreach($cmd in ${resouceServiceImpl.getCommandOwnerByUICommand($deviceCmd.getDeviceCommandRef(),$eventContainer,$maxId)})
+  					<include type="command" ref="${cmd.getId()}"/>
+				#end
+				#if(${sensor.getType().toString().equals("range")})
+					<min value="${sensor.getMin()}"/>
+					<max value="${sensor.getMax()}"/>
+				#elseif(${sensor.getType().toString().equals("switch")})
+					<state name="on"/>
+					<state name="off"/>
+				#elseif(${sensor.getType().toString().equals("custom")})
+					#foreach($state in $sensor.getStates())
+						<state name="${state.getName()}" 
+						#if($state.getValue())
+						   value="${state.getValue()}" 
+						#end
+						/>
+					#end
+				#end
+  			#end
+  		</sensor>
+  	#end
+  	#foreach($sensor in $dbSensors)
+  		<sensor id="${resouceServiceImpl.getMaxId($maxId)}" name="${sensor.getName()}" type="${sensor.getType()}">
+  			#if(${sensor.getSensorCommandRef()}&&${sensor.getSensorCommandRef().getDeviceCommand()})
+  				#set($deviceCmd=${sensor.getSensorCommandRef().getDeviceCommand()})
+  				#foreach($cmd in ${resouceServiceImpl.getCommandOwnerByUICommand($deviceCmd.getDeviceCommandRef(),$eventContainer,$maxId)})
+  					<include type="command" ref="${cmd.getId()}"/>
+				#end
+				#if(${sensor.getType().toString().equals("range")})
+					<min value="${sensor.getMin()}"/>
+					<max value="${sensor.getMax()}"/>
+				#elseif(${sensor.getType().toString().equals("switch")})
+					<state name="on"/>
+					<state name="off"/>
+				#elseif(${sensor.getType().toString().equals("custom")})
+					#foreach($state in $sensor.getStates())
+						<state name="${state.getName()}" 
+						#if($state.getValue())
+						   value="${state.getValue()}" 
+						#end
+						/>
+					#end
+				#end
+  			#end
+  		</sensor>
+  	#end
+  </sensors>
+  ##<------------------------------------------------------------------------Commands------------------------------------------------------------------
+  <commands>
+    #foreach($protocolDisplayName in $eventContainer.getProtocolEvents().keySet())
+    	#set($protocalTagName=${protocolContainer.findTagName($protocolDisplayName)})
+    	#foreach($uiButtonEvent in $eventContainer.getProtocolEvents().get($protocolDisplayName))
+    		<command id="${uiButtonEvent.getId()}" protocol="${protocalTagName}" >
+    		#set($protocoAttrKeySet=${uiButtonEvent.getProtocolAttrs().keySet()})
+    		#foreach($property in $protocoAttrKeySet)
+    			<property name="${property}" value="$!{uiButtonEvent.getProtocolAttrs().get(${property})}" />
+    		#end
+    			<property name="name" value="${uiButtonEvent.getLabel()}" />
+    		</command>
+    	#end
+    #end
+  </commands>
+  ##<------------------------------------------------------------------------Configs------------------------------------------------------------------
+  <config>
+  	#foreach($cfg in $configs)
+  		<property name="${cfg.name}" value="${cfg.value}" />
+  	#end
+  </config>
+</openremote>

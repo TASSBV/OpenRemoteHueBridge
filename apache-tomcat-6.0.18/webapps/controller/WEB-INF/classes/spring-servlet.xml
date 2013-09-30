@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ **
+ * OpenRemote, the Home of the Digital Home.
+ * Copyright 2008-2011, OpenRemote Inc.
+ *
+ * See the contributors.txt file in the distribution for a
+ * full listing of individual contributors.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ **
+-->
+<!DOCTYPE beans PUBLIC "-//SPRING/DTD BEAN/EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans default-autowire="byName">
+    <bean id="urlMapping"
+          class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="config.htm">configManageController</prop>
+                <!--<prop key="monitor.htm">monitorController</prop>-->
+            </props>
+        </property>
+    </bean>
+
+  <!--
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+            <value>classpath:config.properties</value>
+        </property>
+    </bean>
+-->
+
+    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+            </props>
+        </property>
+        <property name="defaultErrorView" value="exception/defaultError"/>
+    </bean>
+
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass">
+            <value>
+                org.springframework.web.servlet.view.InternalResourceView
+            </value>
+        </property>
+        <property name="prefix">
+            <value>/WEB-INF/page/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
+
+    <bean id="methodNameResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+        <property name="paramName" value="method"/>
+        <property name="defaultMethodName" value="index"/>
+    </bean>
+    
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize">
+	        <value>10000000</value>
+	    </property>
+	    <property name="maxInMemorySize">
+	        <value>10000000</value>
+	    </property>
+    </bean>
+	
+	<bean id="configManageController" class="org.openremote.controller.action.ConfigManageController" />
+	<!--
+	<bean id="monitorController" class="org.openremote.controller.action.MonitorController" />
+	-->
+
+</beans>

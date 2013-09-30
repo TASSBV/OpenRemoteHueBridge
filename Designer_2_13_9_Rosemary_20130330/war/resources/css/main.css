@@ -1,0 +1,399 @@
+.screen-background {
+   background-repeat: no-repeat;
+   position: relative;
+}
+.panel-table {
+	position: absolute;
+	border-collapse: collapse;
+	border: 1px dashed yellow;
+}
+.panel-table td{
+	border: 1px dashed yellow;
+}
+
+.absolute{
+	position: absolute;
+}
+.background-color {
+   background-color: yellow;
+}
+.button-border {
+   border: 1px solid orange;
+   opacity:0.9;
+}
+
+/* Screen Button */
+.screen-btn {
+	width: 49px;
+	height: 49px;
+	font-size: 11px;
+	color: white;
+	font-weight: bolder;
+	text-align: center;
+	position: absolute;
+	cursor: move;
+}
+
+.screen-btn table {
+   border-collapse:collapse;
+    color:#FFFFFF;
+    border:0px;
+    width:100%;
+    height:100%;
+}
+
+table.screen-btn-cont{
+    border-collapse:collapse;
+    background-color: #357ddb;
+    color:#FFFFFF;
+    border:0px;
+    width:100%;
+    height:100%;
+}
+
+table.screen-btn-cont tr.screen-top {
+   height:3px;
+}
+/*
+.screen-btn table .middle img {
+   height:43px;
+   width:43px;
+}
+*/
+table.screen-btn-cont td.tl-c{
+    width:3px;
+    background: url(../images/iphone_btn_sprite.png) no-repeat 0 0;
+}
+
+table.screen-btn-cont td.top{
+    background: url(../images/iphone_btn_sprite.png) repeat-x 0 -6px;
+}
+table.screen-btn-cont td.tr-c{
+    width:3px;
+    background: url(../images/iphone_btn_sprite.png) no-repeat  0 -11px;
+}
+.screen-btn table td.middle{
+    text-align: center;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 11px;
+    height:98%;
+}
+
+
+table.screen-btn-cont td.ml{
+    width:3px;
+    background: url(../images/iphone_btn_vertical.png) repeat-y 0 0;
+}
+table.screen-btn-cont td.mr{
+    width:3px;
+    background: url(../images/iphone_btn_vertical.png) repeat-y -4px 0;
+}
+table.screen-btn-cont tr.screen-bottom {
+   height:3px;
+}
+
+
+table.screen-btn-cont td.bottom{
+    background: url(../images/iphone_btn_sprite.png) repeat-x 0 -21px;
+}
+table.screen-btn-cont td.bl-c{
+    width:3px;
+    background: url(../images/iphone_btn_sprite.png) no-repeat  0 -16px;
+}
+table.screen-btn-cont td.br-c{
+    width:3px;
+    background: url(../images/iphone_btn_sprite.png) no-repeat 0 -26px;
+}
+
+/* img-chooser-view */
+#img-chooser-view {
+  background: white;
+  font: 11px Arial, Helvetica, sans-serif;
+}
+
+#img-chooser-view .thumb {
+  background: white;
+  padding: 3px;
+}
+
+#img-chooser-view .thumb img {
+  height: 46px;
+  width: 46px;
+}
+
+#img-chooser-view .thumb-wrap {
+  float: left;
+  margin: 4px;
+  margin-right: 0;
+  padding: 5px;
+}
+
+#img-chooser-view .thumb-wrap span {
+  display: block;
+  overflow: hidden;
+  text-align: center;
+}
+
+#img-chooser-view .x-view-over {
+  border: 1px solid #dddddd;
+  background: #efefef repeat-x left top;
+  padding: 4px;
+}
+
+#img-chooser-view .x-view-selected {
+  background: #DFEDFF;
+  border: 1px solid #6593cf;
+  padding: 4px;
+}
+
+#img-chooser-view .x-view-selected .thumb {
+  background: transparent;
+}
+
+#img-chooser-view .x-view-selected span {
+  color: #1A4D8F;
+}
+
+#img-chooser-view .loading-indicator {
+  font-size: 11px;
+  background-image: url('../../resources/images/grid/loading.gif');
+  background-repeat: no-repeat;
+  background-position: left;
+  padding-left: 20px;
+  margin: 10px;
+}
+
+.cursor-move {
+	cursor: move;
+}
+
+.x-form-item label {
+	font-size: 11px;
+}
+
+.x-form-field {
+	font-size: 11px;
+}
+
+.x-form-cb-label {
+   font-size: 11px;
+}
+
+.move-cursor {
+   background-image: url('../../resources/images/move_cursor.png');
+   background-repeat: no-repeat;
+   cursor: move;
+}
+
+.move-background {
+   position: absolute;
+   border: 1px solid yellow;
+}
+
+.screen-view-item-sel {
+  background: #F0FFF0 none repeat scroll 0%;
+  border: 1px dotted #A3BAE9 !important;
+  cursor: pointer;
+}
+
+.padding-top-left-10px {
+   padding-left: 10px;
+   padding-top: 10px;
+}
+.screen-image {
+	background-repeat: no-repeat;
+   overflow:hidden;
+}
+
+.sliderMinImage {
+	background-position:left center;
+	background-repeat:no-repeat;
+	display:block;
+	height:30px;
+	left:0;
+	position:absolute;
+	top:6px;
+	width:90%;
+}
+.sliderMinTrackImage {
+	background-position:left center;
+	background-repeat:repeat-x;
+	height:44px;
+	position:absolute;
+	left:28px;
+	width:35%;
+	z-index:100;
+}
+.sliderThumbImage {
+	background-position:center center;
+	background-repeat:no-repeat;
+	height:44px;
+	position:absolute;
+	left:35%;
+	top:0;
+	width:44px;
+	z-index:1025;
+}
+.sliderMaxTrackImage {
+	background-position:right center;
+	background-repeat:repeat-x;
+	width:70%;
+	position:absolute;
+	top:0;
+	height:44px;
+	right:28px;
+}
+.sliderMaxImage {
+	background-position:right center;
+	background-repeat:no-repeat;
+	height:30px;
+	position:absolute;
+	right:0;
+	top:7px;
+	width:44px;
+}
+.vsliderMinImage {
+	background-position:center bottom;
+	background-repeat:no-repeat;
+	display:block;
+	height:30px;
+	left:0px;
+	position:absolute;
+	bottom:0px;
+	width:90%;
+}
+.vsliderMinTrackImage {
+	background-position:center bottom;
+	background-repeat:repeat-y;
+	height:65%;
+	position:absolute;
+	bottom:28px;
+	width:90%;
+}
+.vsliderThumbImage {
+	background-position:center center;
+	background-repeat:no-repeat;
+	position:absolute;
+	height:90%;
+	left:0px;
+	width:90%;
+	z-index:1025;
+}
+.vsliderMaxTrackImage {
+	background-position:center top;
+	background-repeat:repeat-y;
+	/*left:2px;*/
+	width:90%;
+	position:absolute;
+	top:30px;
+	height:35%
+}
+.vsliderMaxImage {
+	background-position:center top;
+	background-repeat:no-repeat;
+	height:90%;
+	position:absolute;
+	right:0px;
+	left:0px;
+	top:0px;
+	width:90%;
+}
+
+.tabbar-background {
+   background: url('../../resources/images/iphone_tabbar_bg.png') repeat-x;
+}
+
+.tabbaritem-background {
+	background: url('../../resources/images/tabbaritem_img.png') no-repeat center 10px;
+}
+
+/**
+   only for IE scroll TreePanel.
+**/
+.overflow-auto {
+   *overflow: auto;
+}
+
+.zero-padding {
+   padding: 0px;
+}
+
+.indicator-default {
+	float: left;
+   background: url('../../resources/images/indicator_sprite.png') no-repeat -16px 0;
+}
+
+.indicator-current {
+	float: left;
+   background: url('../../resources/images/indicator_sprite.png') no-repeat 0 0;
+}
+
+.importErrorMessage {
+	color: red;
+	text-align: center;
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+
+/* Dialog boxes */
+.dialogTopLeftInner, .dialogMiddleLeftInner, .dialogBottomLeftInner,
+.dialogTopRightInner, .dialogMiddleRightInner, .dialogBottomRightInner {
+  display: none;
+}
+.gwt-DialogBox {
+	background-color: #DFE8F6;
+  border: 1px solid #7CA4D9;
+  z-index: 2;
+}
+.gwt-DialogBox .Caption {
+  background: #d3d6dd url(gradient_bg_th.png) repeat-x bottom left;
+  font-weight: bold;
+  text-shadow: #fff 0 2px 2px;
+  cursor: default;
+  padding: 5px 10px;
+  border-bottom: 1px solid #999;
+  text-align: left;
+}
+.gwt-DialogBox .dialogContent {
+}
+.gwt-DialogBox .gwt-Button {
+  margin: 10px;
+}
+.gwt-PopupPanelGlass {
+  background-color: #000;
+  opacity: 0.3;
+  filter: literal("alpha(opacity=30)");
+  z-index: 2;
+}
+
+/* GWT Tree */
+.gwt-Tree {
+}
+.gwt-Tree .gwt-TreeItem {
+  padding: 0;
+  cursor: hand;
+  cursor: pointer;
+  display: block !important;
+}
+.gwt-Tree .gwt-TreeItem-selected {
+  background: #ccc;
+}
+
+/* Splitters */
+.gwt-SplitLayoutPanel-HDragger, .gwt-SplitLayoutPanel-VDragger {
+  background-color: white;
+}
+
+.gwt-SplitLayoutPanel-HDragger {
+  cursor: col-resize;
+}
+
+.gwt-SplitLayoutPanel-VDragger {
+  cursor: row-resize;
+}
+
+.row-invalid_file_imported_code .x-grid3-cell-inner  {
+ color:red;
+}
+

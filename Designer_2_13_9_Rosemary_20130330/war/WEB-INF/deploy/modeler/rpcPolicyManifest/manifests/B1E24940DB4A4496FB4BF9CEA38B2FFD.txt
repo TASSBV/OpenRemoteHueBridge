@@ -1,0 +1,2 @@
+serviceClass: org.openremote.modeler.client.rpc.DeviceMacroRPCService
+path: D754227BC1008EFA958E78FE7F196AD7.gwt.rpc

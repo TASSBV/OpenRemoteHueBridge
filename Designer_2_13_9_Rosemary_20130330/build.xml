@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--
+  OpenRemote, the Home of the Digital Home.
+  Copyright 2008-2012, OpenRemote Inc.
+
+  See the contributors.txt file in the distribution for a
+  full listing of individual contributors.
+
+  This is free software; you can redistribute it and/or modify it
+  under the terms of the GNU General Public License as
+  published by the Free Software Foundation; either version 3.0 of
+  the License, or (at your option) any later version.
+
+  This software is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+  You should have received a copy of the GNU General Public
+  License along with this software; if not, write to the Free
+  Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+  02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
+<!--
+ |  Build file for OpenRemote Modeler
+ |
+ |  Author: Tomsky Wang, Dan Cong
+ +-->
+<project name = "Designer" default = "compile" basedir = ".">
+
+	<property file="build.properties"/>
+
+	<!-- Configure path to GWT SDK -->
+	<property name="gwt.sdk" value="${gwt.sdk}" />
+
+	<!-- Some base dir used -->
+	<property name="project.name" value="modeler" />
+	<property name="lib.dir" value="lib" />
+	<property name="web-inf.dir" value="war/WEB-INF" />
+	<property name="src.dir" value="src"/>
+	<property name="test.dir" value="test"/>
+	<property name="config.dir" value="config"/>
+	<property name="build.config.dir" value="build_config"/>
+	<property name="output.dir" value="output"/>
+
+	<!-- dirs for test build and output -->
+	<property name="test.build.dir" value="test_build"/>
+	<property name="test.build.classes.dir" value="${test.build.dir}/classes"/>
+	<property name="test.output" value="${test.build.dir}/test-output"/>
+	<property name="test.report" value="${test.build.dir}/test-report"/>
+
+	<!-- Some variables for HSQLDB Engine Server Mode, NOT In-Memory Mode -->
+	<property name="hjar" value="${lib.dir}/test/hsqldb/hsqldb.jar" />
+	<property name="hclass" value="org.hsqldb.Server" />
+	<property name="hfile" value="-database.0 hsqldb/modeler" />
+	<property name="halias" value="modeler" />
+	<property name="hport" value="9001" />
+
+	<!-- Cobertura  coverage report -->
+	<property name="cobertura.lib.dir" value="${lib.dir}/cobertura"/>
+	<property name="instrumented.dir" value="${test.build.dir}/instrumented"/>
+	<property name="checkstyle.reports.dir" location="${test.build.dir}/checkstyle_report"/>
+	<property name="cobertura.report.dir" location="${test.build.dir}/cobertura_report"/>
+	<property name="cobertura.datafile" value="${test.build.dir}/cobertura.ser"/>
+
+	<path id="cobertura.classpath">
+		<fileset dir="${cobertura.lib.dir}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<!-- Checkstyle report -->
+	<property name="checkstyle.lib.dir" value="${lib.dir}/checkstyle"/>
+	<property name="checkstyle.checker" value="${build.config.dir}/openremote_checks.xml"/>
+	<property name="checkstyle.report.style" value="${build.config.dir}/checkstyle-noframes-sorted.xsl"/>
+
+	<path id="checkstyle.classpath">
+		<fileset dir="${checkstyle.lib.dir}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<!-- javadoc -->
+	<property name="javadoc.dir" value="doc" />
+	<property name="javadoc.locale" value="en_US" />
+
+	<!-- ==================================================================== -->
+	<!-- project class path                                                   -->
+	<!-- ==================================================================== -->
+	<path id="project.class.path">
+		<pathelement location="${web-inf.dir}/classes"/>
+		<pathelement location="${test.build.classes.dir}"/>
+		<pathelement location="${gwt.sdk}/gwt-user.jar"/>
+		<fileset dir="${gwt.sdk}" includes="gwt-dev*.jar"/>
+		<fileset dir="${gwt.sdk}" includes="validation-api*.jar"/>
+		<!-- Add any additional non-server libs (such as JUnit, TestNG) -->
+		<fileset dir="${lib.dir}" includes="core/**/*.jar"/>
+		<fileset dir="${lib.dir}" includes="test/**/*.jar"/>
+		<fileset dir="${lib.dir}" includes="compile/**/*.jar"/>
+	</path>
+
+	<!-- ==================================================================== -->
+	<!-- Clean previous build                                                 -->
+	<!-- ==================================================================== -->
+	<target name="clean" description="Cleans this project">
+		<delete dir="${web-inf.dir}/classes" failonerror="false" />
+		<delete dir="war/modeler" failonerror="false" />
+		<delete dir="${web-inf.dir}/lib" failonerror="false" />
+		<delete dir="${output.dir}"/>
+		<delete dir="${test.build.dir}"/>
+	</target>
+
+	<!-- ==================================================================== -->
+	<!-- Prepare lib for build                                                -->
+	<!-- ==================================================================== -->
+	<target name="libs" depends="clean" description="Copy libs to WEB-INF/lib">
+		<mkdir dir="${output.dir}" />
+		<mkdir dir="${web-inf.dir}/lib" />
+		<copy todir="${web-inf.dir}/lib" flatten="true">
+			<fileset dir="${lib.dir}/core" includes="**/*.jar"/>
+		</copy>
+		<!-- Add any additional server libs that need to be copied -->
+	</target>
+
+	<!-- ==================================================================== -->
+	<!-- Run javac to compile class                                           -->
+	<!-- ==================================================================== -->
+	<target name="javac" depends="libs" description="Compile java source">
+		<echo message="--------------------------------------------------------------------" />
+		<echo message=" Compiling Java classes..." />
+		<echo message="--------------------------------------------------------------------" />
+		<echo message="" />
+		<mkdir dir="${web-inf.dir}/classes" />
+		<javac srcdir="${src.dir}" excludes="org/openremote/modeler/client/**" includes="**" encoding="utf-8" destdir="${web-inf.dir}/classes" source="1.5" target="1.5" nowarn="true" debug="true" debuglevel="lines,vars,source">
+			<classpath refid="project.class.path"/>
+		</javac>
+		<copy todir="${web-inf.dir}/classes">
+			<fileset dir="${src.dir}" excludes="**/*.java"/>
+			<fileset dir="${config.dir}" includes="**/**"/>
+			<fileset dir="protocols" includes="**/**"/>
+			<fileset dir="touchpanels" includes="**/**"/>
+      			<filterchain><expandproperties/></filterchain>
+		</copy>
+	</target>
+
+	<!-- ==================================================================== -->
+	<!-- Define if task                                                       -->
+	<!-- ==================================================================== -->
+        <taskdef resource="net/sf/antcontrib/antcontrib.properties" classpathref="project.class.path" />
+
+	<!-- ==================================================================== -->
+	<!-- Run GWT Compile                                                      -->
+	<!-- ==================================================================== -->
+	<target name="compile" depends="javac" description="GWT compile to JavaScript">
+
+		<condition property="token_browser_limit" value="&lt;set-property name=&quot;user.agent&quot; value=&quot;safari&quot;/&gt; &lt;set-property name=&quot;gxt.user.agent&quot; value=&quot;safari3,safari4,safari5,chrome,air&quot;/&gt;" else="">
+			<isset property="devmode" />
+		</condition>
+
+		<copy file="config/Modeler.gwt.xml" todir="src/org/openremote/modeler" overwrite="true">
+			<filterset>
+				<filter token="_BROWSER_LIMIT_" value="${token_browser_limit}"/>
+			</filterset>
+		</copy>
+		<if>
+			<isset property="devmode"/>
+			<then>
+				<java failonerror="true" fork="true" classname="com.google.gwt.dev.Compiler">
+					<classpath>
+						<pathelement location="${src.dir}"/>
+						<path refid="project.class.path"/>
+					</classpath>
+					<!-- add jvmarg -Xss16M or similar if you see a StackOverflowError -->
+					<jvmarg value="-Xmx512M"/>
+					<jvmarg value="-Xss64m"/>
+					<!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
+					<arg value="-localWorkers"/>
+					<arg value="2"/>
+					<arg value="org.openremote.modeler.Modeler"/>
+					<arg value="-draftCompile"/>
+				</java>
+			</then>
+			<else>
+				<java failonerror="true" fork="true" classname="com.google.gwt.dev.Compiler">
+					<classpath>
+						<pathelement location="${src.dir}"/>
+						<path refid="project.class.path"/>
+					</classpath>
+					<!-- add jvmarg -Xss16M or similar if you see a StackOverflowError -->
+					<jvmarg value="-Xmx512M"/>
+					<jvmarg value="-Xss64m"/>
+					<!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
+					<arg value="-localWorkers"/>
+					<arg value="2"/>
+					<arg value="org.openremote.modeler.Modeler"/>
+				</java>
+			</else>
+		</if>
+	</target>
+
+	<!-- ==================================================================== -->
+	<!-- Launch GWT hosted  server                                            -->
+	<!-- ==================================================================== -->
+	<target name="hosted" depends="javac" description="Run hosted mode">
+		<java failonerror="true" fork="true" classname="com.google.gwt.dev.HostedMode">
+			<classpath>
+				<pathelement location="${src.dir}"/>
+				<path refid="project.class.path"/>
+			</classpath>
+			<jvmarg value="-Xmx256M"/>
+			<jvmarg value="-Xss64m"/>
+			<arg value="-startupUrl"/>
+			<arg value="Modeler.jsp"/>
+			<!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
+			<arg value="org.openremote.modeler.Modeler"/>
+		</java>
+	</target>
+
+	<!-- ==================================================================== -->
+	<!-- Pack war                                                             -->
+	<!-- ==================================================================== -->
+	<target name="war" depends="compile" description="Create a war file">
+
+		<echo message = "--------------------------------------------------------------------" />
+		<echo message = " Packing Designer-${version}-${build.date}-${version.name}...       " />
+		<echo message = "--------------------------------------------------------------------" />
+		<echo message = "" />
+
+    <copy todir = "${output.dir}">
+
+      <fileset dir = "war">
+        <exclude name = "*.jsp"/>
+      </fileset>
+
+    </copy>
+
+
+    <copy todir = "${output.dir}">
+
+      <fileset dir = "war">
+        <include name = "*.jsp"/>
+      </fileset>
+
+      <filterchain>
+        <replacetokens>
+          <token key = "VERSION" value = "${version}"/>
+          <token key = "BUILD.DATE" value = "${build.date}"/>
+          <token key = "VERSION.NAME" value = "${version.name}"/>
+        </replacetokens>
+      </filterchain>
+
+    </copy>
+    
+		<!--<zip destfile = "${output.dir}/Designer-${version}-${build.date}-${version.name}.war"
+         basedir  = "${output.dir}"/>-->
+		 <zip destfile = "${output.dir}/modeler.war"
+         basedir  = "${output.dir}"/>
+    
+	</target>
+
+	<!-- ==================================================================== -->
+	<!-- Deploy war into web server                                           -->
+	<!-- ==================================================================== -->
+	<target name="deploy" depends="war" description="--> deploy the project">
+		<echo message="--------------------------------------------------------------------" />
+		<echo message=" Deploying project..." />
+		<echo message="--------------------------------------------------------------------" />
+		<echo message="" />
+		<delete file="${deploy.dir}/Designer-${version}-${build.date}-${version.name}.war"/>
+		<delete dir="${deploy.dir}/Designer-${version}-${build.date}-${version.name}"/>
+		<copy todir="${deploy.dir}" file="${output.dir}/Designer-${version}-${build.date}-${version.name}.war"/>
+	</target>
+
+
+	<!-- ==================================================================== -->
+	<!-- Compile test class into test_build/classes                           -->
+	<!-- ==================================================================== -->
+	<target name="compile-test" depends="compile" description="--> compile the test cases.">
+		<echo message="--------------------------------------------------------------------" />
+		<echo message=" Compiling test..." />
+		<echo message="--------------------------------------------------------------------" />
+		<echo message="" />
+		<copy todir="${test.build.classes.dir}">
+			<fileset dir="${test.dir}">
+				<include name="**/*.xml" />
+			</fileset>
+		</copy>
+		<javac srcdir="${test.dir}" destdir="${test.build.classes.dir}" classpathref="project.class.path" />
+	</target>
+
+	<!-- ==================================================================== -->
+	<!-- Define TestNG Task                                                   -->
+	<!-- ==================================================================== -->
+	<taskdef name="testng" classpathref="project.class.path" classname="org.testng.TestNGAntTask" />
+
+	<!-- ==================================================================== -->
+	<!-- Run TestNG tests                                                     -->
+	<!-- ==================================================================== -->
+	<target name="testng" depends="compile-test" description="TestNG tests">
+		<testng classpathref="project.class.path" outputdir="${test.output}">
+			<xmlfileset dir="${test.dir}" includes="testng.xml"/>
+		</testng>
+	</target>
+
+	<!-- ==================================================================== -->
+	<!-- HSQLDB script                                                        -->
+	<!-- ==================================================================== -->
+
+	<!-- Start up HSQLDB instance in Engine Server Mode -->
+	<target name="dbup" description="Start the Hsqldb database server">
+		<java fork="true" classname="${hclass}" classpath="${hjar}" 
+		        args="${hfile} -dbname.0 ${halias} -port ${hport}" />
+	</target>
+
+	<!-- Start up HSQLDB swing manager UI -->
+	<target name="dbm" description="Start up HSQLDB swing manager UI">
+		<java fork="true" classname="org.hsqldb.util.DatabaseManagerSwing" 
+	        classpath="${hjar}"  />
+	</target>
+
+	<!-- Shut down HSQLDB -->
+	<target name="dbdown" description="Shut down HSQLDB">
+		<sql classpath="${hjar}"
+	           driver="org.hsqldb.jdbcDriver" 
+	           url="jdbc:hsqldb:hsql://localhost:${hport}/${halias}" 
+	           userid="sa" password="" 
+	           print="yes">
+	        SHUTDOWN
+	    </sql>
+	</target>
+
+
+	<!-- define task for cobertura -->
+	<taskdef classpathref="cobertura.classpath" resource="tasks.properties" />
+
+	<!-- define task for checkstyle -->
+	<taskdef classpathref="checkstyle.classpath" resource="checkstyletask.properties" />
+
+	<!-- ==================================================================== -->
+	<!-- Cobertura instrument                                                 -->
+	<!-- ==================================================================== -->
+	<target name="instrument" depends="compile-test" description="adds the logging code to the already compiled class files">
+		<mkdir dir="${instrumented.dir}" />
+		<delete file="${cobertura.datafile}" />
+		<cobertura-instrument todir="${instrumented.dir}" datafile="${cobertura.datafile}">
+			<ignore regex="org.apache.log4j.*"/>
+			<fileset dir="${web-inf.dir}/classes">
+				<include name="**/**"/>
+			</fileset>
+		</cobertura-instrument>
+		<copy todir="${instrumented.dir}">
+			<fileset dir="${config.dir}">
+				<include name="**/**" />
+			</fileset>
+		</copy>
+	</target>
+
+	<!-- ==================================================================== -->
+	<!-- TestNG with coverage                                                 -->
+	<!-- ==================================================================== -->
+	<target name="testng-cov" depends="instrument" description="run cobertura coverage in testng">
+		<testng outputdir="${test.output}" classpath="${cobertura.lib.dir}/cobertura/cobertura-1.9.jar;${instrumented.dir};${test.build.classes.dir};${web-inf.dir}/classes;${cobertura.lib.dir}/">
+			<classpath refid="project.class.path">
+			</classpath>
+			<xmlfileset dir="${test.dir}" includes="testng.xml" />
+			<sysproperty key="net.sourceforge.cobertura.datafile" file="${cobertura.datafile}" />
+		</testng>
+	</target>
+
+	<!-- ==================================================================== -->
+	<!-- Cobertura report                                                     -->
+	<!-- ==================================================================== -->
+	<target name="cobertura" depends="testng-cov" description="generate report of cobertura " >
+		<mkdir dir="${cobertura.report.dir}" />
+		<cobertura-report format="html" destdir="${cobertura.report.dir}" srcdir="${src.dir}" datafile="${cobertura.datafile}" />
+		<cobertura-report format="xml" destdir="${cobertura.report.dir}" srcdir="${src.dir}" datafile="${cobertura.datafile}" />
+	</target>
+
+	<!-- ==================================================================== -->
+	<!-- Checkstyle report                                                    -->
+	<!-- ==================================================================== -->
+	<target name="checkstyle" description="--> generates a report of code convention violations.">
+		<mkdir dir="${checkstyle.reports.dir}" />
+		<checkstyle config="${checkstyle.checker}" failureProperty="checkstyle.failure" failOnViolation="false">
+			<formatter type="xml" tofile="${checkstyle.reports.dir}/checkstyle_report.xml" />
+			<fileset dir="${src.dir}" includes="**/*.java" />
+			<fileset dir="${test.dir}" includes="**/*.java" />
+		</checkstyle>
+		<xslt in="${checkstyle.reports.dir}/checkstyle_report.xml" out="${checkstyle.reports.dir}/checkstyle.report.html" style="${checkstyle.report.style}" />
+	</target>
+
+	<!-- ==================================================================== -->
+	<!-- Javadoc                                                              -->
+	<!-- ==================================================================== -->
+	<target name="javadoc" description="Generate API docs for the DocCheck source">
+		<echo message="--------------------------------------------------------------------" />
+		<echo message=" Generating javadoc..." />
+		<echo message="--------------------------------------------------------------------" />
+		<echo message="" />
+		<mkdir dir="${javadoc.dir}" />
+		<javadoc
+	              locale           ="${javadoc.locale}"
+	              defaultexcludes  = "yes"
+	              use              = "yes"
+	              header           = "OpenRemote Modeler API "
+	              doctitle         = "OpenRemote Modeler API Specification V2.0"
+	              nodeprecatedlist = "yes"
+			      classpathref     = "project.class.path" 
+	              sourcepath       = "./${src.dir}"
+	              destdir          = "./${javadoc.dir}"
+	              additionalparam  = "-breakiterator"
+	          />
+	</target>
+
+
+</project>

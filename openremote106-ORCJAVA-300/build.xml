@@ -1,0 +1,878 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  OpenRemote, the Home of the Digital Home.
+  Copyright 2008-2012, OpenRemote Inc.
+
+  See the contributors.txt file in the distribution for a
+  full listing of individual contributors.
+
+  This is free software; you can redistribute it and/or modify it
+  under the terms of the GNU General Public License as
+  published by the Free Software Foundation; either version 3.0 of
+  the License, or (at your option) any later version.
+
+  This software is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+  You should have received a copy of the GNU General Public
+  License along with this software; if not, write to the Free
+  Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+  02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
+<!--
+ |  Build file for OpenRemote controller
+ |
+ |  Author: Juha Lindfors
+ |  Author: Jerome Velociter
+ |  Author: Dan Cong
+ +-->
+<project name = "controller" default = "package" basedir = ".">
+
+  <!--
+   | Load local build properties for quick'n'easy changes to build behavior.
+   +-->
+  <property file = "build.properties"/>
+
+
+  <property file = "config/config.properties"/>
+
+
+  <!--
+   | Project name used for packaging the binary, etc.
+   +-->
+  <property name = "project.name" value = "controller"/>
+
+  <!--
+   | Top level directories in the project source structure.
+   +-->
+  <property name = "src.dir" value = "src"/>
+  <property name = "test.dir" value = "test"/>
+  <property name = "lib.dir" value = "lib"/>
+  <property name = "build.dir" value = "build"/>
+  <property name = "classes.dir" value = "${build.dir}/classes"/>
+  <property name = "output.dir" value = "output"/>
+  <property name = "output.controller.dir" value = "${output.dir}/OpenRemote-Controller-${version}/webapps/controller"/>
+  <property name = "runtime.dir" value = "runtime/apache-tomcat-6.0.18"/>
+  <property name = "javadoc.dir" value = "doc"/>
+  <property name = "web.dir" value = "web"/>
+  <property name = "webapp.classes.dir" value = "${web.dir}/WEB-INF/classes"/>
+  <property name = "config.dir" value = "config"/>
+
+
+  <!--
+   |   Set the test container VM work directory inside the war directory. This ensures
+   |   relative paths from within test container war's config.properties are resolved
+   |   within the testcontainer directory structure.
+   +-->
+  <property name = "testcontainer.vm.work.dir" value = "${build.dir}/testcontainer/war"/>
+
+  <!--
+   |    Run JUnit VM with the same work directory as the test container war. Notice
+   |    the tests themselves aren't actually running inside a container. This is
+   |    temporary until the search paths for resources have been sorted out to not mix
+   |    the test container and junit test resource files.
+   +-->
+  <property name = "junit.vm.work.dir" value = "${testcontainer.vm.work.dir}"/>
+
+
+  <property name = "javadoc.locale" value = "en_US"/>
+  <property name = "build-config.dir" value = "build_config"/>
+  <property name = "instrumented.dir" value = "build/instrumented"/>
+  <property name = "junit.reports.dir" location = "build/junit_report"/>
+  <property name = "checkstyle.reports.dir" location = "build/checkstyle_report"/>
+  <property name = "cobertura.report.dir" location = "build/cobertura_report"/>
+  <property name = "cobertura.datafile" value = "${build.dir}/cobertura.ser"/>
+  <property name = "sql.dir" value = "sql"/>
+
+  <!--
+   | Binary Compile Classpath
+   +-->
+  <path id = "compile.path.id">
+    <fileset dir = "${lib.dir}/compile" includes = "**/*.jar"/>
+    <fileset dir = "${lib.dir}/core" includes = "**/*.jar"/>
+    <fileset dir = "${lib.dir}/rxtx" includes = "**/*.jar"/>
+    <fileset dir = "${lib.dir}/apache/commons-net" includes = "**/*.jar"/>
+    <fileset dir = "${lib.dir}/apache/commons-lang" includes = "**/*.jar"/>
+    <fileset dir = "${lib.dir}/clink" includes = "**/*.jar"/>
+    <fileset dir = "${lib.dir}/json" includes = "**/*.jar"/>
+    <fileset dir = "${lib.dir}/onewire" includes = "**/*.jar"/>
+    <fileset dir = "${lib.dir}/drools-5.1.1" includes = "**/*.jar"/>
+    <fileset dir = "${lib.dir}/flexjson-2.1" includes = "**/*.jar"/>
+    <fileset dir = "${lib.dir}/sunrise" includes = "**/*.jar"/>
+    <fileset dir = "${lib.dir}/json-path" includes = "**/*.jar"/>
+    <fileset dir = "${lib.dir}/rrd4j-2.1.1" includes = "**/*.jar"/>
+    <fileset dir = "${lib.dir}/jzmq" includes = "**/*.jar"/>
+  </path>
+
+  <!--
+   | Additional classpath elements for running the test suites.
+   +-->
+  <path id = "test.path.id">
+    <path location = "${classes.dir}"/>
+    <path location = "${test.dir}"/>
+    <fileset dir = "${lib.dir}/test" includes = "**/*.jar"/>
+    <path location = "${config.dir}"/>
+
+    <path refid = "compile.path.id"/>
+  </path>
+
+
+  <path id = "container.libs">
+    <path location = "${test.dir}"/>
+    <fileset dir = "${lib.dir}/compile"/>
+    <fileset dir = "${lib.dir}/core" includes = "**/*.jar"/>
+    <fileset dir = "${lib.dir}/cobertura" includes = "*.jar"/>
+    <fileset dir = "${lib.dir}/clink" includes = "*.jar"/>
+    <path location = "${classes.dir}"/>
+    <fileset dir = "${lib.dir}/test" includes = "**/*.jar"/>
+    <path location = "${config.dir}"/>
+    <fileset dir = "${lib.dir}/apache" includes = "**/*.jar"/>
+  </path>
+  
+
+  <path id = "cobertura.path.id">
+    <fileset dir = "${lib.dir}/cobertura" includes = "*.jar"/>
+    <path location = "${classes.dir}"/>
+  </path>
+
+  <!-- defind task for cobertura -->
+  <taskdef classpathref = "cobertura.path.id" resource = "tasks.properties"/>
+
+  <!-- defind task for checkstyle -->
+  <taskdef resource = "checkstyletask.properties" classpathref = "test.path.id"/>
+  <property name = "checkstyle.report.style" value = "${build-config.dir}/checkstyle-noframes-sorted.xsl"/>
+
+
+
+
+
+  <!-- =======================================================================================
+
+
+        PUBLIC TARGET TASKS
+
+
+       ======================================================================================= -->
+
+
+  
+  <!--
+    | CLEAN:
+    |
+    |  Clobber all data.
+    |
+    +-->
+  <target name = "clean" description = "deletes all generated files">
+    <delete dir = "${build.dir}"/>
+    <delete dir = "${output.dir}"/>
+    <delete dir = "${webapp.classes.dir}"/>
+  </target>
+
+  <!--
+  |
+  | INIT:
+  |
+  | Initializes the project build structure.
+  +-->
+  <target name = "init" depends = "clean">
+
+    <mkdir dir = "${build.dir}"/>
+    <mkdir dir = "${build.dir}/testcontainer"/>
+    <mkdir dir = "${testcontainer.vm.work.dir}"/>
+    <mkdir dir = "${build.dir}/testcontainer/webapps"/>
+    <mkdir dir = "${build.dir}/testcontainer/logs"/>
+    <mkdir dir = "${build.dir}/testcontainer/logs/dev"/>
+    <mkdir dir = "${build.dir}/testcontainer/logs/knx"/>
+    <mkdir dir = "${build.dir}/testcontainer/logs/onewire"/>
+    <mkdir dir = "${build.dir}/testcontainer/logs/isy99"/>
+    <mkdir dir = "${build.dir}/testcontainer/logs/lagarto"/>
+
+    <mkdir dir = "${output.dir}"/>
+
+    <copy todir = "${build.dir}/lib" flatten = "true">
+      <fileset dir = "${lib.dir}/core">
+        <include name = "**/*.jar"/>
+      </fileset>
+      <fileset dir = "${lib.dir}/apache">
+        <include name = "**/*.jar"/>
+      </fileset>
+      <fileset dir = "${lib.dir}/rxtx">
+        <include name = "**/*.jar"/>
+      </fileset>
+      <fileset dir = "${lib.dir}/json">
+    	  <include name = "*.jar"/>
+      </fileset>
+      <fileset dir = "${lib.dir}/json-path">
+       <include name = "*.jar"/>
+      </fileset>
+      <fileset dir = "${lib.dir}/onewire">
+        <include name = "*.jar"/>
+      </fileset>
+      <fileset dir = "${lib.dir}/sunrise">
+        <include name = "*.jar"/>
+      </fileset>
+      <fileset dir = "${lib.dir}/clink">
+        <include name = "*.jar"/>
+      </fileset>
+      <fileset dir = "${lib.dir}/drools-5.1.1">
+        <include name = "*.jar"/>
+      </fileset>
+      <fileset dir = "${lib.dir}/flexjson-2.1">
+        <include name = "*.jar"/>
+      </fileset>
+      <fileset dir = "${lib.dir}/rrd4j-2.1.1">
+        <include name = "*.jar"/>
+      </fileset>
+      <fileset dir = "${lib.dir}/jzmq">
+        <include name = "**/*.jar"/>
+      </fileset>
+    </copy>
+
+
+    <copy todir = "${build.dir}/lib/native" flatten = "true">
+      <fileset dir = "${lib.dir}/rxtx">
+        <include name = "**/*.dll"/>
+        <include name = "**/*.so"/>
+        <include name = "**/*.jnilib"/>
+      </fileset>
+    </copy>
+
+    <copy todir = "${build.dir}/lib/native" flatten = "true">
+      <fileset dir = "${lib.dir}/jzmq">
+        <include name = "**/*.so"/>
+      </fileset>
+    </copy>
+
+  </target>
+
+
+
+  <!--
+    | COMPILE:
+    |
+    | Run javac on all Java source.
+    +-->
+  <target name = "compile" depends = "init" description = "--> compile the project sources">
+
+    <echo message = "--------------------------------------------------------------------"/>
+    <echo message = " Compiling project classes (full)..."/>
+    <echo message = "--------------------------------------------------------------------"/>
+    <echo message = ""/>
+
+    <mkdir dir = "${classes.dir}"/>
+
+    <copy todir = "${classes.dir}">
+      <fileset dir = "${config.dir}">
+        <include name = "**.*"/>
+      </fileset>
+      <fileset dir = "${src.dir}">
+        <include name = "**/*.xml"/>
+      </fileset>
+    </copy>
+
+		<copy todir = "${webapp.classes.dir}">
+			<fileset dir = "${classes.dir}">
+				<include name = "**.*" />
+			</fileset>
+		</copy>
+
+		<copy todir = "${classes.dir}">
+			<fileset dir = "${test.dir}">
+				<include name = "**/*.xml" />
+				<include name = "**/*.properties" />
+			</fileset>
+			<fileset dir = "${test.dir}">
+				<include name = "**/*.xml" />
+			</fileset>
+ 		</copy>
+    
+    <javac destdir = "${classes.dir}" classpathref = "compile.path.id" debug = "${build.debug}" encoding="utf-8">
+      <src path = "${src.dir}"/>
+    </javac>
+  </target>
+
+
+
+  <!--
+    | COMPILE-TEST:
+    |
+    | Compile tests.
+    +-->
+  <target name = "compile-test" depends = "compile" description = "--> compile the test cases.">
+
+    <echo message = "--------------------------------------------------------------------"/>
+    <echo message = " Compiling test (full)..."/>
+    <echo message = "--------------------------------------------------------------------"/>
+    <echo message = ""/>
+
+    <copy todir = "${classes.dir}">
+      <fileset dir = "${test.dir}">
+        <include name = "**/*.xml"/>
+        <include name = "**/*.xls"/>
+        <include name = "**/*.csv"/>
+        <include name = "**/*.drl"/>
+      </fileset>
+    </copy>
+
+    <javac srcdir = "${test.dir}" destdir = "${classes.dir}" classpathref = "test.path.id" debug = "true" />
+  </target>
+
+
+  <!--
+   | PACKAGE:
+   |
+   | Packages the controller app with runtime container and zips it up.
+   +-->
+  <target name = "package" depends = "compile"
+          description = "Package controller with runtime distributable.">
+
+    <echo message = "--------------------------------------------------------------------"/>
+    <echo message = " Creating Controller Runtime..."/>
+    <echo message = "--------------------------------------------------------------------"/>
+    <echo message = ""/>
+
+    <mkdir dir = "${output.dir}/OpenRemote-Controller-${version}"/>
+
+    <!--
+     | Copy the pre-configured runtime...
+     +-->
+    <copy todir = "${output.dir}/OpenRemote-Controller-${version}">
+      <fileset dir = "${runtime.dir}"/>
+    </copy>
+
+    <!--
+     | Copy the preconfigured controller web directory into runtime...
+     +-->
+    <copy todir = "${output.controller.dir}">
+      <fileset dir = "${web.dir}"/>
+    </copy>
+
+    <!--
+     | Copy compiled classes into the controller web app...
+     +-->
+    <copy todir = "${output.controller.dir}/WEB-INF/classes">
+      <fileset dir = "${classes.dir}"/>
+    </copy>
+
+    <!--
+     | Copy libs into controller web app...
+     +-->
+    <copy todir = "${output.controller.dir}/WEB-INF/lib">
+      <fileset dir = "${build.dir}/lib"/>
+    </copy>
+
+    <!--
+     | Zip it up...
+     +-->
+    <zip basedir = "${output.dir}"
+         destfile = "${output.dir}/OpenRemote-Controller-${version}.zip"
+         whenempty = "fail">
+
+    </zip> 
+
+  </target>
+
+  
+  <!--
+    | WAR:
+    |
+    | Pack the war.
+    +-->
+
+  <target name = "war" depends = "compile" description = "">
+
+    <echo message = "===================================================================="/>
+    <echo message = " Packing war..."/>
+    <echo message = "===================================================================="/>
+    <echo message = ""/>
+
+    <war warfile = "${output.dir}/${project.name}.war" webxml = "web/WEB-INF/web.xml">
+      <fileset dir = "web">
+        <exclude name = "WEB-INF/classes/**/*.*"/>
+        <exclude name = "WEB-INF/lib/**/*.*"/>
+      </fileset>
+      <fileset dir = ".">
+        <include name = "readme.txt"/>
+      </fileset>
+      <lib dir = "${build.dir}/lib"/>
+      <lib dir = "${lib.dir}/clink"/>
+      <lib dir = "${lib.dir}/drools-5.1.1"/>
+      <classes dir = "${classes.dir}"/>
+    </war>
+  </target>
+
+
+
+
+
+  <!--
+    | RUN-TEST:
+    |
+    | Run all tests.
+    +-->
+  <target name = "run-test" depends = "compile-test" description = "--> run all test cases.">
+
+
+    <copy todir = "${build.dir}/testcontainer/war">
+      <fileset dir = "${web.dir}">
+        <include name = "**/*"/>
+      </fileset>
+    </copy>
+    
+
+    <parallel>
+
+      <!--
+       | Start web server to service tests against HTTP/REST interface
+       +-->
+      <echo message = "**** STARTING TEST CONTAINER ON PORT 8090 ****"/>
+
+      <java classname = "org.openremote.controller.jetty.JettyStart"
+            classpathref = "test.path.id"
+            dir = "${testcontainer.vm.work.dir}"
+            fork = "true">
+      </java>
+
+      
+
+      <sequential>
+
+        <!--
+         |   Wait for the test container to be available
+         +-->
+        <waitfor>
+          <socket server = "127.0.0.1" port = "8090" />
+        </waitfor>
+
+        <echo message = "**** TEST CONTAINER STARTED ****"/>
+
+        <!--
+         |  Run the unit tests...
+         +-->
+        <antcall target = "-junit"/>
+
+        <!--
+         |  Stop the test container
+         +-->
+
+        <echo message = "**** STOPPING TEST CONTAINER ****"/>
+
+        <java classname = "org.openremote.controller.jetty.JettyStop" classpathref = "test.path.id" />
+
+      </sequential>
+    </parallel>
+
+    <antcall  target = "-generate-junit-report"/>
+    
+  </target>
+
+
+  <!--
+   | TEST:
+   |
+   | Execute individual test classes from the test suite. Expects a system property 'test' with
+   | a value of the class name to be passed to the Ant runtime.
+   +-->
+  <target name = "test" depends = "-compile-test-incremental"
+          description = "Executes a single test class, add -Dtest=fully.qualified.ClassName to select test to run.">
+
+    <!-- Call the JUnit task with 'junit.single.test' property set. -->
+    <antcall target = "-junit">
+      <param name = "junit.single.test" value = "true"/>
+    </antcall>
+
+    <antcall  target = "-generate-junit-report"/>
+
+  </target>
+
+
+
+
+  <!--
+
+   -->
+  <target name = "rest-test" depends = "-compile-test-incremental"
+          description = "
+          .">
+
+    <property name = "test" value = "org.openremote.controller.suite.RESTTests"/>
+    
+    <!-- Call the JUnit task with 'junit.single.test' property set. -->
+    <antcall target = "run-test">
+      <param name = "junit.single.test" value = "true"/>
+    </antcall>
+
+    <antcall  target = "-generate-junit-report"/>
+
+  </target>
+
+
+
+
+
+  <!--
+
+
+      INTERNAL HELPER TASKS
+
+
+   -->
+
+
+
+  <!--
+   | Deletes previously generated test reports.
+   +-->
+  <target name = "-clean-testreport">
+
+    <delete includeemptydirs = "true" dir = "${junit.reports.dir}" />
+    <mkdir dir = "${junit.reports.dir}" />
+
+  </target>
+
+
+  <!--
+   | Translates the XML to HTML report - separate task because calling from within
+   | parallel execution block was causing deadlocks.
+   +-->
+  <target  name = "-generate-junit-report">
+
+    <!-- JUnit XML to HTML report -->
+
+    <junitreport todir = "${junit.reports.dir}">
+      <fileset dir = "${junit.reports.dir}">
+        <include name = "TEST-*.xml" />
+      </fileset>
+
+      <report format = "frames" todir = "${junit.reports.dir}" />
+    </junitreport>
+
+  </target>
+
+
+  <!--
+   | Junit test task... runs JUnit for one or batch of tests, depending on junit.single.test
+   | property. Passes necessary system properties to the JVM hosting JUnit tests (forked as
+   | separate JVM process from the Ant Build JVM).
+   |
+   +-->
+  <target name = "-junit" depends = "-clean-testreport">
+
+    <echo message = "--------------------------------------------------------------------"/>
+    <echo message = " Running tests..."/>
+    <echo message = "--------------------------------------------------------------------"/>
+    <echo message = ""/>
+
+    <!--
+     | Load the config.properties of the deployed controller.war in test container JVM.
+     | This will be passed as a JVM system property to the unit test VM for 'resource.path'
+     | entry which will allow a consistent modification of resource files on the testcontainer
+     | JVM side.
+     +-->
+    <property  file = "${testcontainer.vm.work.dir}/WEB-INF/classes/config.properties"
+               prefix = "testcontainer.vm"/>
+
+
+    <echo message = "RESOLVED TEST CONTAINER RESOURCE PATH TO : ${testcontainer.vm.resource.path}"/>
+    <echo message = "RESOLVED COMPILED UNIT TEST PATH TO : ${classes.dir}"/>
+
+    <!-- Fork unit test JVM from from Ant's JVM (but run all tests in same unit test JVM) -->
+    <junit dir = "${junit.vm.work.dir}"
+           printsummary = "true"
+           fork = "yes"
+           forkmode = "once"
+           haltonerror = "no"
+           filtertrace = "on"
+           maxmemory = "500m"
+           includeantruntime = "true"
+           showoutput = "false"
+           logfailedtests = "true">
+
+      <sysproperty key = "net.sourceforge.cobertura.datafile" file = "${cobertura.datafile}" />
+
+      <sysproperty key = "ant.home" value = "${ant.home}" />
+
+      <!-- classpath that includes compiled tests -->
+      <classpath refid = "test.path.id"/>
+
+
+      <!--
+       | Let the unit test JVM know the 'resource.path' configuration property value of the
+       | test container's deployed controller.war
+       +-->
+      <sysproperty key = "testcontainer.vm.resource.path" value = "${testcontainer.vm.resource.path}"/>
+
+
+      <!-- Pass a system property that gives tests that need access to the compiled
+           test class directory (which contains fixture files) as an absolute file path   -->
+      <sysproperty key = "classes.dir" file = "${classes.dir}"/>
+
+
+      <!-- XML output for junit (html) report generator                                 -->
+      <formatter type = "xml" />
+
+
+      <!-- If no junit.single.test has been specified, run all tests via AllTests class -->
+      <batchtest todir = "${junit.reports.dir}" unless = "junit.single.test">
+        <fileset dir = "${classes.dir}" includes = "**/AllTests.class" />
+      </batchtest>
+
+
+      <!-- IF junit.single.test is present, just run one specified test -->
+      <test name = "${test}" todir = "${junit.reports.dir}" if = "junit.single.test">
+        <formatter type = "xml"/>
+      </test>
+
+    </junit>
+
+    <fail if="tests.failed" />
+
+  </target>
+
+
+  <!--
+    | Incremental compile of unit tests.
+    +-->
+  <target name = "-compile-test-incremental" depends = "-compile-incremental">
+
+    <echo message = "--------------------------------------------------------------------"/>
+    <echo message = " Compiling test (incremental)..."/>
+    <echo message = "--------------------------------------------------------------------"/>
+    <echo message = ""/>
+
+    <copy todir = "${classes.dir}">
+      <fileset dir = "${test.dir}">
+        <include name = "**/*.xml"/>
+        <include name = "**/*.xls"/>
+        <include name = "**/*.csv"/>
+        <include name = "**/*.drl"/>
+      </fileset>
+    </copy>
+
+    <javac srcdir = "${test.dir}" destdir = "${classes.dir}" classpathref = "test.path.id" debug = "true" />
+  </target>
+
+
+  <!--
+   | Incremental compile of the project classes
+   +-->
+  <target  name = "-compile-incremental">
+
+    <echo message = "--------------------------------------------------------------------"/>
+    <echo message = " Compiling project classes (incremental) ..."/>
+    <echo message = "--------------------------------------------------------------------"/>
+    <echo message = ""/>
+
+    <copy todir = "${classes.dir}">
+      <fileset dir = "${config.dir}">
+        <include name = "**.*"/>
+      </fileset>
+    </copy>
+
+		<copy todir = "${webapp.classes.dir}">
+			<fileset dir = "${classes.dir}">
+				<include name = "**.*" />
+			</fileset>
+		</copy>
+
+    
+    <javac destdir = "${classes.dir}" classpathref = "compile.path.id" debug = "${build.debug}">
+      <src path = "${src.dir}"/>
+    </javac>
+
+  </target>
+
+
+  <!--
+    | TEST:
+    |
+    | JUnit test.
+    +-->
+<!--
+  <target name = "test" description = "junit test">
+    <delete includeemptydirs = "true" dir = "${junit.reports.dir}"/>
+    <mkdir dir = "${junit.reports.dir}"/>
+    <junit dir = "${basedir}" fork = "true" showoutput = "true" failureproperty = "tests.failed">
+      <sysproperty key = "net.sourceforge.cobertura.datafile" file = "${cobertura.datafile}"/>
+      <classpath location = "${test.targetclasspath}"/>
+      <classpath location = "${classes.dir}"/>
+      <classpath refid = "test.path.id">
+      </classpath>
+      <formatter type = "xml"/>
+      <batchtest todir = "${junit.reports.dir}">
+        <fileset dir = "${test.dir}">
+          <include name = "**/*Test.java"/>
+        </fileset>
+      </batchtest>
+    </junit>
+    <junitreport todir = "${junit.reports.dir}">
+      <fileset dir = "${junit.reports.dir}">
+        <include name = "TEST-*.xml"/>
+      </fileset>
+      <report format = "frames" todir = "${junit.reports.dir}"/>
+    </junitreport>
+    <fail if = "tests.failed"/>
+  </target>
+-->
+
+
+
+
+  <!--
+    | JAVADOC:
+    |
+    | Run the javadoc.
+    +-->
+  <target name = "javadoc">
+    <echo message = "--------------------------------------------------------------------"/>
+    <echo message = " Generating javadoc..."/>
+    <echo message = "--------------------------------------------------------------------"/>
+    <echo message = ""/>
+    <mkdir dir = "${javadoc.dir}"/>
+    <javadoc
+        locale = "${javadoc.locale}"
+        defaultexcludes = "yes"
+        use = "yes"
+        header = "OpenRemote Controller API"
+        doctitle = "OpenRemote Controller API Specification V2.0"
+        nodeprecatedlist = "yes"
+        classpathref = "compile.path.id"
+        sourcepath = "./${src.dir}"
+        destdir = "./${javadoc.dir}"
+        packagenames = "org.openremote.controller.*"
+        additionalparam = "-breakiterator"
+        />
+  </target>
+
+
+
+  <!--
+   |
+   |
+   | .
+   +-->
+  <target name = "run">
+    <echo message = "--------------------------------------------------------------------" />
+    <echo message = " Starting Container..." />
+    <echo message = "--------------------------------------------------------------------" />
+    <echo message = "" />
+    <property name = "test.targetclasspath" value = "${classes.dir}" />
+    <parallel>
+     <java classname = "org.openremote.controller.jetty.JettyStart" classpathref = "container.libs" fork = "true" />
+    </parallel>
+  </target>
+
+
+
+
+
+
+
+
+
+
+
+  <!--
+    | SCHEMA:
+    |
+    | Initialize the database schema only for test.
+    +-->
+  <target name = "schema">
+    <sql driver = "com.mysql.jdbc.Driver" url = "${jdbc.url.test}" userid = "${jdbc.username.test}"
+         password = "${jdbc.password.test}" delimiter = ";" onerror = "continue">
+      <classpath>
+        <path refid = "compile.path.id"/>
+      </classpath>
+      <fileset dir = "${sql.dir}">
+        <include name = "test.sql"/>
+      </fileset>
+    </sql>
+  </target>
+
+
+  <!--
+   | TEST-COVERAGE:
+   |
+   | Run the test with cobertura.
+   +-->
+  <target name = "test-cov">
+    <echo message = "--------------------------------------------------------------------" />
+    <echo message = " Running test..." />
+    <echo message = "--------------------------------------------------------------------" />
+    <echo message = "" />
+    <property name = "test.targetclasspath" value = "${classes.dir}" />
+    <parallel>
+     <java classname = "org.openremote.controller.jetty.JettyStart" classpathref = "test.path.id" fork = "true" />
+      <sequential>
+        <waitfor>
+          <socket server = "127.0.0.1" port = "8090" />
+        </waitfor>
+        <antcall target = "-junit" />
+        <java classname = "org.openremote.controller.jetty.JettyStop" classpathref = "test.path.id" />
+      </sequential>
+    </parallel>
+  </target>
+
+
+
+  <!--
+    | COBERTURA_INSTRUMENT:
+    |
+    | Make instrument for cobertura.
+    +-->
+  <target name = "cobertura_instrument" depends = "compile-test">
+    <delete file = "${cobertura.datafile}"/>
+    <cobertura-instrument todir = "${instrumented.dir}" datafile = "${cobertura.datafile}">
+      <ignore regex = "org.apache.log4j.*"/>
+      <ignore regex="org.openremote.controller.jetty.*"/>
+			<ignore regex="org.openremote.controller.suite.*"/>
+      <fileset dir = "${classes.dir}">
+        <include name = "**/*.class"/>
+        <exclude name="**/Jetty*.class"/>
+        <exclude name = "**/*Test.class"/>
+        <exclude name="**/*Tests.class"/>
+      </fileset>
+    </cobertura-instrument>
+  </target>
+
+  <!--
+    | REPORT-COBERTURA:
+    |
+    | Generate the cobertura report.
+    +-->
+  <target name = "report-cobertura" depends = "cobertura_instrument">
+    <property name = "test.targetclasspath" value = "${instrumented.dir}"/>
+    <antcall target = "test-cov"/>
+    <delete includeemptydirs = "true" dir = "${cobertura.report.dir}"/>
+ 		<cobertura-report format = "html" destdir = "${cobertura.report.dir}"
+                      srcdir = "${src.dir}" datafile = "${cobertura.datafile}" />
+		<cobertura-report format = "xml" destdir = "${cobertura.report.dir}"
+                      srcdir = "${src.dir}" datafile = "${cobertura.datafile}"/>
+    <delete file = "operation.log" failonerror = "false"/>
+    <delete file = "exception.log" failonerror = "false"/>
+  </target>
+
+  
+  <!--
+    | REPORT-CHECKSTYLE:
+    |
+    | Generate the checkstyle report.
+    +-->
+  <target name = "report-checkstyle">
+    <mkdir dir = "${checkstyle.reports.dir}"/>
+    <checkstyle config = "${build-config.dir}/openremote_checks.xml"
+                failureProperty = "checkstyle.failure"
+                failOnViolation = "false">
+      <formatter type = "xml" tofile = "${checkstyle.reports.dir}/checkstyle_report.xml"/>
+      <fileset dir = "${src.dir}" includes = "**/*.java"/>
+      <fileset dir = "${test.dir}" includes = "**/*.java"/>
+    </checkstyle>
+    <xslt in = "${checkstyle.reports.dir}/checkstyle_report.xml"
+          out = "${checkstyle.reports.dir}/checkstyle.report.html"
+          style = "${checkstyle.report.style}" />
+  </target>
+
+</project>

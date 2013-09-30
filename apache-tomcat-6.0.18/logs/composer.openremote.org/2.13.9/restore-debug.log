@@ -1,0 +1,320 @@
+[staalk - Acct: 1] 2013-09-20 11:29:33,278  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-20 11:29:33,922  INFO : There was no serialized panels.obj file, no serialized XML stream and no local cache backups found in local user cache (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1). No user state was found in Beehive. Assuming a new user with no saved design.
+[staalk - Acct: 1] 2013-09-20 11:29:33,923  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,646 seconds.
+[staalk - Acct: 1] 2013-09-20 12:47:23,772  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-20 12:47:24,008  INFO : Restored UI state : Panels : 1, max OID : 10
+[staalk - Acct: 1] 2013-09-20 12:47:24,008  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,236 seconds.
+[staalk - Acct: 1] 2013-09-20 13:33:34,020  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-20 13:33:34,479  INFO : Restored UI state : Panels : 1, max OID : 10
+[staalk - Acct: 1] 2013-09-20 13:33:34,506  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,463 seconds.
+[staalk - Acct: 1] 2013-09-20 13:38:14,764  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-20 13:38:14,773  INFO : Restored UI state : Panels : 1, max OID : 10
+[staalk - Acct: 1] 2013-09-20 13:38:14,773  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,009 seconds.
+[staalk - Acct: 1] 2013-09-20 13:40:41,075  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-20 13:40:41,116  INFO : Restored UI state : Panels : 1, max OID : 10
+[staalk - Acct: 1] 2013-09-20 13:40:41,116  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,041 seconds.
+[staalk - Acct: 1] 2013-09-20 13:45:28,373  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-20 13:45:28,395  INFO : Restored UI state : Panels : 1, max OID : 10
+[staalk - Acct: 1] 2013-09-20 13:45:28,395  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,022 seconds.
+[staalk - Acct: 1] 2013-09-20 13:45:36,842  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-20 13:45:36,854  INFO : Restored UI state : Panels : 1, max OID : 10
+[staalk - Acct: 1] 2013-09-20 13:45:36,855  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,014 seconds.
+[staalk - Acct: 1] 2013-09-20 13:45:40,597  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-20 13:45:40,607  INFO : Restored UI state : Panels : 1, max OID : 10
+[staalk - Acct: 1] 2013-09-20 13:45:40,607  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,010 seconds.
+[staalk - Acct: 1] 2013-09-20 14:04:32,026  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-20 14:04:32,264  INFO : There was no serialized panels.obj file, no serialized XML stream and no local cache backups found in local user cache (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1). No user state was found in Beehive. Assuming a new user with no saved design.
+[staalk - Acct: 1] 2013-09-20 14:04:32,265  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,239 seconds.
+[staalk - Acct: 1] 2013-09-20 14:05:00,500  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-20 14:05:00,514  INFO : Restored UI state : Panels : 1, max OID : 4
+[staalk - Acct: 1] 2013-09-20 14:05:00,514  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,014 seconds.
+[staalk - Acct: 1] 2013-09-20 14:07:27,855  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-20 14:07:27,867  INFO : Restored UI state : Panels : 1, max OID : 4
+[staalk - Acct: 1] 2013-09-20 14:07:27,868  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,013 seconds.
+[staalkk - Acct: 2] 2013-09-20 14:08:02,311  INFO : Attempting to restore designer panel UI state for user staalkk (Acct ID : 2)
+[staalkk - Acct: 2] 2013-09-20 14:08:02,321  INFO : There was no serialized panels.obj file, no serialized XML stream and no local cache backups found in local user cache (User: staalkk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 2). No user state was found in Beehive. Assuming a new user with no saved design.
+[staalkk - Acct: 2] 2013-09-20 14:08:02,322  INFO : Restore time (User: staalkk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 2) : 00,011 seconds.
+[staalkk - Acct: 2] 2013-09-20 14:08:49,063  INFO : Attempting to restore designer panel UI state for user staalkk (Acct ID : 2)
+[staalkk - Acct: 2] 2013-09-20 14:08:49,074  INFO : Restored UI state : Panels : 1, max OID : 6
+[staalkk - Acct: 2] 2013-09-20 14:08:49,074  INFO : Restore time (User: staalkk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 2) : 00,011 seconds.
+[staalk - Acct: 1] 2013-09-20 14:30:57,251  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-20 14:30:57,786  INFO : There was no serialized panels.obj file, no serialized XML stream and no local cache backups found in local user cache (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1). No user state was found in Beehive. Assuming a new user with no saved design.
+[staalk - Acct: 1] 2013-09-20 14:30:57,788  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,538 seconds.
+[staalk - Acct: 1] 2013-09-20 15:13:07,784  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-20 15:13:08,426  INFO : There was no serialized panels.obj file, no serialized XML stream and no local cache backups found in local user cache (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1). No user state was found in Beehive. Assuming a new user with no saved design.
+[staalk - Acct: 1] 2013-09-20 15:13:08,428  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,645 seconds.
+[staalk - Acct: 1] 2013-09-20 15:15:59,621  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-20 15:15:59,893  INFO : Restored UI state : Panels : 1, max OID : 6
+[staalk - Acct: 1] 2013-09-20 15:15:59,895  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,274 seconds.
+[staalk - Acct: 1] 2013-09-20 15:49:07,955  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-20 15:49:10,009  INFO : Restored UI state : Panels : 1, max OID : 6
+[staalk - Acct: 1] 2013-09-20 15:49:10,024  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 02,115 seconds.
+[staalk - Acct: 1] 2013-09-20 15:56:50,340  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-20 15:56:50,651  INFO : Restored UI state : Panels : 1, max OID : 6
+[staalk - Acct: 1] 2013-09-20 15:56:50,651  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,311 seconds.
+[staalk - Acct: 1] 2013-09-20 16:28:16,029  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-20 16:28:16,454  INFO : Restored UI state : Panels : 1, max OID : 6
+[staalk - Acct: 1] 2013-09-20 16:28:16,454  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,425 seconds.
+[matthijsvdr - Acct: 2] 2013-09-23 09:37:36,879  INFO : Attempting to restore designer panel UI state for user matthijsvdr (Acct ID : 2)
+[matthijsvdr - Acct: 2] 2013-09-23 09:37:37,691  INFO : There was no serialized panels.obj file, no serialized XML stream and no local cache backups found in local user cache (User: matthijsvdr, Email: matthijs.van.driel@tass.nl, Roles: Admin, Account ID: 2). No user state was found in Beehive. Assuming a new user with no saved design.
+[matthijsvdr - Acct: 2] 2013-09-23 09:37:37,708  INFO : Restore time (User: matthijsvdr, Email: matthijs.van.driel@tass.nl, Roles: Admin, Account ID: 2) : 00,816 seconds.
+[staalk - Acct: 1] 2013-09-23 09:42:07,416  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-23 09:42:07,556  INFO : Restored UI state : Panels : 1, max OID : 6
+[staalk - Acct: 1] 2013-09-23 09:42:07,556  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,140 seconds.
+[staalk - Acct: 1] 2013-09-23 09:43:31,576  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-23 09:43:31,600  INFO : Restored UI state : Panels : 1, max OID : 6
+[staalk - Acct: 1] 2013-09-23 09:43:31,600  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,025 seconds.
+[staalk - Acct: 1] 2013-09-23 09:53:59,545  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-23 09:54:00,177  INFO : Restored UI state : Panels : 1, max OID : 6
+[staalk - Acct: 1] 2013-09-23 09:54:00,179  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,634 seconds.
+[staalk - Acct: 1] 2013-09-23 09:56:34,252  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-23 09:56:34,605  INFO : Restored UI state : Panels : 1, max OID : 6
+[staalk - Acct: 1] 2013-09-23 09:56:34,607  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,355 seconds.
+[staalk - Acct: 1] 2013-09-23 10:08:24,368  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-23 10:08:24,409  INFO : Restored UI state : Panels : 1, max OID : 6
+[staalk - Acct: 1] 2013-09-23 10:08:24,409  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,041 seconds.
+[staalk - Acct: 1] 2013-09-23 10:12:37,109  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-23 10:13:06,468  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-23 10:13:06,772  INFO : Restored UI state : Panels : 1, max OID : 6
+[staalk - Acct: 1] 2013-09-23 10:13:06,774  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,306 seconds.
+[staalk - Acct: 1] 2013-09-23 10:14:04,571  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-23 10:14:04,620  INFO : Restored UI state : Panels : 1, max OID : 6
+[staalk - Acct: 1] 2013-09-23 10:14:04,620  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,049 seconds.
+[staalk - Acct: 1] 2013-09-23 10:36:30,436  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-23 10:36:30,712  INFO : Restored UI state : Panels : 1, max OID : 6
+[staalk - Acct: 1] 2013-09-23 10:36:30,714  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,278 seconds.
+[staalk - Acct: 1] 2013-09-23 10:52:42,784  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-23 10:52:42,820  INFO : Restored UI state : Panels : 1, max OID : 6
+[staalk - Acct: 1] 2013-09-23 10:52:42,820  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,036 seconds.
+[staalk - Acct: 1] 2013-09-23 13:19:15,006  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-23 13:19:15,667  INFO : Restored UI state : Panels : 1, max OID : 24
+[staalk - Acct: 1] 2013-09-23 13:19:15,670  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,663 seconds.
+[staalk - Acct: 1] 2013-09-23 13:23:01,074  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-23 13:23:01,160  INFO : Restored UI state : Panels : 1, max OID : 24
+[staalk - Acct: 1] 2013-09-23 13:23:01,160  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,086 seconds.
+[staalk - Acct: 1] 2013-09-23 14:52:17,777  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-23 14:52:17,839  INFO : Restored UI state : Panels : 1, max OID : 24
+[staalk - Acct: 1] 2013-09-23 14:52:17,839  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,062 seconds.
+[staalk - Acct: 1] 2013-09-23 14:53:55,248  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-23 14:53:55,292  INFO : Restored UI state : Panels : 1, max OID : 24
+[staalk - Acct: 1] 2013-09-23 14:53:55,292  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,044 seconds.
+[staalk - Acct: 1] 2013-09-23 16:47:37,678  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-23 16:47:38,076  INFO : Restored UI state : Panels : 1, max OID : 24
+[staalk - Acct: 1] 2013-09-23 16:47:38,078  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,401 seconds.
+[staalk - Acct: 1] 2013-09-23 16:47:52,577  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-23 16:47:52,638  INFO : Restored UI state : Panels : 1, max OID : 24
+[staalk - Acct: 1] 2013-09-23 16:47:52,639  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,062 seconds.
+[staalk - Acct: 1] 2013-09-23 16:48:36,390  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-23 16:48:36,437  INFO : Restored UI state : Panels : 1, max OID : 24
+[staalk - Acct: 1] 2013-09-23 16:48:36,438  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,048 seconds.
+[staalk - Acct: 1] 2013-09-23 16:50:26,306  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-23 16:50:26,344  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,038 seconds.
+[staalk - Acct: 1] 2013-09-23 16:51:56,355  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-23 16:51:56,810  INFO : There was no serialized panels.obj file, no serialized XML stream and no local cache backups found in local user cache (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1). No user state was found in Beehive. Assuming a new user with no saved design.
+[staalk - Acct: 1] 2013-09-23 16:51:56,811  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,457 seconds.
+[staalk - Acct: 1] 2013-09-23 16:53:17,314  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-23 16:53:17,368  INFO : Restored UI state : Panels : 1, max OID : 6
+[staalk - Acct: 1] 2013-09-23 16:53:17,369  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,055 seconds.
+[staalk - Acct: 1] 2013-09-23 16:53:24,438  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-23 16:53:24,500  INFO : Restored UI state : Panels : 1, max OID : 6
+[staalk - Acct: 1] 2013-09-23 16:53:24,500  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,062 seconds.
+[staalk - Acct: 1] 2013-09-23 16:55:43,049  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-23 16:55:43,342  INFO : Restored UI state : Panels : 1, max OID : 6
+[staalk - Acct: 1] 2013-09-23 16:55:43,344  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,295 seconds.
+[staalk - Acct: 1] 2013-09-23 16:55:49,613  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-23 16:55:49,655  INFO : Restored UI state : Panels : 1, max OID : 6
+[staalk - Acct: 1] 2013-09-23 16:55:49,655  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,042 seconds.
+[staalk - Acct: 1] 2013-09-23 16:56:01,650  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-23 16:56:01,701  INFO : Restored UI state : Panels : 1, max OID : 6
+[staalk - Acct: 1] 2013-09-23 16:56:01,701  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,051 seconds.
+[staalk - Acct: 1] 2013-09-23 16:56:47,369  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-23 16:56:47,406  INFO : Restored UI state : Panels : 1, max OID : 6
+[staalk - Acct: 1] 2013-09-23 16:56:47,406  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,037 seconds.
+[staalk - Acct: 1] 2013-09-23 16:56:58,772  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-23 16:56:58,807  INFO : Restored UI state : Panels : 1, max OID : 6
+[staalk - Acct: 1] 2013-09-23 16:56:58,808  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,037 seconds.
+[staalk - Acct: 1] 2013-09-24 10:11:10,060  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-24 10:11:10,957  INFO : Restored UI state : Panels : 1, max OID : 6
+[staalk - Acct: 1] 2013-09-24 10:11:10,959  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,899 seconds.
+[staalk - Acct: 1] 2013-09-24 10:11:39,348  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-24 10:11:39,411  INFO : Restored UI state : Panels : 1, max OID : 6
+[staalk - Acct: 1] 2013-09-24 10:11:39,411  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,064 seconds.
+[staalk - Acct: 1] 2013-09-24 10:12:08,171  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-24 10:12:08,204  INFO : Restored UI state : Panels : 1, max OID : 6
+[staalk - Acct: 1] 2013-09-24 10:12:08,204  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,034 seconds.
+[staalk - Acct: 1] 2013-09-24 10:12:36,272  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-24 10:12:36,307  INFO : Restored UI state : Panels : 1, max OID : 10
+[staalk - Acct: 1] 2013-09-24 10:12:36,308  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,035 seconds.
+[staalk - Acct: 1] 2013-09-24 10:36:06,433  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-24 10:36:06,909  INFO : Restored UI state : Panels : 1, max OID : 10
+[staalk - Acct: 1] 2013-09-24 10:36:06,911  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,479 seconds.
+[staalk - Acct: 1] 2013-09-24 10:36:40,571  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-24 10:36:40,632  INFO : Restored UI state : Panels : 1, max OID : 10
+[staalk - Acct: 1] 2013-09-24 10:36:40,632  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,061 seconds.
+[staalk - Acct: 1] 2013-09-24 10:43:01,414  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-24 10:43:01,445  INFO : Restored UI state : Panels : 1, max OID : 10
+[staalk - Acct: 1] 2013-09-24 10:43:01,445  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,031 seconds.
+[staalk - Acct: 1] 2013-09-24 10:58:15,955  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-24 10:58:16,500  INFO : Restored UI state : Panels : 1, max OID : 12
+[staalk - Acct: 1] 2013-09-24 10:58:16,502  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,548 seconds.
+[staalk - Acct: 1] 2013-09-24 10:58:39,661  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-24 10:58:39,696  INFO : Restored UI state : Panels : 1, max OID : 12
+[staalk - Acct: 1] 2013-09-24 10:58:39,696  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,035 seconds.
+[staalk - Acct: 1] 2013-09-24 10:59:55,168  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-24 10:59:55,204  INFO : Restored UI state : Panels : 1, max OID : 12
+[staalk - Acct: 1] 2013-09-24 10:59:55,204  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,036 seconds.
+[matthijsvdr - Acct: 2] 2013-09-24 11:00:04,177  INFO : Attempting to restore designer panel UI state for user matthijsvdr (Acct ID : 2)
+[matthijsvdr - Acct: 2] 2013-09-24 11:00:04,190  INFO : There was no serialized panels.obj file, no serialized XML stream and no local cache backups found in local user cache (User: matthijsvdr, Email: matthijs.van.driel@tass.nl, Roles: Admin, Account ID: 2). No user state was found in Beehive. Assuming a new user with no saved design.
+[matthijsvdr - Acct: 2] 2013-09-24 11:00:04,190  INFO : Restore time (User: matthijsvdr, Email: matthijs.van.driel@tass.nl, Roles: Admin, Account ID: 2) : 00,013 seconds.
+[matthijsvdr - Acct: 2] 2013-09-24 11:00:23,392  INFO : Attempting to restore designer panel UI state for user matthijsvdr (Acct ID : 2)
+[matthijsvdr - Acct: 2] 2013-09-24 11:00:23,429  INFO : Restored UI state : Panels : 1, max OID : 6
+[matthijsvdr - Acct: 2] 2013-09-24 11:00:23,429  INFO : Restore time (User: matthijsvdr, Email: matthijs.van.driel@tass.nl, Roles: Admin, Account ID: 2) : 00,037 seconds.
+[matthijsvdr - Acct: 2] 2013-09-24 11:00:39,502  INFO : Attempting to restore designer panel UI state for user matthijsvdr (Acct ID : 2)
+[matthijsvdr - Acct: 2] 2013-09-24 11:00:39,578  INFO : Restored UI state : Panels : 1, max OID : 6
+[matthijsvdr - Acct: 2] 2013-09-24 11:00:39,578  INFO : Restore time (User: matthijsvdr, Email: matthijs.van.driel@tass.nl, Roles: Admin, Account ID: 2) : 00,076 seconds.
+[matthijsvdr - Acct: 2] 2013-09-24 11:42:36,772  INFO : Attempting to restore designer panel UI state for user matthijsvdr (Acct ID : 2)
+[matthijsvdr - Acct: 2] 2013-09-24 11:42:38,969  INFO : Restored UI state : Panels : 1, max OID : 8
+[matthijsvdr - Acct: 2] 2013-09-24 11:42:38,978  INFO : Restore time (User: matthijsvdr, Email: matthijs.van.driel@tass.nl, Roles: Admin, Account ID: 2) : 02,246 seconds.
+[matthijsvdr - Acct: 2] 2013-09-24 11:42:59,700  INFO : Attempting to restore designer panel UI state for user matthijsvdr (Acct ID : 2)
+[matthijsvdr - Acct: 2] 2013-09-24 11:42:59,772  INFO : Restored UI state : Panels : 1, max OID : 8
+[matthijsvdr - Acct: 2] 2013-09-24 11:42:59,773  INFO : Restore time (User: matthijsvdr, Email: matthijs.van.driel@tass.nl, Roles: Admin, Account ID: 2) : 00,073 seconds.
+[matthijsvdr - Acct: 2] 2013-09-24 11:45:43,442  INFO : Attempting to restore designer panel UI state for user matthijsvdr (Acct ID : 2)
+[matthijsvdr - Acct: 2] 2013-09-24 11:45:44,105  INFO : Restored UI state : Panels : 1, max OID : 8
+[matthijsvdr - Acct: 2] 2013-09-24 11:45:44,126  INFO : Restore time (User: matthijsvdr, Email: matthijs.van.driel@tass.nl, Roles: Admin, Account ID: 2) : 00,683 seconds.
+[matthijsvdr - Acct: 2] 2013-09-24 12:02:08,077  INFO : Attempting to restore designer panel UI state for user matthijsvdr (Acct ID : 2)
+[matthijsvdr - Acct: 2] 2013-09-24 12:02:08,112  INFO : Restored UI state : Panels : 1, max OID : 8
+[matthijsvdr - Acct: 2] 2013-09-24 12:02:08,112  INFO : Restore time (User: matthijsvdr, Email: matthijs.van.driel@tass.nl, Roles: Admin, Account ID: 2) : 00,035 seconds.
+[staalk - Acct: 1] 2013-09-25 09:43:49,783  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 09:43:50,592  INFO : Restored UI state : Panels : 1, max OID : 14
+[staalk - Acct: 1] 2013-09-25 09:43:50,594  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,811 seconds.
+[staalk - Acct: 1] 2013-09-25 09:44:44,569  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 09:44:44,628  INFO : Restored UI state : Panels : 1, max OID : 14
+[staalk - Acct: 1] 2013-09-25 09:44:44,628  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,059 seconds.
+[staalk - Acct: 1] 2013-09-25 09:45:01,213  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 09:45:01,249  INFO : Restored UI state : Panels : 1, max OID : 14
+[staalk - Acct: 1] 2013-09-25 09:45:01,250  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,037 seconds.
+[staalk - Acct: 1] 2013-09-25 09:45:06,382  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 09:45:06,437  INFO : Restored UI state : Panels : 1, max OID : 16
+[staalk - Acct: 1] 2013-09-25 09:45:06,437  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,055 seconds.
+[staalk - Acct: 1] 2013-09-25 09:46:04,173  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 09:46:04,207  INFO : Restored UI state : Panels : 1, max OID : 16
+[staalk - Acct: 1] 2013-09-25 09:46:04,207  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,034 seconds.
+[staalk - Acct: 1] 2013-09-25 09:46:15,108  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 09:46:15,138  INFO : Restored UI state : Panels : 1, max OID : 16
+[staalk - Acct: 1] 2013-09-25 09:46:15,138  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,030 seconds.
+[staalk - Acct: 1] 2013-09-25 09:46:21,213  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 09:46:21,240  INFO : Restored UI state : Panels : 1, max OID : 16
+[staalk - Acct: 1] 2013-09-25 09:46:21,240  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,027 seconds.
+[staalk - Acct: 1] 2013-09-25 09:46:30,585  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 09:46:30,620  INFO : Restored UI state : Panels : 1, max OID : 18
+[staalk - Acct: 1] 2013-09-25 09:46:30,621  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,036 seconds.
+[staalk - Acct: 1] 2013-09-25 09:51:22,267  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 09:51:22,305  INFO : Restored UI state : Panels : 1, max OID : 18
+[staalk - Acct: 1] 2013-09-25 09:51:22,305  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,038 seconds.
+[staalk - Acct: 1] 2013-09-25 09:58:49,951  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 09:58:49,989  INFO : Restored UI state : Panels : 1, max OID : 18
+[staalk - Acct: 1] 2013-09-25 09:58:49,990  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,039 seconds.
+[staalk - Acct: 1] 2013-09-25 09:59:02,666  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 09:59:02,692  INFO : Restored UI state : Panels : 1, max OID : 18
+[staalk - Acct: 1] 2013-09-25 09:59:02,692  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,026 seconds.
+[staalk - Acct: 1] 2013-09-25 09:59:11,255  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 09:59:11,326  INFO : Restored UI state : Panels : 1, max OID : 18
+[staalk - Acct: 1] 2013-09-25 09:59:11,326  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,071 seconds.
+[staalk - Acct: 1] 2013-09-25 09:59:33,498  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 09:59:33,526  INFO : Restored UI state : Panels : 1, max OID : 18
+[staalk - Acct: 1] 2013-09-25 09:59:33,526  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,028 seconds.
+[staalk - Acct: 1] 2013-09-25 09:59:41,631  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 09:59:41,672  INFO : Restored UI state : Panels : 1, max OID : 18
+[staalk - Acct: 1] 2013-09-25 09:59:41,672  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,041 seconds.
+[staalk - Acct: 1] 2013-09-25 10:06:14,784  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 10:06:14,826  INFO : Restored UI state : Panels : 1, max OID : 18
+[staalk - Acct: 1] 2013-09-25 10:06:14,826  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,042 seconds.
+[staalk - Acct: 1] 2013-09-25 10:06:37,815  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 10:06:37,837  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,022 seconds.
+[staalk - Acct: 1] 2013-09-25 10:06:43,090  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 10:06:43,130  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,040 seconds.
+[staalk - Acct: 1] 2013-09-25 10:07:06,249  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 10:07:06,268  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,020 seconds.
+[staalk - Acct: 1] 2013-09-25 10:08:27,027  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 10:08:27,492  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,465 seconds.
+[staalk - Acct: 1] 2013-09-25 10:08:48,966  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 10:08:49,001  INFO : Restored UI state : Panels : 1, max OID : 6
+[staalk - Acct: 1] 2013-09-25 10:08:49,002  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,035 seconds.
+[staalk - Acct: 1] 2013-09-25 10:45:15,487  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 10:45:16,275  INFO : Restored UI state : Panels : 1, max OID : 6
+[staalk - Acct: 1] 2013-09-25 10:45:16,277  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,790 seconds.
+[staalk - Acct: 1] 2013-09-25 10:45:32,234  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 10:45:32,291  INFO : Restored UI state : Panels : 1, max OID : 6
+[staalk - Acct: 1] 2013-09-25 10:45:32,291  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,057 seconds.
+[staalk - Acct: 1] 2013-09-25 11:15:45,629  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 11:15:46,183  INFO : There was no serialized panels.obj file, no serialized XML stream and no local cache backups found in local user cache (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1). No user state was found in Beehive. Assuming a new user with no saved design.
+[staalk - Acct: 1] 2013-09-25 11:15:46,185  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,557 seconds.
+[matthijsvdr - Acct: 2] 2013-09-25 11:40:32,825  INFO : Attempting to restore designer panel UI state for user matthijsvdr (Acct ID : 2)
+[matthijsvdr - Acct: 2] 2013-09-25 11:40:33,488  INFO : There was no serialized panels.obj file, no serialized XML stream and no local cache backups found in local user cache (User: matthijsvdr, Email: matthijs.van.driel@tass.nl, Roles: Admin, Account ID: 2). No user state was found in Beehive. Assuming a new user with no saved design.
+[matthijsvdr - Acct: 2] 2013-09-25 11:40:33,504  INFO : Restore time (User: matthijsvdr, Email: matthijs.van.driel@tass.nl, Roles: Admin, Account ID: 2) : 00,679 seconds.
+[staalk - Acct: 1] 2013-09-25 11:41:14,886  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 11:41:14,918  INFO : There was no serialized panels.obj file, no serialized XML stream and no local cache backups found in local user cache (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1). No user state was found in Beehive. Assuming a new user with no saved design.
+[staalk - Acct: 1] 2013-09-25 11:41:14,918  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,032 seconds.
+[staalk - Acct: 1] 2013-09-25 11:54:03,388  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 11:54:03,458  INFO : Restored UI state : Panels : 1, max OID : 12
+[staalk - Acct: 1] 2013-09-25 11:54:03,458  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,070 seconds.
+[staalk - Acct: 1] 2013-09-25 12:58:07,848  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 12:58:08,383  INFO : Restored UI state : Panels : 1, max OID : 12
+[staalk - Acct: 1] 2013-09-25 12:58:08,385  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,537 seconds.
+[staalk - Acct: 1] 2013-09-25 13:35:00,304  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 13:35:00,989  INFO : Restored UI state : Panels : 1, max OID : 12
+[staalk - Acct: 1] 2013-09-25 13:35:00,991  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,686 seconds.
+[staalk - Acct: 1] 2013-09-25 13:36:42,484  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 13:36:42,524  INFO : Restored UI state : Panels : 1, max OID : 12
+[staalk - Acct: 1] 2013-09-25 13:36:42,524  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,040 seconds.
+[staalk - Acct: 1] 2013-09-25 13:53:41,780  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 13:53:41,826  INFO : Restored UI state : Panels : 1, max OID : 12
+[staalk - Acct: 1] 2013-09-25 13:53:41,826  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,046 seconds.
+[staalk - Acct: 1] 2013-09-25 15:37:38,879  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 15:37:39,756  INFO : Restored UI state : Panels : 1, max OID : 12
+[staalk - Acct: 1] 2013-09-25 15:37:39,758  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,879 seconds.
+[staalk - Acct: 1] 2013-09-25 15:51:12,762  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 15:51:12,828  INFO : Restored UI state : Panels : 1, max OID : 12
+[staalk - Acct: 1] 2013-09-25 15:51:12,828  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,066 seconds.
+[staalk - Acct: 1] 2013-09-25 16:44:35,753  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-25 16:44:35,975  INFO : Restored UI state : Panels : 1, max OID : 36
+[staalk - Acct: 1] 2013-09-25 16:44:35,978  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,224 seconds.
+[staalk - Acct: 1] 2013-09-26 10:42:03,369  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-26 10:42:04,845  INFO : Restored UI state : Panels : 1, max OID : 36
+[staalk - Acct: 1] 2013-09-26 10:42:04,869  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 01,493 seconds.
+[staalk - Acct: 1] 2013-09-26 10:47:07,702  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-26 10:47:07,742  INFO : Restored UI state : Panels : 1, max OID : 36
+[staalk - Acct: 1] 2013-09-26 10:47:07,742  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,040 seconds.
+[staalk - Acct: 1] 2013-09-26 10:47:20,924  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-26 10:47:20,993  INFO : Restored UI state : Panels : 3, max OID : 53
+[staalk - Acct: 1] 2013-09-26 10:47:20,994  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,069 seconds.
+[staalk - Acct: 1] 2013-09-26 11:01:34,439  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-26 11:01:34,530  INFO : Restored UI state : Panels : 3, max OID : 82
+[staalk - Acct: 1] 2013-09-26 11:01:34,530  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,091 seconds.
+[staalk - Acct: 1] 2013-09-26 11:26:41,589  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-26 11:26:41,837  INFO : Restored UI state : Panels : 3, max OID : 82
+[staalk - Acct: 1] 2013-09-26 11:26:41,839  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,249 seconds.
+[staalk - Acct: 1] 2013-09-26 11:26:55,967  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-26 11:26:56,041  INFO : Restored UI state : Panels : 2, max OID : 107
+[staalk - Acct: 1] 2013-09-26 11:26:56,041  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,074 seconds.
+[staalk - Acct: 1] 2013-09-26 13:25:10,357  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-26 13:25:10,407  INFO : Restored UI state : Panels : 2, max OID : 111
+[staalk - Acct: 1] 2013-09-26 13:25:10,408  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,051 seconds.
+[staalk - Acct: 1] 2013-09-26 13:25:22,533  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-26 13:25:22,576  INFO : Restored UI state : Panels : 2, max OID : 111
+[staalk - Acct: 1] 2013-09-26 13:25:22,576  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,043 seconds.
+[staalk - Acct: 1] 2013-09-26 13:25:22,632  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-26 13:25:22,667  INFO : Restored UI state : Panels : 2, max OID : 111
+[staalk - Acct: 1] 2013-09-26 13:25:22,668  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,036 seconds.
+[staalk - Acct: 1] 2013-09-26 15:21:46,440  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-26 15:21:46,493  INFO : Restored UI state : Panels : 3, max OID : 153
+[staalk - Acct: 1] 2013-09-26 15:21:46,494  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,054 seconds.
+[staalk - Acct: 1] 2013-09-26 15:49:46,476  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-26 15:49:46,538  INFO : Restored UI state : Panels : 3, max OID : 181
+[staalk - Acct: 1] 2013-09-26 15:49:46,538  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,062 seconds.
+[staalk - Acct: 1] 2013-09-27 08:43:43,042  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-27 08:43:43,821  INFO : Restored UI state : Panels : 3, max OID : 181
+[staalk - Acct: 1] 2013-09-27 08:43:43,844  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,780 seconds.
+[staalk - Acct: 1] 2013-09-27 08:47:44,198  INFO : Attempting to restore designer panel UI state for user staalk (Acct ID : 1)
+[staalk - Acct: 1] 2013-09-27 08:47:44,258  INFO : Restored UI state : Panels : 3, max OID : 181
+[staalk - Acct: 1] 2013-09-27 08:47:44,258  INFO : Restore time (User: staalk, Email: koen.staal@tass.nl, Roles: Admin, Account ID: 1) : 00,060 seconds.

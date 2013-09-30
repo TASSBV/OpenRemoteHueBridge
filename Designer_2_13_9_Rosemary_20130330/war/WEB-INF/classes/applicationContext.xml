@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd"
+	default-autowire="byName">
+
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="locations">
+			<list>
+				<value>classpath:config.properties</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="configuration" class="org.openremote.modeler.client.Configuration">
+		<property name="beehiveRESTRootUrl" value="${beehive.REST.Root.Url}" />
+		<property name="irServiceRESTRootUrl" value="${irService.REST.Root.Url}" />
+		<property name="panelXsdPath" value="${panel.xsd.path}" />
+		<property name="controllerXsdPath" value="${controller.xsd.path}" />
+		<property name="webappServerRoot" value="${webapp.server.root}" />
+		<property name="controllerConfigPath" value="${controller.config.xml.path}" />
+		<property name="controllerConfigXsdPath" value="${controller.config.xsd.path}" />
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"
+		parent="baseSessionFactory">
+		<property name="annotatedClasses">
+			<list>
+				<value>org.openremote.modeler.domain.Protocol</value> 
+                <value>org.openremote.modeler.domain.ProtocolAttr</value>
+                <value>org.openremote.modeler.domain.Device</value>
+                <value>org.openremote.modeler.domain.DeviceAttr</value>
+                <value>org.openremote.modeler.domain.DeviceCommand</value>
+                <value>org.openremote.modeler.domain.DeviceCommandRef</value> 
+                <value>org.openremote.modeler.domain.DeviceMacro</value>
+                <value>org.openremote.modeler.domain.DeviceMacroRef</value> 
+                <value>org.openremote.modeler.domain.CommandDelay</value> 
+                <value>org.openremote.modeler.domain.DeviceMacroItem</value> 
+                <value>org.openremote.modeler.domain.User</value> 
+                <value>org.openremote.modeler.domain.Role</value> 
+                <value>org.openremote.modeler.domain.Account</value> 
+                <value>org.openremote.modeler.domain.Sensor</value> 
+                <value>org.openremote.modeler.domain.CommandRefItem</value> 
+                <value>org.openremote.modeler.domain.SensorCommandRef</value> 
+                <value>org.openremote.modeler.domain.SwitchCommandOnRef</value> 
+                <value>org.openremote.modeler.domain.SwitchCommandOffRef</value> 
+                <value>org.openremote.modeler.domain.SliderCommandRef</value> 
+                <value>org.openremote.modeler.domain.State</value> 
+                <value>org.openremote.modeler.domain.RangeSensor</value> 
+                <value>org.openremote.modeler.domain.CustomSensor</value> 
+                <value>org.openremote.modeler.domain.SensorRefItem</value> 
+                <value>org.openremote.modeler.domain.SwitchSensorRef</value> 
+                <value>org.openremote.modeler.domain.SliderSensorRef</value> 
+                <value>org.openremote.modeler.domain.Switch</value>
+                <value>org.openremote.modeler.domain.Slider</value> 
+                <value>org.openremote.modeler.domain.ControllerConfig</value>
+			</list>
+		</property>
+		<property name="mappingResources">
+			<value>customSQL.hbm.xml</value>
+		</property>
+	</bean>
+
+	<bean id="genericDAO" class="org.openremote.modeler.dao.GenericDAO"></bean>
+	
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+  		<property name="host" value="${mail.sender.host}" /> 
+  		<property name="port" value="${mail.sender.port}" /> 
+  		<property name="username" value="${mail.sender.username}" /> 
+<!--  		<property name="password" value="${mail.sender.password}" />  -->
+		<property name="javaMailProperties">
+			<props>
+	  			<!--<prop key="mail.smtp.auth">${mail.smtp.auth.on}</prop>-->
+	  			<prop key="mail.smtp.timeout">{mail.smtp.timeout}</prop> 
+	  		</props>
+  		</property>
+  	</bean>
+
+	<bean id="velocityEngine"
+		class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+		<property name="resourceLoaderPath" value="/WEB-INF/"></property>
+		<property name="velocityProperties">
+			<value>resource.loader=class
+				class.resource.loader.class=org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+			</value>
+		</property>
+	</bean>
+
+  <bean id="dispatch" class="net.customware.gwt.dispatch.server.spring.SpringDispatch">
+    <constructor-arg index="0" ref="registry"/>
+  </bean>
+  
+  <bean id="importLutronConfigActionHandler" class="org.openremote.modeler.server.lutron.ImportLutronConfigActionHandler"></bean>
+  <bean id="createRussoundDeviceActionHandler" class="org.openremote.modeler.server.russound.CreateRussoundDeviceActionHandler"></bean>
+  <bean id="importKNXConfigActionHandler" class="org.openremote.modeler.server.knx.ImportKNXConfigActionHandler"></bean>
+  <bean id="importLIRCCommandsActionHandler" class="org.openremote.modeler.server.lirc.ImportLIRCCommandsActionHandler"></bean>
+  <bean id="generateIRCommandsActionHandler" class="org.openremote.modeler.server.ir.GenerateIRCommandsActionHandler"></bean>
+        
+  <bean id="registry" class="net.customware.gwt.dispatch.server.DefaultActionHandlerRegistry">
+    <property name="actionHandlers">
+        <list>
+            <ref bean="importLutronConfigActionHandler"/>
+            <ref bean="createRussoundDeviceActionHandler"/>
+            <ref bean="importKNXConfigActionHandler"/>
+            <ref bean="importLIRCCommandsActionHandler"/>
+            <ref bean="generateIRCommandsActionHandler"/>
+        </list>
+    </property>
+  </bean>
+
+</beans>

@@ -1,0 +1,60 @@
+Controller Pro 1.0.6
+====================
+
+New Features:
+
+  - Introduce unit tests for Version20ModelBuilder class and regression tests for issue ORCJAVA-263 (ORCJAVA-286)
+
+Bug Fixes:
+
+  - KNX does not return scene numbers sent by a physical push button, SCENE and LEARN_SCENE seem to vica versa (ORCJAVA-282)
+  - The ColorPickerBuilder from ORCJAVA-235 is using the wrong attribute name for the dynamic attribute (ORCJAVA-290)
+  - openremote.sh start creates an unbound catalina.out file (ORCJAVA-273)
+  - Fix openremote.sh to work with paths that contain spaces (ORCJAVA-280)
+  - Controller Error occurs when there are spaces in the path (ORCJAVA-263)
+  - NPE when controller checking for commands from remote proxy (ORCJAVA-288)
+  - Ensure that Restlet ClientResource is not released too soon (ORCJAVA-295)
+
+Controller 2.1.0 (2012-XX-XX Twin Galaxies)
+===========================================
+
+New Features:
+
+  - Added DSC-IT 100 Security System integration (IP to serial), Greg Rapp
+  - Lagarto server (panStamps) integration, Daniel Berenguer
+  - Support 'custom' sensor types with virtual commands (ORCJAVA-217)
+  - HTTP protocol: methods GET, POST, PUT and DELETE are now supported.
+    For HTTP/JSON return documents, a JSON Path expression is supported.
+    Internally, the implementation has been converted to use URIs instead 
+    of URLs which resolves an issue with lack of encoding of HTTP parameters 
+    which contain which contain white spaces or other special characters 
+    (Marcus Redeker)
+  - One Wire: Added possibility to specify temperature values in
+    either Celsius (default), Kelvin, Fahrenheit or Rankine scales.
+  - Shell Command Execution: polling interval and regular expression
+    filtering on return values supported
+  - Telnet: polling interval property added
+
+
+Bug Fixes:
+
+  - Performance fix to sensor state cache queries (Marcus Redeker)
+  - Runtime performance optimization to avoid unnecessary XML 
+    parsing/XPath use (ORCJAVA-190)
+  - Fix for JSON REST request return values (Richard Turner, ORCJAVA-254)
+  - Rework logout requests and added CORS headers (Richard Turner, ORCJAVA-255)
+  - Internal API : concurrency and call control on Deployer start 
+    controller calls (ORCJAVA-179)  
+  - 1-Wire does not recover when owserver is not available (ORCJAVA-267)  
+  - Issue with status cache if a command linked to a sensor
+    has issue (ORCJAVA-268)
+
+Controller 2.0.1 (2012-11-21)
+=============================
+
+ - Update Web Console implementation to 2.0.0 FINAL
+ - Change Tomcat runtime default logging to file size
+   bound (10MB per file) instead of unlimited file
+   size logging
+
+

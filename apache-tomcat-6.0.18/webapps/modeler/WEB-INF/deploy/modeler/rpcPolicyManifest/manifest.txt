@@ -1,0 +1,18 @@
+# Module modeler
+# RPC service class, partial path of RPC policy file
+org.openremote.modeler.client.rpc.SwitchRPCService, DAA44C028821097047043BC3F18E6564.gwt.rpc
+org.openremote.modeler.client.rpc.SliderRPCService, 2527F32BDD4303243BE642D6AFC32537.gwt.rpc
+org.openremote.modeler.client.rpc.TemplateRPCService, 3C8ED3E0C19AA62EB69C078728F961B7.gwt.rpc
+org.openremote.modeler.client.rpc.SensorRPCService, 690D9DC6C50D4C1AA9423937045C2221.gwt.rpc
+org.openremote.modeler.client.rpc.ControllerConfigRPCService, CA172B0ADEF2C7D2F57AFEEE6379744D.gwt.rpc
+net.customware.gwt.dispatch.client.standard.StandardDispatchService, 80DF076A713DBFC0F988FBFC0436902F.gwt.rpc
+org.openremote.modeler.client.rpc.UtilsRPCService, 62A66B00663A7A3A4B80140E1F7532E0.gwt.rpc
+org.openremote.modeler.client.rpc.DeviceRPCService, 16D2435A01CF074061CFC5D254A9F70F.gwt.rpc
+org.openremote.modeler.client.rpc.DeviceMacroRPCService, D754227BC1008EFA958E78FE7F196AD7.gwt.rpc
+org.openremote.modeler.client.rpc.TouchPanelRPCService, 320039A55E6B5CE6C76FF53C45036B81.gwt.rpc
+org.openremote.modeler.client.rpc.UserRPCService, 93A2B96AD3E4C54F73AF5CB61A92CBE1.gwt.rpc
+org.openremote.modeler.client.rpc.DeviceCommandRPCService, 2240927B7528875A129ED530F1893F70.gwt.rpc
+org.openremote.modeler.client.rpc.AuthorityRPCService, A52F828644A0091DA6613E8F52A81190.gwt.rpc
+org.openremote.modeler.client.rpc.ConfigurationRPCService, D6413D3EDE8FC049C97809A6AB4CC070.gwt.rpc
+org.openremote.modeler.client.rpc.ConfigCategoryRPCService, ACED0C3B8C6DF390B8003F80734413DE.gwt.rpc
+org.openremote.modeler.client.rpc.ProtocolRPCService, EAB79A61422EE35E811155609311A267.gwt.rpc

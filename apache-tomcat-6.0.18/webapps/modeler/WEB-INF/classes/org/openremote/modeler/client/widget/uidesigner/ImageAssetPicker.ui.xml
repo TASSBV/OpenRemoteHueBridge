@@ -1,0 +1,52 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:c='urn:import:com.google.gwt.user.cellview.client'>
+
+  <ui:style>
+   .imagePreviewStyle {
+      margin: 10px;
+      padding: 2px;
+      border-style: solid;
+      border-width: 1px;
+      border-color: #999;
+    }
+  </ui:style>
+
+	<g:DialogBox autoHide="false" modal="true">
+		<g:caption>
+			<b>Image Asset Picker</b>
+		</g:caption>
+		<g:FormPanel>
+			<g:DockLayoutPanel unit="EM" ui:field="mainLayout">
+				<g:north size="4">
+					<g:HorizontalPanel>
+						<g:Label />
+						<g:Button ui:field="addButton">Add image</g:Button>
+					</g:HorizontalPanel>
+				</g:north>
+				<g:south size="4">
+					<g:LayoutPanel>
+						<g:layer left="35%" width="6em">
+              <g:Button ui:field="okButton">OK</g:Button>
+						</g:layer>
+						<g:layer right="35%" width="6em">
+              <g:Button ui:field="cancelButton">Cancel</g:Button>
+						</g:layer>
+					</g:LayoutPanel>
+				</g:south>
+				<g:center>
+					<g:LayoutPanel>
+						<g:layer left="0%" width="40%">
+							<g:ScrollPanel width='100%'>
+								<c:CellTable width='100%' ui:field='table' />
+							</g:ScrollPanel>
+						</g:layer>
+						<g:layer right="0%" width="60%">
+							<g:Image styleName='{style.imagePreviewStyle}' ui:field="imagePreview" />
+						</g:layer>
+					</g:LayoutPanel>
+				</g:center>
+			</g:DockLayoutPanel>
+		</g:FormPanel>
+	</g:DialogBox>
+</ui:UiBinder> 

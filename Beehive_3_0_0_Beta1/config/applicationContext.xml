@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd"
+       default-autowire="byName">
+
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+            <value>classpath:config.properties</value>
+        </property>
+    </bean>
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"
+          parent="baseSessionFactory">
+        <property name="annotatedClasses">
+            <list>
+                <value>org.openremote.beehive.domain.Vendor</value>
+                <value>org.openremote.beehive.domain.Model</value>
+                <value>org.openremote.beehive.domain.RemoteSection</value>
+                <value>org.openremote.beehive.domain.RemoteOption</value>
+                <value>org.openremote.beehive.domain.Code</value>
+                <value>org.openremote.beehive.domain.Icon</value>
+                <value>org.openremote.beehive.domain.SyncHistory</value>
+                <value>org.openremote.beehive.domain.Template</value>
+                <value>org.openremote.beehive.domain.User</value>
+                <value>org.openremote.beehive.domain.Role</value>
+                <value>org.openremote.beehive.domain.Account</value>
+            </list>
+        </property>
+        <property name="mappingResources">
+            <value>customSQL.hbm.xml</value>
+        </property>
+    </bean>
+
+
+    <bean id="genericDAO" class="org.openremote.beehive.api.service.impl.GenericDAO"></bean>
+    
+	<bean id="configuration" class="org.openremote.beehive.Configuration">
+		<property name="workDir" value="${work.dir}" />
+		<property name="iconsDir" value="${icons.dir}" />
+		<property name="lircCrawRegex" value="${lirc.craw.regex}" />
+	</bean>
+	
+
+</beans>

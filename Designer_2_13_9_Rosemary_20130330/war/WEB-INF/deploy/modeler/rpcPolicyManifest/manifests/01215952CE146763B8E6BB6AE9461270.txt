@@ -1,0 +1,2 @@
+serviceClass: org.openremote.modeler.client.rpc.SwitchRPCService
+path: DAA44C028821097047043BC3F18E6564.gwt.rpc

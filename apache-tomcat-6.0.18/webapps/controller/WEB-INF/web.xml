@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ **
+ * OpenRemote, the Home of the Digital Home.
+ * Copyright 2008-2011, OpenRemote Inc.
+ *
+ * See the contributors.txt file in the distribution for a
+ * full listing of individual contributors.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ **
+-->
+
+
+<!--
+
+  Bootstrapping of the OpenRemote Controller for servlet container runtimes.
+
+  Author: Juha Lindfors
+
+-->
+<web-app version = "2.4" xmlns = "http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation = "http://java.sun.com/xml/ns/j2ee
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+  <display-name>OpenRemote Controller</display-name>
+
+
+  <!--
+
+    The default file that is returned as a response to HTTP request if the user does not
+    specify particular file after the server URL.
+
+  -->
+  <welcome-file-list>
+      <welcome-file>index.html</welcome-file>
+    <welcome-file>bridge.jsp</welcome-file>
+  </welcome-file-list>
+
+
+  <!--
+
+   ================================================================================================
+
+    CONTROLLER SERVLET BOOTSTRAP PARAMETERS
+
+    These parameters are typically not something users would change (user parameters are exposed
+    in the 'config.properties' file instead and through the OpenRemote Online Designer). The
+    context parameters are available to controller implementation immediately as soon as first
+    bootstrap listeners (see below) are invoked, and before config.properties are loaded. They
+    can therefore be used to parameterize the Controller bootstrap process and implementing
+    classes.
+
+   ================================================================================================
+
+  -->
+
+
+
+  <!--
+   | This property defines which service container implementation is being used by the controller
+   | at runtime. The default implementation for JavaSE 6 environments is a Spring-based
+   | service (bean) context. Other runtimes (such as Android) could have different service context
+   | implementations provided (but this web.xml based configuration still assumes a dependency
+   | to a Java EE servlet container).
+   +-->
+  <context-param>
+    <param-name>ServiceContextImplementation</param-name>
+    <param-value>org.openremote.controller.spring.SpringContext</param-value>
+  </context-param>
+
+
+
+
+
+  <!-- ==== Log4j Configuration ==============================================================
+
+         These parameters are read by the Log4jConfigListener implementation (see below)
+         and are only relevant while that particular listener implementation is being used.
+
+       ======================================================================================
+   -->
+
+  <!--
+
+    Location of the log4j configuration file.
+
+    Note that files under /WEB-INF directory are not exposed to resource requests over HTTP
+    protocol, therefore hiding the file contents from outsiders.
+
+  -->
+  <context-param>
+    <param-name>log4jConfigLocation</param-name>
+    <param-value>/WEB-INF/classes/log4j.properties</param-value>
+  </context-param>
+
+  <!--
+
+    Logging properties can be modified on a live controller instance and reloaded automatically
+    while the controller is running. The refresh interval determines how often the logging
+    properties file is checked for modifications.
+
+    Default value is 5000 milliseconds, or 5 seconds.
+
+  -->
+  <context-param>
+    <param-name>log4jRefreshInterval</param-name>
+    <param-value>5000</param-value>
+  </context-param>
+
+  <context-param>
+    <param-name>log4jExposeWebAppRoot</param-name>
+    <param-value>false</param-value>
+  </context-param>
+
+
+
+
+  <!-- ==== Spring Framework Configuration =================================================== -->
+
+  <!--
+
+     Location for additional Java bean definition XML files that are read in addition to the
+     main 'applicationContext.xml' file to bind various components together at controller
+     startup.
+
+     This parameter is read by the ContextLoaderListener implementation (see below).
+
+     Currently only adding spring-servlet.xml definition to load additional administrative and
+     monitoring servlets that provide a Web UI to the controller.
+
+  -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+      /WEB-INF/classes/spring-servlet.xml
+    </param-value>
+  </context-param>
+
+
+
+  <!--
+
+  =================================================================================================
+
+    SERVLET CONTEXT LISTENERS
+
+    These are executed before the controller can start receiving HTTP requests. The declared
+    order is significant and the implementations are executed in the order declared here.
+
+  =================================================================================================
+
+  -->
+
+
+  <!--
+
+    This is a servlet listener wrapper to Spring frameworks log4j configurer implementation.
+    It implements some utility functions to handle log4j configuration in this application.
+
+    Only required as far as log4j is used by the application.
+
+    Configuration is done through 'log4jExposeWebAppRoot', 'log4jRefreshInterval' and
+    'log4jConfigLocation' servlet context parameters (see above).
+
+    This listener should be in place before others to ensure logging is configured
+    and in place when other modules are bound to the application and begin their logging.
+
+    Note also that as per the Spring documentation, use of these log4j utilities requires that
+    the web application is deployed as an exploded web directory, rather than as a single
+    archive file.
+
+    See http://goo.gl/f47hL (Log4jWebConfigurer) and http://goo.gl/Of73y (Log4jConfigListener) for
+    more details.
+
+  -->
+  <listener>
+    <listener-class>
+      org.springframework.web.util.Log4jConfigListener
+    </listener-class>
+  </listener>
+
+
+  <!--
+
+    This is an additional bootstrap class for servlet environment which installs a log4j
+    redirector for those components in the application that use java.util.logging (JUL) API
+    for logging instead of log4j.
+
+    Ultimately, it may be desirable for all component implementations to default to JUL logging
+    API instead of log4j. Until that migration is done, this bootstrap component should stay in
+    place (and it can still be used if after the API migration it is desirable to use log4j as
+    the main logging framework).
+
+    This part of bootstrap is separated out from the main controller web context listener
+    (which is invoked later in this listener sequence) so that the logging configuration is
+    already well in place during the application initialization phase.
+
+   -->
+  <listener>
+    <listener-class>
+      org.openremote.controller.bootstrap.servlet.LogInitialization
+    </listener-class>
+  </listener>
+
+
+  <!--
+
+    OpenRemote Controller specific bootstrap listener that initializes/starts specific service
+    implementations.
+
+    This bootstrap implementation reads the 'ServiceContextImplementation' application parameter
+    that is used to instantiate a service context which decouples the controller implementation
+    from direct compile-time dependencies to third-party libraries.
+
+    -->
+  <listener>
+    <listener-class>
+      org.openremote.controller.bootstrap.servlet.ServletStartup
+    </listener-class>
+  </listener>
+
+
+  <!--
+
+    Loads additional component definitions (Java Beans) specified by 'contextConfigLocation'
+    property above into the controller runtime.
+
+    In this configuration the additional components are loaded after the servlet startup to
+    ensure that the service context lookups are initialized and ready to be used.
+
+    See http://goo.gl/BhUSY (ContextLoader) and http://goo.gl/GHfHZ (ContextLoaderListener) for
+    more information.
+  -->
+  <listener>
+    <listener-class>
+      org.springframework.web.context.ContextLoaderListener
+    </listener-class>
+  </listener>
+
+
+
+  <!--
+
+  =================================================================================================
+
+    Map servlet Java class implementations to URLs
+
+  =================================================================================================
+
+  -->
+
+
+
+    <servlet>
+        <servlet-name>BridgeServlet</servlet-name>
+        <servlet-class>org.openremote.controller.action.BridgeServlet</servlet-class>
+    </servlet>
+    <!--mapping-->
+    <servlet-mapping>
+        <servlet-name>BridgeServlet</servlet-name>
+        <url-pattern>/BridgeServlet</url-pattern>
+    </servlet-mapping>
+
+  <servlet>
+    <servlet-name>dispatcherServlet</servlet-name>
+    <servlet-class>
+      org.springframework.web.servlet.DispatcherServlet
+    </servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>
+        /WEB-INF/classes/spring-servlet.xml
+      </param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>dispatcherServlet</servlet-name>
+    <url-pattern>*.htm</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>controlRESTServlet</servlet-name>
+    <servlet-class>org.openremote.controller.rest.ControlCommandRESTServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>controlRESTServlet</servlet-name>
+    <url-pattern>/rest/control/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>statusRESTServlet</servlet-name>
+    <servlet-class>org.openremote.controller.rest.StatusCommandRESTServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>statusRESTServlet</servlet-name>
+    <url-pattern>/rest/status/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>StatusPollingRESTServlet</servlet-name>
+    <servlet-class>org.openremote.controller.rest.StatusPollingRESTServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>StatusPollingRESTServlet</servlet-name>
+    <url-pattern>/rest/polling/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>resourceServlet</servlet-name>
+    <servlet-class>org.openremote.controller.servlet.ResourceServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>graphServlet</servlet-name>
+    <servlet-class>org.openremote.controller.servlet.RrdGraphServlet</servlet-class>
+  </servlet>
+  
+  <!--
+   | Servlet for 'rest/panels' implementation.
+   +-->
+  <servlet>
+    <description>
+      Returns XML or JSON document describing all available panel definition IDs
+      deployed to this controller.
+    </description>
+
+    <display-name>List Panel IDs -- /rest/panels</display-name>
+    <servlet-name>ListPanelIDs</servlet-name>
+    <servlet-class>org.openremote.controller.rest.ListPanelIDs</servlet-class>
+  </servlet>
+
+  <!--
+   | Servlet for 'rest/panel/{id} implementation.
+   +-->
+  <servlet>
+    <description>
+      Returns the XML or JSON panel definition for a specific panel ID.
+      Note that access to panel definition may be secured by the controller
+      and require an authentication.
+    </description>
+    <display-name>Return Panel Definition -- /rest/panel/id</display-name>
+    <servlet-name>FindPanelByID</servlet-name>
+    <servlet-class>org.openremote.controller.rest.FindPanelByID</servlet-class>
+  </servlet>
+
+  <!--
+   | Servlet for 'rest/logout' implementation.
+   +-->
+  <servlet>
+    <description>
+      Logs out user by invalidating their session and returns XML or JSON 401 un-authorized
+      document.
+    </description>
+
+    <display-name>Logout -- /rest/logout</display-name>
+    <servlet-name>LogoutRESTServlet</servlet-name>
+    <servlet-class>org.openremote.controller.rest.LogoutServlet</servlet-class>
+  </servlet>
+
+
+  <servlet>
+    <description>used to send 401 http error code.</description>
+    <display-name>LogoutServlet</display-name>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>org.openremote.controller.servlet.LogoutServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <description></description>
+    <display-name>RoundRobinRESTServlet</display-name>
+    <servlet-name>RoundRobinRESTServlet</servlet-name>
+    <servlet-class>org.openremote.controller.rest.RoundRobinRESTServlet</servlet-class>
+  </servlet>
+
+
+
+  <servlet-mapping>
+    <servlet-name>resourceServlet</servlet-name>
+    <url-pattern>/resources/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>graphServlet</servlet-name>
+    <url-pattern>/graph/*</url-pattern>
+  </servlet-mapping>
+
+
+  <!--
+   | Map Controller REST API servlet which returns all panel definition IDs to
+   | 'rest/panels' and 'rest/panels/' URIs.
+   +-->
+  <servlet-mapping>
+    <servlet-name>ListPanelIDs</servlet-name>
+    <url-pattern>/rest/panels</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>ListPanelIDs</servlet-name>
+    <url-pattern>/rest/panels/</url-pattern>
+  </servlet-mapping>
+
+
+  <!--
+   | Map Controller REST API servlet which returns a panel definition by ID to
+   | 'rest/panel/id URI.
+   +-->
+  <servlet-mapping>
+    <servlet-name>FindPanelByID</servlet-name>
+    <url-pattern>/rest/panel/*</url-pattern>
+  </servlet-mapping>
+
+
+  <!--
+   | Map Controller REST API servlet which logs out the current session
+   | 'rest/logout' URIs.
+   +-->
+  <servlet-mapping>
+    <servlet-name>LogoutRESTServlet</servlet-name>
+    <url-pattern>/rest/logout</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>LogoutRESTServlet</servlet-name>
+    <url-pattern>/rest/logout/</url-pattern>
+  </servlet-mapping>
+
+
+  <!-- THIS SERVLET IS DEPRECATED AND HAS BEEN REPLACED WITH LogoutRESTServlet -->
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/logout/</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>RoundRobinRESTServlet</servlet-name>
+    <url-pattern>/rest/servers</url-pattern>
+  </servlet-mapping>
+
+
+  <!--
+
+  =================================================================================================
+
+    HTTP request/response filters
+
+  =================================================================================================
+
+  -->
+
+  <filter>
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>
+      org.springframework.web.filter.CharacterEncodingFilter
+    </filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+      <param-name>forceEncoding</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>encodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <filter>
+    <filter-name>JSONCallbackFilter</filter-name>
+    <filter-class>org.openremote.controller.rest.support.json.JSONCallbackFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>JSONCallbackFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+
+
+
+  <!--
+
+  =================================================================================================
+
+    Security Configuration
+
+  =================================================================================================
+
+  -->
+
+  <!-- Constraint resource: /rest/panel/* 
+
+    <security-constraint>
+      <web-resource-collection>
+        <web-resource-name>Panel identity RESTful service of Openremote Controller</web-resource-name>
+        <description>Panel identity RESTful service of Openremote Controller</description>
+        <url-pattern>/rest/panel/HTTP</url-pattern>
+        <http-method>GET</http-method>
+        <http-method>POST</http-method>
+      </web-resource-collection>
+      <auth-constraint>
+        <role-name>openremote</role-name>
+      </auth-constraint>
+    </security-constraint>
+
+  -->
+    <login-config>
+      <auth-method>BASIC</auth-method>
+      <realm-name>OPENREMOTE_Controller</realm-name>
+    </login-config>
+    <security-role>
+      <role-name>openremote</role-name>
+    </security-role>
+
+<!-- 
+    <error-page>
+      <error-code>401</error-code>
+      <location>/401.jsp</location>
+    </error-page>
+ -->
+</web-app>

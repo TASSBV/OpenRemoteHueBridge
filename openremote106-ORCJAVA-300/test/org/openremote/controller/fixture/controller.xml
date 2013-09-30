@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openremote xmlns="http://www.openremote.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openremote.org ../../../../../config/controller-2.0-M6.xsd ">
+  <components>
+		<switch id="1">
+			<on>
+			    <include type="command" ref="100" />
+			</on>
+			<off>
+			    <include type="command" ref="99" />
+			</off>
+			<include type="sensor" ref="1001" />
+		</switch>
+		<switch id="2">
+			<on>
+			    <include type="command" ref="100" />
+			</on>
+			<off>
+			    <include type="command" ref="99" />
+			</off>
+			<include type="sensor" ref="1002" />
+		</switch>
+		<switch id="3">
+			<on>
+			    <include type="command" ref="100" />
+			</on>
+			<off>
+			    <include type="command" ref="99" />
+			</off>
+			<include type="sensor" ref="1003" />
+		</switch>
+		<switch id="4">
+			<on>
+			    <include type="command" ref="100" />
+			</on>
+			<off>
+			    <include type="command" ref="99" />
+			</off>
+			<include type="sensor" ref="1004" />
+		</switch>
+		<label id="6">
+			<include type="sensor" ref="1001" />
+		</label>
+		<gesture id="7" >
+			<include type="command" ref= "100"/>
+		</gesture>
+		<!-- active slider -->
+		<slider id="8">
+			<setValue>
+			    <include type="command" ref="97" />
+			</setValue>
+			<include type="sensor" ref="1008" />
+		</slider>
+		<button id="9">
+			<delay>500</delay>
+      		<include type="command" ref="99" />
+    	</button>
+    	<image id="10">
+			<include type="sensor" ref="1005" />
+		</image>
+		<image id="11">
+			<include type="sensor" ref="1009" />
+		</image>
+		<!-- positive slider -->
+		<slider id="12">
+			<include type="sensor" ref="1008" />
+		</slider>
+	</components>
+	
+	<!-- sensors -->
+	<sensors>
+		<!-- four switch sensors -->
+		<sensor id="1001" name="lampA power sensor" type="switch">
+	    	<include type="command" ref="98" />
+	    	<state name="on" value="on" />
+	    	<state name="off" value="off" />
+		</sensor>
+		<sensor id="1002" name="lampB power sensor" type="switch">
+	    	<include type="command" ref="98" />
+	    	<state name="on" value="on" />
+	    	<state name="off" value="off" />
+		</sensor>
+		<sensor id="1003" name="lampC power sensor" type="switch">
+	    	<include type="command" ref="98" />
+	    	<state name="on" value="on" />
+	    	<state name="off" value="off" />
+		</sensor>
+		<sensor id="1004" name="lampD power sensor" type="switch">
+	    	<include type="command" ref="98" />
+	    	<state name="on" value="on" />
+	    	<state name="off" value="off" />
+		</sensor>
+		<!-- Any possible state values will return -->
+		<sensor id="1005" name="DV sensor" type="custom">
+	    	<include type="command" ref="96" />
+		</sensor>
+		<!-- range sensor -->
+		<sensor id="1008" name="range sensor" type="range">
+	    	<include type="command" ref="96" />
+	    	<min value="-20" />
+	    	<max value="100" />
+		</sensor>
+		<sensor id="1009" name="Door power sensor" type="custom">
+	    	<include type="command" ref="98" />
+	    	<state name="open" value="on" />
+	    	<state name="close" value="off" />
+		</sensor>
+		<sensor id="1010" name="range sensor" type="level">
+	    	<include type="command" ref="96" />
+	    	<min value="0" />
+	    	<max value="100" />
+		</sensor>
+	</sensors>
+	
+	<commands>
+		<command id="100" protocol="virtual">
+			<property name="command" value="ON" />
+      <property name="address" value="cmd1" />
+		</command>
+		<command id="99" protocol="virtual">
+			<property name="command" value="OFF" />
+      <property name="address" value="cmd2" />
+		</command>
+		<command id="98" protocol="virtual">
+			<property name="command" value="STATUS" />
+      <property name="address" value="cmd3" />
+		</command>
+		<command id="97" protocol="virtual">
+			<property name="command" value="CHANGE" />
+      <property name="address" value="cmd4" />
+		</command>
+		<command id="96" protocol="virtual">
+			<property name="command" value="STATUS" />
+      <property name="address" value="cmd5" />
+		</command>
+	</commands>
+	
+	<config>
+		<property name="controller.applicationname" value="controller1" />
+		<property name="copy.lircd.conf.on" value="false" />
+		<property name="resource.path" value="/home/openremote/controller" />
+		<property name="lircd.conf.path" value="/etc/lircd.conf" />
+		<property name="irsend.path" value="/usr/local/bin/irsend" />
+		<property name="webapp.port" value="8888" />
+		<property name="Macro.IR.Execution.Delay" value="500" />
+		<property name="multicast.port" value="3333" />
+		<property name="multicast.address" value="224.0.1.100" />
+		<property name="webapp.ip" value="192.168.4.63" />
+		<property name="beehive.REST.Root.Url" value="http://openremote.org/beehvie/rest/" />
+		
+		<property name="controller.groupmember.autodetect.on" value="true" />
+		<property name="controller.roundrobin.multicast.address" value="224.0.1.200" />
+		<property name="controller.roundrobin.multicast.port" value="20000" />
+		<property name="controller.groupname" value="openremote-office" />
+		<property name="controller.roundrobin.tcpserver.port" value="10000" />
+		<property name="controller.groupmember.candidate.urls" value="http://192.168.1.5:8080/controller/,http://192.168.1.100:8080/controller/,http://192.168.1.105:8080/controller/" />
+	</config>
+	
+</openremote>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openremote xmlns = "http://www.openremote.org"
+            xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation = "http://www.openremote.org iphone.xsd ">
+  <panels>
+    <panel id = "MyIphone"
+           name = "father"><!--use panel identity as term, not device identity, to separate TV and other devices from remote-->
+      <include type = "group" ref = "1"/>
+      <include type = "group" ref = "2"/>
+    </panel>
+    <panel id = "MyAndroid" name = "mother">
+      <include type = "group" ref = "1"/>
+    </panel>
+    <panel id = "2fd894042c668b90aadf0698d353e579" name = "me">
+      <include type = "group" ref = "3"/>
+      <include type = "group" ref = "4"/>
+    </panel>
+  </panels>
+  <screens>
+    <screen id = "5" name = "basement"
+            background = "basement_bg.png"> <!--each screen has two orientations, different orientation has different layout-->
+      <absolute left = "0" top = "20" width = "100" height = "100">
+        <label id = "54" border = "1px" value = "light"/>
+      </absolute>
+      <absolute left = "0" top = "120" width = "100" height = "100">
+        <switch id = "60">
+          <image src = "c.png" state = "ON"/>
+          <image src = "d.png" state = "OFF"/>
+        </switch>
+      </absolute>
+      <absolute left = "0" top = "20" width = "100" height = "100">
+        <label id = "54" border = "1px" value = "light"/>
+      </absolute>
+      <absolute left = "120" top = "20" width = "100" height = "100">
+        <switch id = "60">
+          <image src = "c.png" state = "ON"/>
+          <image src = "d.png" state = "OFF"/>
+        </switch>
+      </absolute>
+    </screen>
+    <screen id = "6" name = "basement"
+            background = "basement_bg.png"> <!--each screen has two orientations, different orientation has different layout-->
+      <absolute left = "0" top = "20" width = "100" height = "100">
+        <label id = "54" border = "1px" value = "light"/>
+      </absolute>
+      <absolute left = "0" top = "120" width = "100" height = "100">
+        <switch id = "60">
+          <image src = "c.png" state = "ON"/>
+          <image src = "d.png" state = "OFF"/>
+        </switch>
+      </absolute>
+      <absolute left = "0" top = "20" width = "100" height = "100">
+        <label id = "54" border = "1px" value = "light"/>
+      </absolute>
+      <absolute left = "120" top = "20" width = "100" height = "100">
+        <switch id = "60">
+          <image src = "c.png" state = "ON"/>
+          <image src = "d.png" state = "OFF"/>
+        </switch>
+      </absolute>
+    </screen>
+    <screen id = "7" name = "basement"
+            background = "basement_bg.png"> <!--each screen has two orientations, different orientation has different layout-->
+      <absolute left = "0" top = "20" width = "100" height = "100">
+        <label id = "54" border = "1px" value = "light"/>
+      </absolute>
+      <absolute left = "0" top = "120" width = "100" height = "100">
+        <switch id = "60">
+          <image src = "c.png" state = "ON"/>
+          <image src = "d.png" state = "OFF"/>
+        </switch>
+      </absolute>
+      <absolute left = "0" top = "20" width = "100" height = "100">
+        <label id = "54" border = "1px" value = "light"/>
+      </absolute>
+      <absolute left = "120" top = "20" width = "100" height = "100">
+        <switch id = "60">
+          <image src = "c.png" state = "ON"/>
+          <image src = "d.png" state = "OFF"/>
+        </switch>
+      </absolute>
+    </screen>
+    <screen id = "8" name = "basement"
+            background = "basement_bg.png"> <!--each screen has two orientations, different orientation has different layout-->
+      <absolute left = "0" top = "20" width = "100" height = "100">
+        <label id = "54" border = "1px" value = "light"/>
+      </absolute>
+      <absolute left = "0" top = "120" width = "100" height = "100">
+        <switch id = "60">
+          <image src = "c.png" state = "ON"/>
+          <image src = "d.png" state = "OFF"/>
+        </switch>
+      </absolute>
+      <absolute left = "0" top = "20" width = "100" height = "100">
+        <label id = "54" border = "1px" value = "light"/>
+      </absolute>
+      <absolute left = "120" top = "20" width = "100" height = "100">
+        <switch id = "60">
+          <image src = "c.png" state = "ON"/>
+          <image src = "d.png" state = "OFF"/>
+        </switch>
+      </absolute>
+    </screen>
+  </screens>
+  <groups>
+    <group id = "1" name = "All rooms">
+      <tab>
+        <item name = "kitchen">
+          <navigate toScreen = "9"/>
+          <image src = "kitchen.png"/>
+        </item>
+        <item name = "livingroom">
+          <navigate toGroup = "67"/>
+          <image src = "livingroom.png"/>
+        </item>
+        <item name = "bedroom">
+          <navigate toScreen = "10"/>
+          <image src = "bedroom.png"/>
+        </item>
+        <item name = "setting">
+          <navigate toSetting = "true"/>
+          <image src = "setting.png"/>
+        </item>
+      </tab>
+      <include type = "screen" ref = "5"/>
+      <include type = "screen" ref = "6"/>
+      <include type = "screen" ref = "7"/>
+      <include type = "screen" ref = "8"/>
+    </group>
+    <group id = "2" name = "living room">
+    </group>
+    <group id = "3" name = "living room">
+    </group>
+    <group id = "4" name = "living room">
+    </group>
+  </groups>
+</openremote>

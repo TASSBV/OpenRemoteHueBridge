@@ -1,0 +1,2 @@
+serviceClass: org.openremote.modeler.client.rpc.TouchPanelRPCService
+path: 320039A55E6B5CE6C76FF53C45036B81.gwt.rpc

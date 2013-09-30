@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+    <!-- class, method -->
+    <bean id="methodInvokingJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="scraperService" />
+        <property name="targetMethod" value="scrapeFiles" />
+        <property name="concurrent" value="false" />
+    </bean>
+    <!-- trigger -->
+    <bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="methodInvokingJobDetail" />
+        <!-- ${0 0 0 * * ?} fire at every midnight -->
+        <!-- ${0 * * * * ?} fire at every minute -->
+        <!-- ${* * * * * ?} fire at every second -->
+        <property name="cronExpression" value="0 0 0 * * ?" /><!-- Once a week (on Sunday at 00:00) -->
+    </bean>
+    <!-- add trigger -->
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref local="cronTrigger" />
+            </list>
+        </property>
+    </bean>
+ </beans>

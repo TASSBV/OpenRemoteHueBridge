@@ -1,0 +1,2 @@
+serviceClass: org.openremote.modeler.client.rpc.ProtocolRPCService
+path: EAB79A61422EE35E811155609311A267.gwt.rpc

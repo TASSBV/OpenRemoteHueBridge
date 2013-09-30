@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openremote xmlns="http://www.openremote.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openremote.org ../../../../../config/controller-2.0-M6.xsd ">
+  <components>
+
+    <slider id="99">
+      <include type="sensor" ref="8888" />
+    </slider>
+
+	</components>
+
+
+
+	<!-- sensors -->
+	<sensors>
+
+
+    <!--
+
+        SENSOR ABSTRACTION FOR THERMOMETER EVENT LISTENER
+
+        Abstracts the values to 'range' datatype with -50..+50 boundaries
+
+    -->
+    <sensor id = "8888" name = "TEMPERATURE SENSOR" type = "range">
+      <include type = "command" ref = "9999" />
+      <min value = "-50"/>
+      <max value = "50"/>
+    </sensor>
+
+    <sensor id = "8880" name = "TEMPERATURE SENSOR" type = "range">
+      <include type = "command" ref = "9999" />
+      <min value = "-50"/>
+      <max value = "50"/>
+    </sensor>
+
+    <sensor id = "8881" name = "TEMPERATURE SENSOR" type = "range">
+      <include type = "command" ref = "9999" />
+      <min value = "-50"/>
+      <max value = "50"/>
+    </sensor>
+
+
+	</sensors>
+	
+	<commands>
+
+    <!--
+
+           EVENT LISTENER ON OR VIRTUAL PROTOCOL
+
+    -->
+    <command id = "9999" protocol = "virtual">
+      <property name = "command" value = "temperature-sensor"/>
+      <property name = "address" value = "arbitrary"/>
+    </command>
+
+
+
+	</commands>
+	
+	<config>
+		<property name="controller.applicationname" value="controller2" />
+		<property name="copy.lircd.conf.on" value="true" />
+		<property name="resource.path" value="/home/openremote/controller" />
+		<property name="lircd.conf.path" value="/etc/lircd.conf" />
+		<property name="irsend.path" value="/usr/local/bin/irsend" />
+		<property name="webapp.port" value="8888" />
+		<property name="Macro.IR.Execution.Delay" value="500" />
+		<property name="multicast.port" value="3333" />
+		<property name="multicast.address" value="224.0.1.100" />
+		<property name="webapp.ip" value="192.168.4.63" />
+		<property name="beehive.REST.Root.Url" value="http://openremote.org/beehvie/rest/" />
+		
+		<property name="controller.groupmember.autodetect.on" value="false" />
+		<property name="controller.roundrobin.multicast.address" value="224.0.1.200" />
+		<property name="controller.roundrobin.multicast.port" value="20000" />
+		<property name="controller.groupname" value="openremote-home" />
+		<property name="controller.roundrobin.tcpserver.port" value="10000" />
+		<property name="controller.groupmember.candidate.urls" value="http://192.168.1.5:8080/controller/,http://192.168.1.100:8080/controller/,http://192.168.1.105:8080/controller/" />
+	</config>
+	
+</openremote>

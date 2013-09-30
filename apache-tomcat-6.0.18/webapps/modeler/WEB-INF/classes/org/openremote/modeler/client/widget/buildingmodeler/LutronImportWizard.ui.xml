@@ -1,0 +1,46 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:c='urn:import:com.google.gwt.user.cellview.client'>
+	<ui:style>
+	 .uploadFieldStyle {
+	 	  margin-left: 2 em;
+		}
+		.errorMessageStyle {
+			color: red;
+			text-align: left;
+			margin-left: 2em;
+		}
+	</ui:style>
+
+	<g:DialogBox autoHide="false" modal="true">
+		<g:caption>
+			<b>Lutron HomeWorks import</b>
+		</g:caption>
+		<g:FormPanel ui:field="uploadForm">
+			<g:DockLayoutPanel unit="EM" ui:field="mainLayout">
+				<g:north size="2">
+					<g:HorizontalPanel>
+							<g:FileUpload styleName='{style.uploadFieldStyle}' ui:field="uploadField" name="file" />
+							<g:SubmitButton ui:field="loadButton">Load</g:SubmitButton>
+							<g:Label styleName='{style.errorMessageStyle}' ui:field='errorMessageLabel' />
+					</g:HorizontalPanel>
+				</g:north>
+				<g:south size="4">
+				  <g:LayoutPanel>
+				    <g:layer left="35%" width="6em">
+              <g:Button ui:field="importButton">Import</g:Button>
+				    </g:layer>
+            <g:layer right="35%" width="6em">
+              <g:Button ui:field="cancelButton">Cancel</g:Button>
+            </g:layer>
+				  </g:LayoutPanel>
+				</g:south>
+				<g:center>
+					<g:ScrollPanel>
+						<c:CellTable width='100%' ui:field='table' />
+					</g:ScrollPanel>
+				</g:center>
+			</g:DockLayoutPanel>
+		</g:FormPanel>
+	</g:DialogBox>
+</ui:UiBinder> 

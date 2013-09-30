@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"  
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+     xmlns:security="http://www.springframework.org/schema/security"  
+     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd  
+             http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.1.xsd"> 
+
+    <security:http lowercase-comparisons="false"> <!-- note: no auto-config attribute! access="ROLE_MODELER,ROLE_DESIGNER"-->
+        <security:intercept-url pattern="/login.jsp" filters="none"/>
+        <security:intercept-url pattern="/Modeler.jsp" access="ROLE_MODELER,ROLE_DESIGNER,ROLE_ADMIN"/>
+        <security:intercept-url pattern="/fileUploadController.htm" access="ROLE_MODELER,ROLE_DESIGNER"/>
+        <security:form-login login-page="/login.jsp" default-target-url="/Modeler.jsp" login-processing-url="/j_security_check" authentication-failure-url="/login.jsp?fail=true"/>
+        <security:logout logout-success-url="/login.jsp" logout-url="/j_security_logout" invalidate-session="true"/>
+        <security:remember-me key="or"/>
+    </security:http>
+	 
+   <security:authentication-manager alias="authenticationManager"/>
+   
+	<security:authentication-provider>
+		<security:jdbc-user-service data-source-ref="dataSource"  
+    users-by-username-query="SELECT U.username, U.password, U.valid AS 'enabled' FROM user U where U.username=?"  
+    authorities-by-username-query="SELECT U.username, R.name as 'authority' FROM user U JOIN user_role A ON U.oid = A.user_oid JOIN role R ON R.oid = A.role_oid WHERE U.username=?"/>
+		<security:password-encoder hash="md5">
+			<security:salt-source user-property="username"/> 
+		</security:password-encoder>
+	</security:authentication-provider>
+   
+    <bean id="accessDecisionManager" class="org.springframework.security.vote.AffirmativeBased">
+        <property name="allowIfAllAbstainDecisions" value="false"/>
+        <property name="decisionVoters">
+            <list>
+                <bean class="org.springframework.security.vote.RoleVoter"/>
+                <bean class="org.springframework.security.vote.AuthenticatedVoter"/>
+            </list>
+        </property>
+    </bean>
+	   
+</beans>

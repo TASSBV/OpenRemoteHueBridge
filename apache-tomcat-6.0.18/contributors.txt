@@ -1,0 +1,8 @@
+The following community members have made significant code contributions to OpenRemote Boss:
+
+Juha Lindfors
+Marcus Redeker
+Mathieu Gallissot
+David Reines
+Jerome Velociter
+

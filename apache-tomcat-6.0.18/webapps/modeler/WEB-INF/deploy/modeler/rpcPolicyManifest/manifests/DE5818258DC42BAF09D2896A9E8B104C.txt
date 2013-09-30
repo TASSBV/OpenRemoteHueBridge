@@ -1,0 +1,2 @@
+serviceClass: org.openremote.modeler.client.rpc.ConfigCategoryRPCService
+path: ACED0C3B8C6DF390B8003F80734413DE.gwt.rpc

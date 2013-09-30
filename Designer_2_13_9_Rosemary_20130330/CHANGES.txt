@@ -1,0 +1,260 @@
+Designer 2.13.9 (2013-03-30 Rosemary)
+=====================================
+
+Bug fix release:
+
+  - MODELER-346: regexp validation for IP fields in TCP
+    and Telnet protocols were wrong. Validations have
+    been disabled (Juha Lindfors)
+  - MODELER-348: Prevent caching of GWT Javascript files
+    on client browser to avoid Javascript conflicts when
+    upgrading to a newer Designer version (Eric Bariaux)
+  - MODELER-360: Encoding of restricted characters in XML
+    is now done properly for user entered names for 
+    commands, switches, sensors, etc. (Eric Bariaux)
+
+
+Internal:
+
+  - Dev Mode target in GWT build (Eric Bariaux, MODELER-344)
+
+
+Designer 2.13.8 (2013-03-13 Rosemary)
+=====================================
+
+Bug fix release:
+
+ - MODELER-410: KNX import getting namespace used 
+   on XPath from document instead of hardcoded, 
+   more robust to changes.
+ - MODELER-397: panStamps Lagarto configuration
+   included in controller configuration options
+
+
+Designer 2.13.7 (2012-10-07 Rosemary)
+=====================================
+
+ - Add Z-wave configuration
+
+
+Designer 2.13.6 (2012-09-20 Rosemary)
+=====================================
+
+Bug fix release:
+
+ 
+ - Increase maximum command field length from 1000
+   characters to 4000 characters for UDP, TCP, HTTP
+   and Telnet protocols
+ - MODELER-379: attempting to delete an already deleted
+   device shows up as an error to the user
+ - MODELER-380: Log errors related to data integrity
+   issues when loading switches for a device
+ - Add panStamps lagarto server protocol configuration
+
+
+Designer 2.13.5 (2012-09-11 Rosemary)
+=====================================
+
+Bug fix release:
+
+ - MODELER-376: Log errors related to data integrity 
+   issues with commands associated to sensors
+ - MODELER-375: Transform macro references to DTOs 
+   more defensively and guard against errors
+
+
+Designer 2.13.4 (2012-07-29 Rosemary)
+=====================================
+
+Bug fix release:
+
+ - MODELER-338: correctly reconstruct sensor data from
+   database on load/restore
+
+
+Designer 2.13.3 (2012-07-15 Rosemary)
+=====================================
+
+Bug fix release:
+
+ - MODELER-325: resolve transaction issues on save
+ - MODELER-326: device command update/delete handling fix
+ - MODELER-327: not all commands were correctly included
+   in generated controller.xml
+
+
+Designer 2.13.2 (2012-06-24 Rosemary)
+=====================================
+
+Bug fix release:
+
+ - Fixed MODELER-316: Enable gestures to be associated with 
+   full macro definitions (XML schema change)
+ - Fixed MODELER-317: Submit button was disabled after an
+   error occured
+ - Fixed MODELER-318: Account management yields an 
+   HTTP 500 error
+ - Fixed MODELER-321: Correctly delete custom sensor states
+ - Fixed MODELER-311: same macro can be used multiple
+   times in a command
+
+
+Designer 2.13.1 (2012-06-11 Rosemary)
+=====================================
+
+Bug fix release:
+
+ - Templates no longer recreate associated building objects 
+   when used. Users must explicitly bind UI components in 
+   templates to their own building objects (MODELER-314).
+ - Correctly maintains empty button label names when read from 
+   a template (MODELER-315)
+
+
+Designer 2.13.0 (2012-06-01 Rosemary)
+=====================================
+
+ - Image assets in designs are now handled with an image asset manager 
+   which allows reuse of images across multiple UI components and 
+   screens.
+ - Archos 7 Tablet supported as a predefined panel in Designer
+ - KNX DPT 9.001 support in KNX Import Wizard 
+ - Performance improvements of the client side (web browser
+   Javascript) code with an improvement data serialization mechanism
+   
+
+Designer 2.12.0 (2012-05-20 Jura)
+=================================
+
+ - Fixes for UI issues where elements in a template
+   tree were not shown correctly (MODELER-262, MODELER-281)
+ - Multiple elements in the UI designer can be selected
+   at the same time (using SHIFT key) for aggregate
+   operations
+ - Selected elements can be moved with arrow keys instead
+   of mouse drag for more precise control (MODELER-272, MODELER-273)
+ - UI Designer view has a toolbar for component alignment and 
+   sizing functions (MODELER-276, MODELER-278)
+ - Fix for an issue with resizing columns in a grid (MODELER-260)
+ - Fix for an issue with buttons with empty names recreated
+   incorrectly using a default button name with templates
+   (MODELER-270)
+ - Autosave interval set to 5 minutes.
+ - Editing of groups works now (MODELER-283)  
+
+
+Designer 2.11.3 (2012-03-25 Formosa)
+====================================
+
+Bug fix release.
+
+ - Export all commands even if not referenced from buttons or sensors.
+
+ - Domain model from previous Designer version's serialized state
+   may reference image objects that are no longer present in the
+   saved state (stale references). Mark these as errors and then
+   ignore the references instead of causing a permanent save error
+   alert.
+
+
+Designer 2.11.2 (2012-03-13 Formosa)
+====================================
+
+Bug fix release.
+
+ - New accounts may save (empty) controller and panel document instances
+   despite there not being serialized Designer state. The lack of serialization
+   data should not be flagged as an error in Designer.
+
+ - Certain image sources still include partial file paths. Unclear if this is
+   caused by pre-existing serialization data generated by previous Designer
+   versions or if there's stil incorrect API use to include paths in image
+   source names in current revision. Temporary stop-gap fix included to strip
+   the erroneous paths.
+ 
+
+Designer 2.11.1 (2012-03-12 Formosa)
+====================================
+
+Bug fix release.
+
+ - Make inclusion of Designer serialization data optional in save (user
+   may not have made any changes yet when auto-save runs for the first
+   time)
+
+
+Designer 2.11 (2012-02-25 Formosa)
+==================================
+
+- Rewrite of server-side save/restore with basic recovery (Juha Lindfors)
+- KNX Import Fix : support text/plain content type and display an error 
+  when content type is not supported (Marcus Redeker)
+- Russound Import Wizard (Marcus Redeker)
+- Fix for deleting commands in macros - MODELER-258 (Eric Bariaux)
+- Javascript performance improvements on adding sensors, sliders,
+  switches (Eric Bariaux)
+- Rule configuration (Marcus Redeker)
+- Command names are automatically included as properties in generated
+  controller.xml files for rule/script use (Marcus Redeker)
+- Defined sensors are included in generated controller.xml regardless
+  of whether they've been bound to UI widgets to enable rule/script
+  use
+- KNX Import Fix: accept mime types used by Microsoft Internet
+  Explorer (Marcus Redeker)
+- Universal Devices ISY-99 REST API protocol (Andrew Ball)
+- Set auto-save timeout to 5 minutes instead of 30 seconds
+
+
+Designer 2.10 (2011-12-26 Jolly Noel)
+=====================================
+
+- Update GWT to version 2.4.0 and GXT to version 2.2.5
+  (R5440 - Eric Bariaux)
+- Fixed issue with macro display tree not always showing content,
+  http://jira.openremote.org/browse/MODELER-259 (R5436 - Eric Bariaux)
+- KNX Import bug fix on parsing DPTs (R5439 - Marcus Redeker)
+
+
+Designer 2.9 (2011-12-19 Voldemort)
+===================================
+
+- KNX ETS4 Project Import (Marcus Redeker)
+- KNX ETS3 CSV Group Address Import (Marcus Redeker)
+
+
+Designer 2.0 SNAPSHOT 2011-12-05 (Diogenes)
+===========================================
+
+- Fix for email verification issues (R4861 based on patch in R3133)
+- Switch to Spring AOP with @Transactional annotations instead of 
+  AspectJ (R4862 - Marcus Redeker)
+- Remove dependency to JBoss Archive Browsing lib (R4869)
+- Remove dependency to JBoss Serialization lib (R4884)
+- Update MySQL drivers to version 5.1.x (R4885)
+- Update Java Activation Framework to version 1.1.1 (R4894)
+- Update to SUN/Glassfish API versions of Java Persistence API 1.0
+  and Java Transaction API 1.1 (R4895)
+- Remove dependency to xmlParserAPIs-2.6.2.jar and rely on JDK
+  provided implementations for javax.xml.parsers and javax.xml.transform
+  instead (R4900)
+- Remove regexp validation for HTTP commands in Designer protocol XML 
+  definition (R5005)
+- Add date/time protocol to Designer which allows configuration of 
+  latitude and longitude to calculate sunrise/sunset times and creation
+  of date/time events in the controller (R5033 - Marcus Redeker)
+- Allow hostname, IPv4 and IPv6 address configuration in Designer
+  protocol XML definition for TCP and UDP transports (R5081 - Eric
+  Bariaux)
+- Add Samsung Smart-TV protocol XML configuration to Designer
+  (R5090 - Marcus Redeker)
+- Add HomeScenario HSC-40 Z-Wave IP gateway protocol XML configuration
+  to Designer (R5144 - Marcus Redeker)
+- Handle UTF-8 encoding for panel.xml and controller.xml files 
+  generated by Designer (R5170 - Marcus Redeker)
+- First iteration (Developer - Alpha) of Domintell protocol XML
+  configuration in Designer (R5324 - Eric Bariaux)
+- New version of the Russound protocol XML defintion for the Designer
+  for re-implemented Russound support in Controller (R5369 - Marcus
+  Redeker)
+

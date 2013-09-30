@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+ OpenRemote, the Home of the Digital Home.
+ Copyright 2008-2012, OpenRemote Inc.
+
+ See the contributors.txt file in the distribution for a
+ full listing of individual contributors.
+
+ This is free software; you can redistribute it and/or modify it
+ under the terms of the GNU General Public License as
+ published by the Free Software Foundation; either version 3.0 of
+ the License, or (at your option) any later version.
+
+ This software is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+ You should have received a copy of the GNU General Public
+ License along with this software; if not, write to the Free
+ Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+
+-->
+
+<!--
+ |  AMX Controller protocol configuration for OpenRemote Designer.
+ |
+ |  Author: Eric Bariaux
+ +-->
+<openremote xmlns="http://www.openremote.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.openremote.org protocol.xsd">
+	<protocol displayName="AMX Controller" tagName="amx_ni">
+		<attr name="command" label="AMX Command" options="ON,OFF,PULSE,CHANNEL_STATUS,SEND_LEVEL,LEVEL_STATUS,SEND_COMMAND,COMMAND_READ,SEND_STRING,STRING_READ">
+			<validations>
+				<allowBlank>false</allowBlank>
+			</validations>
+		</attr>
+		<attr name="deviceIndex" label="Device index" tooltipMessage="One-based index of device to control in devices array passed to AMX module">
+			<validations>
+				<allowBlank>false</allowBlank>
+			</validations>
+		</attr>
+		<attr name="channel" label="Channel" tooltipMessage="Channel used for ON, OFF, PULSE and CHANNEL_STATUS commands">
+			<validations>
+				<allowBlank>true</allowBlank>
+				<maxLength>5</maxLength>
+				<regex message="Numbers only">\d+</regex>
+			</validations>
+		</attr>
+		<attr name="level" label="Level" tooltipMessage="Level used for SEND_LEVEL and LEVEL_STATUS commands">
+			<validations>
+				<allowBlank>true</allowBlank>
+				<maxLength>5</maxLength>
+				<regex message="Numbers only">\d+</regex>
+			</validations>
+		</attr>
+		<attr name="value" label="Value" tooltipMessage="Value used for SEND_LEVEL, SEND_COMMAND and SEND_STRING commands">
+			<validations>
+				<allowBlank>true</allowBlank>
+			</validations>
+		</attr>
+                <attr name = "statusFilter" label = "Read Regex Filter">
+                    <validations>
+                        <allowBlank>true</allowBlank>
+                        <maxLength>1000</maxLength>
+                        <regex message = "Status Filter Regular Expression">.*</regex>
+                    </validations>
+                </attr>
+                <attr name = "statusFilterGroup" label = "Read Regex Group">
+                    <validations>
+                        <allowBlank>true</allowBlank>
+                        <maxLength>3</maxLength>
+                        <regex message = "This is the regex group number that contains the value to return, it must be an integer.">\d+</regex>
+                    </validations>
+                </attr>
+	</protocol>
+</openremote>

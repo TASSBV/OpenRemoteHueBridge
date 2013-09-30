@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ 
+ OpenRemote, the Home of the Digital Home.
+ Copyright 2008-2012, OpenRemote Inc.
+ 
+ See the contributors.txt file in the distribution for a
+ full listing of individual contributors.
+ 
+ This is free software; you can redistribute it and/or modify it
+ under the terms of the GNU General Public License as
+ published by the Free Software Foundation; either version 3.0 of
+ the License, or (at your option) any later version.
+ 
+ This software is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ 
+ You should have received a copy of the GNU General Public
+ License along with this software; if not, write to the Free
+ Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+ 
+ -->
+
+<!--
+ Telnet Protocol Implementation.
+ 
+ Author: Marcus Redeker
+ Author: Richard Turner
+ -->
+<openremote xmlns = "http://www.openremote.org" 
+    xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation = "http://www.openremote.org protocol.xsd">
+    
+    <protocol displayName = "Telnet" tagName = "telnet">
+        
+        <attr name = "ipAddress" label = "IP Address">
+            <validations>
+                <allowBlank>false</allowBlank>
+                <regex message = "IP addresses are usually represented in dot-decimal notation (four numbers, each ranging from 0 to 255, separated by dots, e.g. 208.77.188.166)">.*</regex>
+            </validations>
+        </attr>
+        
+        <attr name = "port" label = "Port">
+            <validations>
+                <allowBlank>false</allowBlank>
+                <maxLength>5</maxLength>
+                <regex message = "Port must be an integer number.">\d+</regex>
+            </validations>
+        </attr>
+        
+        <attr name = "command" label = "Command">
+            <validations>
+                <allowBlank>false</allowBlank>
+                <maxLength>4000</maxLength>
+                <regex message = "Command is necessary">.*\w+.*</regex>
+            </validations>
+        </attr>
+		
+        <attr name = "timeout" label = "Read Timeout (s)">
+            <validations>
+                <allowBlank>true</allowBlank>
+                <maxLength>2</maxLength>
+                <regex message = "Timeout in seconds">\d+</regex>
+            </validations>
+        </attr>
+        
+        <attr name = "statusFilter" label = "Read Regex Filter">
+            <validations>
+                <allowBlank>true</allowBlank>
+                <maxLength>1000</maxLength>
+                <regex message = "Status Filter Regular Expression">.*</regex>
+            </validations>
+        </attr>
+        
+        <attr name = "statusFilterGroup" label = "Read Regex Group">
+            <validations>
+                <allowBlank>true</allowBlank>
+                <maxLength>3</maxLength>
+                <regex message = "This is the regex group number that contains the value to return, it must be an integer.">\d+</regex>
+            </validations>
+        </attr>
+		
+        <attr name = "statusDefault" label = "Default Read Response">
+            <validations>
+                <allowBlank>true</allowBlank>
+                <maxLength>100</maxLength>
+                <regex message = "Default response if regex match fails.">.*</regex>
+            </validations>
+        </attr>
+        
+        <attr name="pollingInterval" label="Polling interval" tooltipMessage="Polling interval in form of (1s, 1m, 1h) or just milliseconds">
+            <validations>
+                <allowBlank>true</allowBlank>
+            </validations>
+        </attr>
+        
+    </protocol>
+</openremote>
+

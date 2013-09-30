@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!--
+  OpenRemote, the Home of the Digital Home.
+  Copyright 2008-2011, OpenRemote Inc.
+
+  See the contributors.txt file in the distribution for a
+  full listing of individual contributors.
+
+  This is free software; you can redistribute it and/or modify it
+  under the terms of the GNU General Public License as
+  published by the Free Software Foundation; either version 3.0 of
+  the License, or (at your option) any later version.
+
+  This software is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+  You should have received a copy of the GNU General Public
+  License along with this software; if not, write to the Free
+  Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+  02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
+<!--
+ |  Controller definition for Sensor XML to Java object mapper tests.
+ |
+ |  Author: Juha Lindfors
+ +-->
+<openremote xmlns = "http://www.openremote.org"
+            xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation = "http://www.openremote.org ../../../../../config/controller-2.0-M6.xsd ">
+
+  <!--
+
+      COMPONENT DEFINITIONS:
+
+      Define two buttons to set the virtual device 'cmd5' state on and off.
+      These buttons are triggered manually by some of the sensor tests to
+      change the returned read status values.
+
+  -->
+  <components>
+    <button id = "555"><include type = "command" ref = "95"/></button>
+    <button id = "666"><include type = "command" ref = "94"/></button>
+  </components>
+
+
+  <!--
+
+      SENSOR DEFINITIONS
+
+  -->
+  <sensors>
+
+    <!--
+
+       Mapped SWITCH sensor configuration.
+
+       Both 'on' and 'off' states are mapped to 'on' and 'off' strings (unnecessarily).
+       Protocol implementation is POLLED.
+
+    -->
+    <sensor id = "1001" name = "lampA power sensor" type = "switch">
+      <include type = "command" ref = "98" />
+      <state name = "on" value = "on" />
+      <state name = "off" value = "off" />
+    </sensor>
+
+
+
+    <!--
+
+       Mapped SWITCH sensor configuration.
+
+       Both 'on' and 'off' states are mapped to 'on' and 'off' strings (unnecessarily).
+       Protocol implementation is a LISTENER.
+
+    -->
+    <sensor id = "1011" name = "s1011" type = "switch">
+      <include type = "command" ref = "962" />
+      <state name = "on" value = "on" />
+      <state name = "off" value = "off" />
+    </sensor>
+
+
+
+    <!--
+
+       Simple SWITCH sensor configuration.
+
+       Protocol implementation is a POLLED.
+
+    -->
+    <sensor id = "1012" name = "s1012" type = "switch">
+      <include type = "command" ref = "98" />
+    </sensor>
+
+
+    <!--
+
+       Mapped SWITCH sensor configuration.
+
+       The 'on' and 'off' states are mapped to 'open' and 'close'.
+       Protocol implementation is a LISTENER.
+
+    -->
+    <sensor id = "1013" name = "s1013" type = "switch">
+      <include type = "command" ref = "962" />
+      <state name = "open" value = "on" />
+      <state name = "close" value = "off" />
+    </sensor>
+    
+
+
+    <!--
+
+      Typical RANGE sensor [-20..100], protocol implementation is POLLED.
+
+    -->
+    <sensor id = "1008" name = "range sensor" type = "range">
+      <include type = "command" ref = "96" />
+      <min value = "-20" />
+      <max value = "100" />
+    </sensor>
+
+
+    <!--
+
+      Two-state CUSTOM sensor configuration.
+
+      Read command return value 'on' is mapped to 'open'
+      Read command return value 'off' is mapped to 'close'
+
+    -->
+    <sensor id = "1009" name = "Door power sensor" type = "custom">
+      <include type = "command" ref = "98" />
+
+      <state name = "open" value = "on" />
+      <state name = "close" value = "off" />
+    </sensor>
+
+    <!--
+
+      Four-state CUSTOM sensor configuration. Mixed mappings.
+
+      Read command return value '1' is mapped to 'one'
+      Read command return value '2' is not mapped.
+      Read command return value '3' is mapped to 'three'
+      Read command return value '4' is not mapped.
+
+    -->
+    <sensor id = "1099" name = "Numbers" type = "custom">
+      <include type = "command" ref = "98" />
+
+      <state name = "one" value = "1" />
+      <state name = "three" value = "3" />
+    </sensor>
+
+
+    <!--
+
+      Arbitrary-state CUSTOM sensor configuration.
+
+      All values from underlying protocol implementation should be passed through.
+
+    -->
+    <sensor id = "1098" name = "s1098" type = "custom">
+      <include type = "command" ref = "98" />
+    </sensor>
+
+    
+
+
+    <!--
+
+      Typica LEVEL sensor, protocol implementation is POLLED.
+
+    -->
+    <sensor id = "1010" name = "level sensor" type = "level">
+      <include type = "command" ref = "96" />
+    </sensor>
+
+
+    <!--
+
+      Typica LEVEL sensor, protocol implementation is EVENT LISTENER.
+
+    -->
+    <sensor id = "1040" name = "ls1040" type = "level">
+      <include type = "command" ref = "963" />
+    </sensor>
+
+
+    <!--
+
+      *INCORRECT* LEVEL sensor definition, min/max are not allowed.
+
+    -->
+    <sensor id = "1020" name = "ls1020" type = "level">
+      <include type = "command" ref = "96" />
+
+      <min value = "0" />
+      <max value = "100" />
+    </sensor>
+
+
+    <!--
+
+      *INCORRECT* LEVEL sensor definition, min/max are not allowed.
+
+    -->
+    <sensor id = "1030" name = "ls1030" type = "level">
+      <include type = "command" ref = "96" />
+
+      <min value = "20" />
+      <max value = "40" />
+    </sensor>
+
+
+
+    <!--
+
+       A Redundant Switch sensor configuration.
+
+       The currently deployed designer (v2.0 alpha 7) generates this style of XML that has
+       redundant state on/off elements without mapping values.
+
+       We need to ensure they're still parsed and accepted.
+
+    -->
+    <sensor id = "717" name = "se" type = "switch">
+      <include type = "command" ref = "96" />
+      <state name = "on" />
+      <state name = "off" />
+    </sensor>
+
+
+    <!--
+
+       A Redundant Switch sensor configuration.
+
+       The currently deployed designer (v2.0 alpha 7) generates this style of XML that has
+       redundant state on/off elements without mapping values.
+
+       We need to ensure they're still parsed and accepted.
+
+       USING EVENT LISTENER INSTEAD OF READ COMMAND
+
+    -->
+    <sensor id = "727" name = "se2" type = "switch">
+      <include type = "command" ref = "962" />
+      <state name = "on" />
+      <state name = "off" />
+    </sensor>
+
+	</sensors>
+
+
+  <!--
+
+      COMMAND DEFINITIONS
+
+      Virtual commands to satisfy the object model.
+  -->
+  <commands>
+
+
+    <command id = "98" protocol = "virtual">
+      <property name = "command" value = "STATUS" />
+      <property name = "address" value = "cmd3" />
+    </command>
+
+
+    <!--
+
+         VIRTUAL COMMAND 'CMD5'
+
+         Commands used by the <button> components to set
+         address 'cmd5' state on and off (used by some
+         of the sensor tests to change the return value
+         state).
+
+         ID 96 is the read status command and 95 & 94 are
+         the on/off write commands.
+
+     -->
+
+    <command id = "96" protocol = "virtual">
+      <property name = "command" value = "STATUS" />
+      <property name = "address" value = "cmd5" />
+    </command>
+
+    <command id = "95" protocol = "virtual">
+      <property name = "command" value = "on" />
+      <property name = "address" value = "cmd5" />
+    </command>
+
+    <command id = "94" protocol = "virtual">
+      <property name = "command" value = "off" />
+      <property name = "address" value = "cmd5" />
+    </command>
+
+    <!--
+
+      Command used by sensor ID 727
+
+      It's an event listener implementation producing an
+      'on' or 'off' event every 0.5 seconds
+
+    -->
+    <command id = "962" protocol = "virtual">
+      <property name = "command" value = "BlinkLight" />
+      <property name = "address" value = "cmd5" />
+    </command>
+
+
+    <!--
+    
+       Event Listener which produces values in range -50..50,
+       incrementing or decreasing once every 5 seconds.
+
+    -->
+    <command id = "963" protocol = "virtual">
+      <property name = "command" value = "TemperatureSensor" />
+      <property name = "address" value = "a3" />
+    </command>
+
+  </commands>
+	
+	<config></config>
+	
+</openremote>

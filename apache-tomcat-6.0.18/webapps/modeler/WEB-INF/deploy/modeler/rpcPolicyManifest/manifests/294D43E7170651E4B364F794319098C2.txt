@@ -1,0 +1,2 @@
+serviceClass: org.openremote.modeler.client.rpc.SliderRPCService
+path: 2527F32BDD4303243BE642D6AFC32537.gwt.rpc

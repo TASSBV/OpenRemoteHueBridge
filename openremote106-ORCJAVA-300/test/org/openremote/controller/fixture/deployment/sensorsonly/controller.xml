@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openremote xmlns="http://www.openremote.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openremote.org ../../../../../config/controller-2.0-M6.xsd ">
+
+  <components>
+
+  </components>
+
+  <sensors>
+    <sensor id = "1" name = "Sensor 1" type = "switch">
+      <include type = "command" ref = "10"/>
+    </sensor>
+
+    <sensor id = "2" name = "Sensor 2" type = "level">
+      <include type = "command" ref = "20" />
+    </sensor>
+
+    <sensor id = "3" name = "Sensor 3" type = "range">
+      <include type = "command" ref = "30" />
+      <min value = "30"/>
+      <max value = "60"/>
+    </sensor>
+
+    <sensor id = "4" name = "Sensor 4" type = "custom">
+      <include type = "command" ref = "40" />
+      <state name = "red" value = "1"/>
+      <state name = "blue" value = "2"/>
+    </sensor>
+
+  </sensors>
+
+  <commands>
+
+    <command id = "10" protocol = "virtual">
+      <property name = "address" value = "a"/>
+      <property name = "command" value = "STATUS"/>
+    </command>
+
+    <command id = "20" protocol = "virtual">
+      <property name = "address" value = "b"/>
+      <property name = "command" value = "STATUS"/>
+    </command>
+
+    <command id = "30" protocol = "virtual">
+      <property name = "address" value = "c"/>
+      <property name = "command" value = "STATUS" />
+    </command>
+
+    <command id = "40" protocol = "virtual">
+      <property name = "address" value = "d"/>
+      <property name = "command" value = "STATUS" />
+    </command>
+
+	</commands>
+
+  <config>
+  </config>
+	
+</openremote>

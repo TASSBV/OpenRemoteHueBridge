@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!--
+  OpenRemote, the Home of the Digital Home.
+  Copyright 2008-2011, OpenRemote Inc.
+
+  See the contributors.txt file in the distribution for a
+  full listing of individual contributors.
+
+  This is free software; you can redistribute it and/or modify it
+  under the terms of the GNU General Public License as
+  published by the Free Software Foundation; either version 3.0 of
+  the License, or (at your option) any later version.
+
+  This software is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+  You should have received a copy of the GNU General Public
+  License along with this software; if not, write to the Free
+  Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+  02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
+<!--
+ |  Controller definition for Slider XML to Java object mapper tests.
+ |
+ |  Author: Juha Lindfors
+ +-->
+<openremote xmlns = "http://www.openremote.org"
+            xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation = "http://www.openremote.org ../../../../../config/controller-2.0-M6.xsd ">
+
+  <!--
+
+      COMPONENT DEFINITIONS:
+
+      Define four types of sliders:
+
+      - ID 1: active range slider that operates on arbitrary range (range boundaries defined by
+        the associated sensor) and allows thumb to be used to set a new value
+
+      - ID 2: passive range slider that displays value from its sensor (within the sensor's range)
+        but does not allow user to modify (set new values) using the slider thumb
+
+      - ID 3: level slider on range [0-100], otherwise same as ID 1
+
+      - ID 4: passive level slider that behaves like ID3 but does not allow user to modify
+        values using thumb
+
+  -->
+  <components>
+
+    <slider id = "1">
+      <setValue><include type = "command" ref = "11"/></setValue>
+      <include type = "sensor" ref = "101"/>
+    </slider>
+
+    <slider id = "2">
+      <include type = "sensor" ref = "101"/>
+    </slider>
+
+    <slider id = "3">
+      <setValue><include type = "command" ref = "13"/></setValue>
+      <include type = "sensor" ref = "103"/>
+    </slider>
+
+    <slider id = "4">
+      <include type = "sensor" ref = "103"/>
+    </slider>
+
+    <!-- Just used for some error handling scenarios -->
+
+    <button id = "555"><include type = "command" ref = "95"/></button>
+
+  </components>
+
+
+  <!--
+
+      SENSOR DEFINITIONS
+
+  -->
+  <sensors>
+
+    <sensor id = "101" name = "Range Sensor for Slider 1" type = "range">
+      <include type = "command" ref = "21" />
+      <min value = "-50"/>
+      <max value = "50"/>
+    </sensor>
+
+    <sensor id = "103" name = "Level Sensor for Slider 3" type = "level">
+      <include type = "command" ref = "23" />
+    </sensor>
+
+	</sensors>
+
+
+  <!--
+
+      COMMAND DEFINITIONS
+
+      Virtual commands to satisfy the object model.
+  -->
+  <commands>
+
+    <command id = "95" protocol = "virtual">
+      <property name = "command" value = "on" />
+      <property name = "address" value = "button1" />
+    </command>
+
+
+    <command id = "11" protocol = "virtual">
+      <property name = "command" value = "setSliderValue"/>
+      <property name = "address" value = "slider1" />
+    </command>
+
+    <command id = "13" protocol = "virtual">
+      <property name = "command" value = "setSliderValue"/>
+      <property name = "address" value = "slider3" />
+    </command>
+
+    <command id = "21" protocol = "virtual">
+      <property name = "command" value = "TemperatureSensor"/>
+      <property name = "address" value = "sensor1" />
+    </command>
+
+    <command id = "23" protocol = "virtual">
+      <property name = "command" value = "STATUS"/>
+      <property name = "address" value = "slider3" />
+    </command>
+
+  </commands>
+
+
+	<config></config>
+
+</openremote>

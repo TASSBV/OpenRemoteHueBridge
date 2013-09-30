@@ -1,0 +1,32 @@
+27-sep-2013 8:42:26 org.apache.catalina.core.ApplicationContext log
+INFO: Initializing Spring root WebApplicationContext
+27-sep-2013 8:42:28 org.apache.catalina.core.ApplicationContext log
+INFO: Initializing Spring FrameworkServlet 'dispatcherServlet'
+27-sep-2013 8:42:33 org.apache.catalina.core.ApplicationContext log
+INFO: Initializing Log4J from [D:\openremotebridge\trunk\Software\apache-tomcat-6.0.18\webapps\controller\WEB-INF\classes\log4j.properties]
+27-sep-2013 8:42:41 org.apache.catalina.core.ApplicationContext log
+INFO: Loading Spring root WebApplicationContext
+27-sep-2013 8:42:41 org.apache.catalina.core.ApplicationContext log
+INFO: Loading WebApplicationContext for Spring FrameworkServlet 'dispatcherServlet'
+27-sep-2013 8:43:00 org.apache.catalina.core.ApplicationContext log
+INFO: Initializing Spring root WebApplicationContext
+27-sep-2013 8:43:01 org.apache.catalina.core.ApplicationContext log
+INFO: Initializing Spring FrameworkServlet 'annomvc'
+27-sep-2013 9:32:15 org.apache.catalina.core.ApplicationContext log
+INFO: Destroying Spring FrameworkServlet 'annomvc'
+27-sep-2013 9:32:15 org.apache.catalina.core.ApplicationContext log
+INFO: Shutting down Log4J
+27-sep-2013 9:32:16 org.apache.catalina.core.ApplicationContext log
+INFO: Closing Spring root WebApplicationContext
+27-sep-2013 9:32:20 org.apache.catalina.core.ApplicationContext log
+INFO: Destroying Spring FrameworkServlet 'dispatcherServlet'
+27-sep-2013 9:32:20 org.apache.catalina.core.ApplicationContext log
+INFO: Shutting down Log4J
+27-sep-2013 9:32:21 org.apache.catalina.core.ApplicationContext log
+INFO: Closing Spring root WebApplicationContext
+27-sep-2013 9:32:22 org.apache.catalina.core.ApplicationContext log
+INFO: Closing WebApplicationContext of Spring FrameworkServlet 'dispatcherServlet'
+27-sep-2013 9:32:22 org.apache.catalina.core.ApplicationContext log
+INFO: Closing Spring root WebApplicationContext
+27-sep-2013 9:32:22 org.apache.catalina.core.ApplicationContext log
+INFO: Shutting down Log4J

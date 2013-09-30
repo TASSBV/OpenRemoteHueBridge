@@ -1,0 +1,28 @@
+27-sep-2013 8:42:15 org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: D:\openremotebridge\trunk\Software\apache-tomcat-6.0.18\webapps\controller\WEB-INF\lib\native
+27-sep-2013 8:42:15 org.apache.coyote.http11.Http11Protocol init
+INFO: Initializing Coyote HTTP/1.1 on http-8080
+27-sep-2013 8:42:15 org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 379 ms
+27-sep-2013 8:42:15 org.apache.catalina.core.StandardService start
+INFO: Starting service Catalina
+27-sep-2013 8:42:15 org.apache.catalina.core.StandardEngine start
+INFO: Starting Servlet Engine: Apache Tomcat/6.0.18
+27-sep-2013 8:42:16 org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive beehive.war
+27-sep-2013 8:42:30 org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive controller.war
+27-sep-2013 8:42:33 org.openremote.controller.bootstrap.Startup redirectJULtoLog4j
+INFO: Initialized JUL to LOG4J Redirector.
+27-sep-2013 8:42:41 org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive modeler.war
+27-sep-2013 8:43:01 org.apache.coyote.http11.Http11Protocol start
+INFO: Starting Coyote HTTP/1.1 on http-8080
+27-sep-2013 8:43:01 org.apache.catalina.startup.Catalina start
+INFO: Server startup in 46418 ms
+27-sep-2013 9:32:14 org.apache.coyote.http11.Http11Protocol pause
+INFO: Pausing Coyote HTTP/1.1 on http-8080
+27-sep-2013 9:32:15 org.apache.catalina.core.StandardService stop
+INFO: Stopping service Catalina
+27-sep-2013 9:32:24 org.apache.coyote.http11.Http11Protocol destroy
+INFO: Stopping Coyote HTTP/1.1 on http-8080

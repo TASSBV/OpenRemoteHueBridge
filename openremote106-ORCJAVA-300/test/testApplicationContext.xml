@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!--
+ **
+ * OpenRemote, the Home of the Digital Home.
+ * Copyright 2008-2011, OpenRemote Inc.
+ *
+ * See the contributors.txt file in the distribution for a
+ * full listing of individual contributors.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ **
+-->
+
+<!--
+ | JavaBean Bindings
+ |
+ | Author: Juha Lindfors
+ | Author: Dan Cong
+ +-->
+<beans xmlns = "http://www.springframework.org/schema/beans"
+       xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop = "http://www.springframework.org/schema/aop"
+       xmlns:tx = "http://www.springframework.org/schema/tx"
+       xsi:schemaLocation = "http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd"
+       default-autowire = "byName">
+
+  <bean id="propertyConfigurer"
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+      <property name="locations">
+        <list>
+            <value>classpath:config.properties</value>
+            <value>classpath:roundrobin.properties</value>
+            <value>classpath:lutron_homeworks.properties</value>
+          </list>
+      </property>
+  </bean>
+
+  <bean id="denonAVRSerialConfig" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+	<property name="location">
+		<value>classpath:denonAVRSerial.properties</value>
+	</property>
+  </bean>
+
+  <!--
+  | Configuration variable mapping from controller config.properties file
+  | to org.openremote.controller.ControllerConfiguration class.
+  |
+  | Property names must match to valid accessor methods in the Configuration class.
+  | Property values contain the expected property name in config.properties file.
+  +-->
+  <bean id = "configuration" class = "org.openremote.controller.ControllerConfiguration">
+    <property name = "irsendPath" value = "${irsend.path}"/>
+    <property name = "lircdconfPath" value = "${lircd.conf.path}"/>
+    <property name = "copyLircdconf" value = "${copy.lircd.conf.on}"/>
+    <property name = "webappIp" value = "${webapp.ip}" />
+    <property name = "webappPort" value = "${webapp.port}"/>
+    <property name = "multicastAddress" value = "${multicast.address}"/>
+    <property name = "multicastPort" value = "${multicast.port}"/>
+    <property name = "resourcePath" value = "${resource.path}"/>
+    <property name = "resourceUploadAllowed" value = "${resource.upload.allowed}"/>
+    <property name = "macroIRExecutionDelay" value = "${Macro.IR.Execution.Delay}" />
+    <property name = "beehiveRESTRootUrl" value="${beehive.REST.Root.Url}" />
+    <property name = "webappName" value="${controller.applicationname}" />
+    <property name = "comPort" value = "${com.port}"/>
+  </bean>
+
+  <!-- round-robin variables -->
+  <bean id="roundRobinConfig" class="org.openremote.controller.RoundRobinConfiguration">
+    <property name="isGroupMemberAutoDetectOn" value="${controller.groupmember.autodetect.on}" />
+      <property name="roundRobinMulticastAddress" value="${controller.roundrobin.multicast.address}" />
+      <property name="roundRobinMulticastPort" value="${controller.roundrobin.multicast.port}" />
+      <property name="controllerGroupName" value="${controller.groupname}" />
+      <property name="controllerApplicationName" value="${controller.applicationname}" />
+      <property name="roundRobinTCPServerSocketPort" value="${controller.roundrobin.tcpserver.port}" />
+      <property name="groupMemberCandidateURLs" value="${controller.groupmember.candidate.urls}" />
+  </bean>
+
+  <bean id="lutronHomeWorksConfig" class="org.openremote.controller.LutronHomeWorksConfig">
+    <property name="userName" value="${lutron_homeworks.username}" />
+    <property name="password" value="${lutron_homeworks.password}" />
+    <property name="address" value="${lutron_homeworks.address}" />
+    <property name="port" value="${lutron_homeworks.port}" />
+  </bean>
+  
+  <bean id="lutronHomeWorksGateway" class="org.openremote.controller.protocol.lutron.LutronHomeWorksGateway"/>
+
+  <!-- TODO -->
+  <bean id = "controlCommandService"
+        class = "org.openremote.controller.service.impl.ControlCommandServiceImpl">
+    <constructor-arg ref = "deployer"/>
+    <constructor-arg ref = "componentFactory"/>
+  </bean>
+    
+    <!-- controller.xml parser -->
+<!--
+    <bean id = "remoteActionXMLParser"
+          class = "org.openremote.controller.command.RemoteActionXMLParser">
+    </bean>
+
+	<bean id = "fileService"
+	      class = "org.openremote.controller.service.impl.FileServiceImpl">
+	</bean>
+-->
+
+	<!-- profile service -->
+    <bean id="profileService" class="org.openremote.controller.service.impl.ProfileServiceImpl" >
+    	<property name="configuration" ref="configuration"/>
+    </bean>
+
+    <!-- round-robin service -->
+    <bean id="roundRobinService" class="org.openremote.controller.service.impl.RoundRobinServiceImpl" />
+    
+    <bean id = "servers" class="java.util.concurrent.ConcurrentHashMap" />
+
+
+    <!-- TODO : service for status command from panel -->
+    <bean id = "statusCommandService"
+          class = "org.openremote.controller.service.impl.StatusCommandServiceImpl">
+
+      <constructor-arg ref="deployer"/>
+      <constructor-arg ref="statusCache"/>
+    </bean>
+
+  
+    <!-- service for listening the status of device -->
+    <bean id = "statusPollingService"
+          class = "org.openremote.controller.service.impl.StatusPollingServiceImpl">
+
+      <property name = "deployer" ref="deployer"/>
+      <property name = "statusCache" ref="statusCache"/>
+    </bean>
+    
+    <bean id = "changedStatusTable" class="org.openremote.controller.statuscache.ChangedStatusTable" />
+
+
+
+  <!--
+   | TODO
+   |
+   |
+   +-->
+	<bean id = "statusCache" class="org.openremote.controller.statuscache.StatusCache">
+
+    <constructor-arg ref = "changedStatusTable"/>
+    <constructor-arg ref = "eventProcessorChain"/>
+    
+  </bean>
+
+
+	<!-- status cache service
+  <bean id="statusCacheService" class="org.openremote.controller.service.impl.StatusCacheServiceImpl" >
+    <property name="cache" ref="statusCache"></property>
+  </bean>
+  -->
+
+  <!--
+   | TODO
+   |
+   |
+   +-->
+  <bean id = "deployer" class = "org.openremote.controller.service.Deployer">
+
+    <constructor-arg value = "Default Deployer"/>
+    <constructor-arg ref = "statusCache"/>
+    <constructor-arg ref = "configuration"/>
+    <constructor-arg>
+      <map>
+        <entry key = "2.0" value-ref = "schema20"/>
+        <entry key = "3.0" value-ref = "schema30"/>
+      </map>
+    </constructor-arg>
+
+  </bean>
+
+
+
+  <!--
+   | TODO   : XML mappers
+   |
+   |
+   +-->
+  <bean id = "schema20" class = "org.openremote.controller.deployer.Version20ModelBuilder">
+
+    <constructor-arg ref = "statusCache"/>
+    <constructor-arg ref = "configuration"/>
+    <constructor-arg ref = "sensorBuilder"/>
+    <constructor-arg ref = "commandBuilder"/>
+    
+  </bean>
+
+  <bean id = "schema30" class = "org.openremote.controller.deployer.Version30ModelBuilder"/>
+
+  
+  <bean id = "sensorBuilder" class = "org.openremote.controller.model.xml.Version20SensorBuilder">
+<!--
+    <constructor-arg ref = "version20ModelBuilder"/>
+    <constructor-arg ref = "statusCache"/>
+-->    
+    <property name = "commandFactory" ref = "commandFactory"/>  <!-- TODO -->
+  </bean>
+
+  <bean id = "commandBuilder" class = "org.openremote.controller.deployer.Version20CommandBuilder">
+
+    <constructor-arg ref = "commandFactory"/>
+    
+  </bean>
+
+	<!-- controller.xml change service
+  <bean id = "controllerXMLChangeService"
+        class = "org.openremote.controller.service.impl.ControllerXMLChangeServiceImpl">
+    <property name = "cache" ref = "statusCache"/>
+    <property name = "deployer" ref = "deployer"/>
+    <property name = "remoteActionXMLParser" ref = "remoteActionXMLParser"/>
+    <property name = "controllerXMLListenSharingData" ref = "controllerXMLListenSharingData"/>
+    <property name = "changedStatusTable" ref = "changedStatusTable"/>
+    <property name = "sensorBuilder" ref = "sensorBuilder"/>
+  </bean>
+	-->
+
+  <!--
+	<bean id = "controllerXMLListenSharingData" class="org.openremote.controller.config.ControllerXMLListenSharingData" />
+   -->
+
+  <bean id = "commandFactory" class = "org.openremote.controller.command.CommandFactory">
+    <constructor-arg>
+      <map>
+        <entry key = "ir"               value-ref = "irCommandBuilder"/>
+        <entry key = "knx"              value-ref = "knxCommandBuilder"/>
+        <entry key = "x10"              value-ref = "x10CommandBuilder"/>
+        <entry key = "socket"           value-ref = "tcpSocketCommandBuilder"/>
+        <entry key = "telnet"           value-ref = "telnetCommandBuilder"/>
+        <entry key = "http"             value-ref = "httpGetCommandBuilder"/>
+<!--    <entry key = "upnp"             value-ref = "upnpCommandBuilder"/>      -->
+        <entry key = "virtual"          value-ref = "virtualCommandBuilder"/>
+        <entry key = "onewire"          value-ref = "oneWireCommandBuilder"/>
+        <entry key = "lutron_homeworks" value-ref = "lutronHomeWorksCommandBuilder"/>
+        <entry key = "datetime"         value-ref = "datetimeCommandBuilder"/>
+        <entry key = "wol"              value-ref = "wolCommandBuilder"/>
+        <entry key = "samsungTV"        value-ref = "samsungTVCommandBuilder"/>
+        <entry key = "russound"         value-ref = "russoundCommandBuilder"/>
+        <entry key = "hsc40"            value-ref = "hsc40CommandBuilder"/>
+        <entry key = "udp"              value-ref = "udpSocketCommandBuilder"/>
+        <entry key = "denonAVRSerial"   value-ref = "denonAVRSerialCommandBuilder"/>
+      </map>
+    </constructor-arg>
+<!--
+		<property name = "commandBuilders">
+		    <props>
+                <prop key = "ir">irCommandBuilder</prop>
+                <prop key = "knx">knxCommandBuilder</prop>
+                <prop key = "x10">x10CommandBuilder</prop>
+                <prop key = "socket">tcpSocketCommandBuilder</prop>
+                <prop key = "telnet">telnetCommandBuilder</prop>
+                <prop key = "http">httpGetCommandBuilder</prop>
+                <!- <prop key = "upnp">upnpCommandBuilder</prop> ->
+                <prop key = "virtual">virtualCommandBuilder</prop>
+                <prop key = "mockup">mockupCommandBuilder</prop>
+                <prop key = "onewire">oneWireCommandBuilder</prop>
+            <prop key = "lutron_homeworks">lutronHomeWorksCommandBuilder</prop>
+		    </props>
+		</property>
+-->
+	</bean>
+
+	<!-- COMMAND BUILDERS ============================================================================
+	 |
+	 | Implementation specific builders for the Event Factory bean. In short, each distinct command
+	 | type, as they appear in controller.xml, will need a corresponding builder implementation.
+	 |
+	 | See the org.openremote.controller.command.CommandBuilder interface for details if you seek to
+	 | extend the implementation with additional command types.
+	 +-->
+	
+	<!-- Infrared Command Builder -->
+	<bean id = "irCommandBuilder" class = "org.openremote.controller.protocol.infrared.IRCommandBuilder"/>
+	
+	<!-- KNX Command Builder -->
+	<bean id = "knxCommandBuilder" class = "org.openremote.controller.protocol.knx.KNXCommandBuilder">
+		<constructor-arg index="0" value="${knx.ip.interface.hostname}" />
+		<constructor-arg index="1" value="${knx.ip.interface.port}" type="int" />
+		<constructor-arg index="2" value="org.openremote.controller.protocol.bus.DatagramSocketPhysicalBus"/>
+	</bean>
+
+	<!-- TCP Socket Command Builder for IP enabled devices -->
+	<bean id = "tcpSocketCommandBuilder" class = "org.openremote.controller.protocol.socket.TCPSocketCommandBuilder"
+	      scope = "prototype"/>
+
+	<!-- UDP Socket Command Builder for IP enabled devices -->
+	<bean id = "udpSocketCommandBuilder" class = "org.openremote.controller.protocol.socket.UDPSocketCommandBuilder"
+	      scope = "prototype"/>
+	      
+	<!-- X10 Command Builder -->
+	<bean id = "x10CommandBuilder" class = "org.openremote.controller.protocol.x10.X10CommandBuilder"/>
+	
+	<!-- Telnet Command Builder -->
+	<bean id = "telnetCommandBuilder" class = "org.openremote.controller.protocol.telnet.TelnetCommandBuilder"
+	      scope = "prototype" />
+	
+	<!-- HTTP GET Command Builder -->
+	<bean id = "httpGetCommandBuilder" class = "org.openremote.controller.protocol.http.HttpGetCommandBuilder"
+	      scope = "prototype" />
+
+  <!-- 1-wire protocol Command Builder -->
+  <bean id = "oneWireCommandBuilder" class = "org.openremote.controller.protocol.onewire.OneWireCommandBuilder"/>
+  
+  <!-- OpenRemote Virtual Command Builder -->
+  <bean id = "virtualCommandBuilder" class = "org.openremote.controller.protocol.virtual.VirtualCommandBuilder"/>
+
+  <!-- Russound Command Builder -->
+  <bean id = "denonAVRSerialCommandBuilder"
+        class = "org.openremote.controller.protocol.denonavrserial.DenonAVRSerialCommandBuilder"
+        scope = "prototype"/>
+
+  <!-- Universal Plug'n'Play Command Builder -->
+  <!--
+  <bean id = "upnpCommandBuilder" class = "org.openremote.controller.protocol.upnp.UPnPCommandBuilder"
+        scope = "singleton" />
+   -->
+	<bean id = "mockupCommandBuilder" class = "org.openremote.controller.protocol.test.mockup.MockupCommandBuilder"
+	      scope = "prototype" />
+
+
+	<bean id="lutronHomeWorksCommandBuilder" class = "org.openremote.controller.protocol.lutron.LutronHomeWorksCommandBuilder">
+		<property name="gateway" ref="lutronHomeWorksGateway"/>
+	</bean>
+
+
+  <!-- DateTime Command Builder -->
+  <bean id = "datetimeCommandBuilder" class = "org.openremote.controller.protocol.datetime.DateTimeCommandBuilder"/>
+
+  <!-- WOL Command Builder -->
+  <bean id = "wolCommandBuilder" class = "org.openremote.controller.protocol.wol.WakeOnLanCommandBuilder"/>
+
+  <!-- Samsung TV Command Builder -->
+  <bean id = "samsungTVCommandBuilder" class = "org.openremote.controller.protocol.samsungtv.SamsungTVRemoteCommandBuilder">
+    <constructor-arg index="0" value="${samsungTV.interface.ip}" />
+  </bean>
+
+  <!-- Russound Command Builder -->
+  <bean id = "russoundCommandBuilder" class = "org.openremote.controller.protocol.russound.RussoundCommandBuilder">
+    <constructor-arg index="0" value="${russound.ip}" />
+    <constructor-arg index="1" value="${russound.port}" type="int" />
+    <constructor-arg index="2" value="${russound.keypadId}" />
+    <constructor-arg index="3" value="${russound.serialDevice}" />
+    <constructor-arg index="4" value="${russound.statusPollingInterval}" />
+  </bean>
+
+  <!-- HSC-40 Command Builder -->
+  <bean id = "hsc40CommandBuilder" class = "org.openremote.controller.protocol.hsc40.Hsc40CommandBuilder">
+    <constructor-arg index="0" value="${hsc40.interface.ip}" />
+    <constructor-arg index="1" value="${hsc40.interface.port}" type="int" />
+  </bean>
+
+
+
+  <!-- TODO -->
+	<bean id = "componentFactory" class = "org.openremote.controller.component.ComponentFactory">
+    <property name = "componentBuilders">
+      <map>
+        <entry key = "button" value-ref = "buttonBuilder"/>
+        <entry key = "switch" value-ref = "switchBuilder"/>
+        <entry key = "label"  value-ref = "labelBuilder"/>
+        <entry key = "slider" value-ref = "sliderBuilder"/>
+        <entry key = "gesture" value-ref = "gestureBuilder"/>
+        <entry key = "image"  value-ref = "imageBuilder"/>
+      </map>
+    </property>
+	</bean>
+
+
+  <!-- EVENT PROCESSING CHAIN =====================================================================
+   |
+   |
+   |
+   +-->
+  <bean id = "eventProcessorChain" class = "org.openremote.controller.statuscache.EventProcessorChain">
+    <property name = "eventProcessors">
+      <bean class = "org.openremote.controller.statuscache.rules.RuleEngine" />
+    </property>
+  </bean>
+
+
+	<!-- UI COMPONENT BUILDERS ============================================================================
+	 |
+	 | Implementation specific builders for the UI component Factory bean. In short, each distinct command
+	 | type, as they appear in controller.xml, will need a corresponding builder implementation.
+	 |
+	 | See the org.openremote.controller.component.ComponentBuilder interface for details if you seek to
+	 | extend the implementation with additional UI component types.
+	 +-->
+	 
+  <!-- TODO -->
+	<bean id = "buttonBuilder" class = "org.openremote.controller.component.control.button.ButtonBuilder">
+    <property name = "commandFactory" ref = "commandFactory"/>
+
+    <!--  TODO : this explicit dependency will go away once migrated to ObjectBuilder (see ORCJAVA-155) -->
+    <property name = "deployer" ref = "deployer"/>
+  </bean>
+	
+
+  <!-- TODO -->
+	<bean id = "switchBuilder" class = "org.openremote.controller.component.control.switchtoggle.SwitchBuilder">
+    <property name = "commandFactory" ref = "commandFactory"/>
+
+    <!--  TODO : this explicit dependency will go away once migrated to ObjectBuilder (see ORCJAVA-147) -->
+    <property name = "deployer" ref = "deployer"/>
+  </bean>
+
+
+  <!-- TODO -->
+	<bean id = "labelBuilder" class = "org.openremote.controller.component.onlysensory.LabelBuilder">
+
+    <!--  TODO : this explicit dependency will go away once migrated to ObjectBuilder (see ORCJAVA-152) -->
+    <property name = "deployer" ref = "deployer"/>
+  </bean>
+
+
+  <!-- TODO -->
+  <bean id = "imageBuilder" class="org.openremote.controller.component.onlysensory.ImageBuilder">
+
+    <!--  TODO : this explicit dependency will go away once migrated to ObjectBuilder (see ORCJAVA-153) -->
+    <property name = "deployer" ref = "deployer"/>
+  </bean>
+
+
+  <!-- TODO -->
+	<bean id = "sliderBuilder" class="org.openremote.controller.component.control.slider.SliderBuilder">
+    <property name = "commandFactory" ref = "commandFactory"/>
+
+    <!--  TODO : this explicit dependency will go away once migrated to ObjectBuilder (see ORCJAVA-151) -->
+    <property name = "deployer" ref = "deployer"/>
+  </bean>
+	
+	<bean id = "gestureBuilder" class="org.openremote.controller.component.control.gesture.GestureBuilder">
+    <property name = "commandFactory" ref = "commandFactory"/>
+	</bean>
+
+</beans>

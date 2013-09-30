@@ -1,0 +1,34 @@
+<html>
+<body>
+
+<h2>Welcome to OpenRemote Designer</h2>
+
+<p>
+This email has been sent from ${webapp}. You have received this email because
+your email address was used to register with OpenRemote Designer.
+</p>
+
+<p>
+If you did not register, please disregard this email.
+You do not need to unsubscribe or take any further action.
+</p>
+
+<h3>Activation Instructions</h3>
+
+<p>
+We require that you validate your registration to ensure that the email address
+you entered was correct. This protects against unwanted spam and malicious abuse.
+</p>
+
+<p>
+You registered with username '${user.username}' on ${user.registerTimeAsString}.
+To activate your account, simply click on the following link:
+<a href="${webapp}/account.htm?method=activate&uid=${user.oid}&aid=${aid}">${webapp}/account.htm?method=activate&uid=${user.oid}&aid=${aid}</a>
+</p>
+
+<p>
+For questions or concerns about your account, please use our public forums on
+<a href="http://www.openremote.org/display/forums/OpenRemote+Forums">http://www.openremote.org/display/forums/OpenRemote+Forums</a>
+</p>
+</body>
+</html>

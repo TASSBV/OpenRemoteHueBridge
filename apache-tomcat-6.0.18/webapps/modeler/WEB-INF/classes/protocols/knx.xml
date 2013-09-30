@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openremote xmlns = "http://www.openremote.org"
+            xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation = "http://www.openremote.org protocol.xsd">
+
+  <protocol displayName = "KNX" tagName = "knx">
+
+    <attr name = "groupAddress" label = "Group Address">
+      <validations>
+        <allowBlank>false</allowBlank>
+        <!-- message is option -->
+        <!-- <regex message="group address should be 1.4.1.4">(\d\.){3}\d</regex> -->
+      </validations>
+    </attr>
+
+    <attr name = "command" label = "KNX Command">
+      <validations>
+        <allowBlank>false</allowBlank>
+        <maxLength>20</maxLength>
+        <regex message = "Command is necessary. ">.*\w+.*</regex>
+      </validations>
+    </attr>
+
+    <attr name = "DPT" label = "KNX DataPoint Type (DPT)">
+      <validations>
+        <allowBlank>false</allowBlank>
+        <maxLength>8</maxLength>
+        <!-- <regex message = "Must have a valid DPT identifier (n.mmm)">[1-9].[0-9][0-9][0-9]</regex> -->
+      </validations>
+    </attr>
+
+  </protocol>
+  
+</openremote>

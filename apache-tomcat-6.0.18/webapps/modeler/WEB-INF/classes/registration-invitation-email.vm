@@ -1,0 +1,29 @@
+<html>
+<body>
+
+<h2>Welcome to OpenRemote Designer</h2>
+
+<p>
+${host} has invited you to share an OpenRemote Designer account using
+your own email address and password with ${role} role.
+</p>
+
+<p>
+To accept this invitation, please click the link below. Please create
+an account to log in to OpenRemote Designer. Please note that for the
+moment you will need to create separate logins for each shared account
+and you cannot use your existing OpenRemote Designer account, should
+you already have one.
+</p>
+
+<p>
+Please click here to accept your invitation:
+<a href="${webapp}/account.htm?method=accept&uid=${uid}&cid=${cid}&aid=${aid}">${webapp}/account.htm?method=accept&uid=${uid}&cid=${cid}&aid=${aid}</a>
+</p>
+
+<p>
+For questions or concerns about your account, please use public forums on
+<a href="http://www.openremote.org/display/forums/OpenRemote+Forums">http://www.openremote.org/display/forums/OpenRemote+Forums</a>
+</p>
+</body>
+</html>

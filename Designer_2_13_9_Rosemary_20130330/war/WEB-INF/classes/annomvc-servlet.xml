@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ OpenRemote, the Home of the Digital Home.
+  ~ Copyright 2008-2012, OpenRemote Inc.
+  ~ See the contributors.txt file in the distribution for a
+  ~ full listing of individual contributors.
+  ~
+  ~ This is free software; you can redistribute it and/or modify it
+  ~ under the terms of the GNU General Public License as
+  ~ published by the Free Software Foundation; either version 3.0 of
+  ~ the License, or (at your option) any later version.
+  ~
+  ~ This software is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~
+  ~ You should have received a copy of the GNU General Public
+  ~ License along with this software; if not, write to the Free
+  ~ Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+  ~ 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+  -->
+
+<beans
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:p="http://www.springframework.org/schema/p"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-2.0.xsd" default-autowire="byName">
+
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="requestContextAttribute" value="rc"/>
+        <property name="viewClass"
+                  value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    <bean id="urlMapping"
+          class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="/modeler/protocol.smvc">protocolController</prop>
+                <prop key="/modeler/touchpanel.smvc">touchpanelController</prop>
+                <prop key="/modeler/auth.smvc">authorityController</prop>
+                <prop key="/modeler/device.smvc">deviceController</prop>
+                <prop key="/modeler/deviceCommand.smvc">deviceCommandController</prop>
+                <prop key="/modeler/deviceMacro.smvc">deviceMacroController</prop>
+                <prop key="/modeler/config.smvc">configurationController</prop>
+                <prop key="/modeler/utils.smvc">utilsController</prop>
+                <prop key="/modeler/switch.smvc">switchController</prop>
+                <prop key="/modeler/slider.smvc">sliderController</prop>
+                <prop key="/account.htm">accountController</prop>
+                <prop key="/modeler/fileUploadController.htm">fileUploadController</prop>
+                <prop key="/modeler/sensor.smvc">sensorController</prop>
+                <prop key="/modeler/controllerConfig.smvc">controllerConfig</prop>
+                <prop key="/modeler/configCategory.smvc">configCategory</prop>
+                <prop key="/modeler/template.smvc">templateController</prop>
+                <prop key="/modeler/user.smvc">userController</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <bean id="methodNameResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+        <property name="paramName" value="method"/>
+        <property name="defaultMethodName" value="index"/>
+    </bean>
+    
+    <!-- bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+   		<property name="maxUploadSize" value="100000"/>  
+	</bean> -->
+    
+    <bean id="protocolController" class="org.openremote.modeler.server.ProtocolController"></bean>
+    <bean id="touchpanelController" class="org.openremote.modeler.server.TouchPanelController"></bean>
+    <bean id="authorityController" class="org.openremote.modeler.server.AuthorityController"></bean>
+    <bean id="deviceController" class="org.openremote.modeler.server.DeviceController"></bean>
+    <bean id="deviceCommandController" class="org.openremote.modeler.server.DeviceCommandController"></bean>
+    <bean id="deviceMacroController" class="org.openremote.modeler.server.DeviceMacroController"></bean>
+    <bean id="configurationController" class="org.openremote.modeler.server.ConfigurationController"></bean>
+    <bean id="utilsController" class="org.openremote.modeler.server.UtilsController"></bean>
+    <bean id="accountController" class="org.openremote.modeler.action.AccountController"></bean>
+    <bean id="switchController" class="org.openremote.modeler.server.SwitchController"></bean>
+    <bean id="sliderController" class="org.openremote.modeler.server.SliderController"></bean>
+    <bean id="fileUploadController" class="org.openremote.modeler.action.FileUploadController"></bean>
+    <bean id="sensorController" class="org.openremote.modeler.server.SensorController"></bean>
+    <bean id="controllerConfig" class="org.openremote.modeler.server.ControllerConfigController"></bean>
+    <bean id="configCategory" class="org.openremote.modeler.server.ConfigCategoryController"></bean>
+    <bean id="templateController" class="org.openremote.modeler.server.TemplateController"></bean>
+    <bean id="userController" class="org.openremote.modeler.server.UserController"></bean>
+</beans>

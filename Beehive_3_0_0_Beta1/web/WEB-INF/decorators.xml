@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/decorators">
+    <decorator name="main" page="main.jsp">
+        <pattern>*.htm</pattern>
+    </decorator>
+    <!-- 
+   	<decorator name="null">
+		<pattern>/index.htm</pattern>
+	</decorator>
+	 -->
+</decorators>

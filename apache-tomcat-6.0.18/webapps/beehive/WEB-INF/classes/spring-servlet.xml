@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING/DTD BEAN/EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans default-autowire="byName">
+    <bean id="urlMapping"
+          class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="lirc.html">modelController</prop>
+                <prop key="remoteSection.html">remoteSectionController</prop>
+                <prop key="index.html">beehiveDatabaseController</prop>
+                <prop key="changes.htm">lircRevisionChangesController</prop>
+                <prop key="sync.htm">lircSyncController</prop>
+                <prop key="history.htm">lircHistoryController</prop>
+                <prop key="progress.htm">progressController</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+            <value>classpath:config.properties</value>
+        </property>
+    </bean>
+
+    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+               <prop key="org.openremote.beehive.exception.SVNException">exception/svnError</prop>
+               <prop key="org.openremote.beehive.exception.LIRCrawlerException">exception/lirCrawlerError</prop>
+            </props>
+        </property>
+        <property name="defaultErrorView" value="exception/defaultError"/>
+    </bean>
+
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass">
+            <value>
+                org.springframework.web.servlet.view.InternalResourceView
+            </value>
+        </property>
+        <property name="prefix">
+            <value>/WEB-INF/page/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
+
+    <bean id="methodNameResolver" class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+        <property name="paramName" value="method"/>
+        <property name="defaultMethodName" value="index"/>
+    </bean>
+
+    <bean id="modelController" class="org.openremote.beehive.controller.ModelController">
+   </bean>
+   
+   <bean id="remoteSectionController" class="org.openremote.beehive.controller.RemoteSectionController">
+   </bean>
+   <bean id="progressController" class="org.openremote.beehive.controller.ProgressController">
+   </bean>
+    
+    <bean id="beehiveDatabaseController" class="org.openremote.beehive.controller.BeehiveDatabaseController">
+        <property name="index" value="beehiveDatabase"/>
+        <property name="cmpSelectContainer" value="cmpSelectContainer"/>
+        <property name="cmpLircDetails" value="cmpLircDetails"/>
+    </bean>
+   
+   <bean id="lircRevisionChangesController" class="org.openremote.beehive.controller.LIRCRevisionChangesController">
+      <property name="indexView" value="changes"/>
+      <property name="changeView" value="fileChange"/>
+   </bean>
+   
+   <bean id="lircSyncController" class="org.openremote.beehive.controller.LIRCSyncController">
+      <property name="indexView" value="sync"/>
+   </bean>
+   
+   <bean id="lircHistoryController" class="org.openremote.beehive.controller.LIRCHistoryController">
+      <property name="indexView" value="vendor_list"/>
+      <property name="modelView" value="model_list"/>
+      <property name="revisionView" value="revision_list"/>
+      <property name="contentView" value="fileContent"/>
+      <property name="fileCompareView" value="oldFileChange"/>
+   </bean>
+</beans>

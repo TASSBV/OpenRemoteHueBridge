@@ -1,0 +1,2 @@
+serviceClass: org.openremote.modeler.client.rpc.ControllerConfigRPCService
+path: CA172B0ADEF2C7D2F57AFEEE6379744D.gwt.rpc

@@ -1,0 +1,133 @@
+/*
+ * OpenRemote, the Home of the Digital Home.
+ * Copyright 2008-2011, OpenRemote Inc.
+ *
+ * See the contributors.txt file in the distribution for a
+ * full listing of individual contributors.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+package org.openremote.controller.model.event
+
+global org.openremote.controller.statuscache.CommandFacade execute;
+
+import org.openremote.controller.protocol.*;
+
+
+/*
+ * This example demonstrates creation of new facts from within the rules, in this
+ * case a vacation object that can be used to determine differing behavior on event
+ * actions.
+ */
+declare Vacation
+
+  onVacation : boolean
+
+end
+
+
+
+/* Insert a new vacation fact */
+
+rule "I'm going on vacation"
+
+when
+
+  Event ( source == "vacation start" )
+
+then
+
+  Vacation vacation = new Vacation();
+
+  insert ( vacation );
+
+end
+
+
+
+/* Retract the vacation fact */
+
+rule "I'm back from vacation"
+
+when
+
+  Event ( source == "vacation end" )
+
+  $vacation : Vacation()
+
+then
+
+  retract ( $vacation );
+
+end
+
+
+
+
+/* Set night temperatures differently depending on presence of vacation fact */
+
+rule "Set Night Temperature"
+
+when
+
+  CustomState ( source == "time of day", value == "night" ) and not Vacation()
+
+then
+
+  execute.command("temp", 18);
+
+end
+
+
+rule "Set Night Temperature when on Vacation"
+
+when
+
+  CustomState ( source == "time of day", value == "night" ) and exists Vacation()
+
+then
+
+  execute.command("temp", 15);
+  
+end
+
+
+
+/* Set day temperatures differently depending on the presence of vacation fact */
+
+rule "Set Day Temperature"
+
+when
+
+  CustomState ( source == "time of day", value == "day" ) and not Vacation()
+
+then
+
+  execute.command("temp", 21);
+
+end
+
+
+rule "Set Day Temperature when on Vacation"
+
+when
+
+  Event ( source == "time of day", value == "day" ) and exists Vacation()
+
+then
+
+  execute.command("temp", 15);
+
+end
+

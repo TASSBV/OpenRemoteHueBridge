@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+ OpenRemote, the Home of the Digital Home.
+ Copyright 2008-2012, OpenRemote Inc.
+
+ See the contributors.txt file in the distribution for a
+ full listing of individual contributors.
+
+ This is free software; you can redistribute it and/or modify it
+ under the terms of the GNU General Public License as
+ published by the Free Software Foundation; either version 3.0 of
+ the License, or (at your option) any later version.
+
+ This software is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+ You should have received a copy of the GNU General Public
+ License along with this software; if not, write to the Free
+ Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+
+-->
+
+<!--
+ |  Wake-On-Lan protocol configuration for OpenRemote Designer.
+ |
+ |  Author: Marcus Redeker
+ +-->
+<openremote xmlns="http://www.openremote.org"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.openremote.org protocol.xsd">
+
+    <protocol displayName="Wake-On-Lan Protocol" tagName="wol">
+
+        <attr name="macAddress" label="MAC address">
+            <validations>
+                <allowBlank>false</allowBlank>
+                <regex message="MAC address of the computer to wake">.*</regex>
+            </validations>
+        </attr>
+
+        <attr name="broadcastIp" label="Broadcast IP" >
+            <validations>
+                <allowBlank>false</allowBlank>
+                <regex message="Broadcast IP of the network where the computer to wake is located, eg 192.168.1.255">.*</regex>
+            </validations>
+        </attr>
+
+    </protocol>
+</openremote>

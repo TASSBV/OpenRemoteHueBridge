@@ -1,0 +1,158 @@
+com.extjs.gxt.ui.client.core.FastMap, true, true, true, true, com.extjs.gxt.ui.client.core.FastMap/3488076414, 3488076414
+com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException, true, true, true, true, com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException/3936916533, 3936916533
+com.google.gwt.user.client.rpc.RpcTokenException, true, true, false, false, com.google.gwt.user.client.rpc.RpcTokenException/2345075298, 2345075298
+com.google.gwt.user.client.rpc.XsrfToken, false, false, true, true, com.google.gwt.user.client.rpc.XsrfToken/4254043109, 4254043109
+java.lang.Boolean, true, true, true, true, java.lang.Boolean/476441737, 476441737
+java.lang.Exception, true, false, true, false, java.lang.Exception/1920171873, 1920171873
+java.lang.Long, true, true, true, true, java.lang.Long/4227064769, 4227064769
+java.lang.Number, true, false, true, false, java.lang.Number/300033342, 300033342
+java.lang.RuntimeException, true, false, true, false, java.lang.RuntimeException/515124647, 515124647
+java.lang.String, true, true, true, true, java.lang.String/2004016611, 2004016611
+java.lang.Throwable, true, false, true, false, java.lang.Throwable/2953622131, 2953622131
+java.util.ArrayList, true, true, true, true, java.util.ArrayList/4159755760, 4159755760
+java.util.Arrays$ArrayList, true, true, true, true, java.util.Arrays$ArrayList/2507071751, 2507071751
+java.util.Collections$EmptyList, true, true, true, true, java.util.Collections$EmptyList/4157118744, 4157118744
+java.util.Collections$EmptyMap, true, true, true, true, java.util.Collections$EmptyMap/4174664486, 4174664486
+java.util.Collections$EmptySet, true, true, true, true, java.util.Collections$EmptySet/3523698179, 3523698179
+java.util.Collections$SingletonList, true, true, true, true, java.util.Collections$SingletonList/1586180994, 1586180994
+java.util.HashMap, true, true, true, true, java.util.HashMap/1797211028, 1797211028
+java.util.HashSet, true, true, true, true, java.util.HashSet/3273092938, 3273092938
+java.util.IdentityHashMap, true, true, true, true, java.util.IdentityHashMap/1839153020, 1839153020
+java.util.LinkedHashMap, true, true, true, true, java.util.LinkedHashMap/3008245022, 3008245022
+java.util.LinkedHashSet, true, true, true, true, java.util.LinkedHashSet/1826081506, 1826081506
+java.util.LinkedList, true, true, true, true, java.util.LinkedList/3953877921, 3953877921
+java.util.Stack, true, true, true, true, java.util.Stack/1346942793, 1346942793
+java.util.TreeMap, true, true, true, true, java.util.TreeMap/1493889780, 1493889780
+java.util.TreeSet, true, true, true, true, java.util.TreeSet/4043497002, 4043497002
+java.util.Vector, true, true, true, true, java.util.Vector/3057315478, 3057315478
+java.util.concurrent.ConcurrentHashMap, true, true, true, true, java.util.concurrent.ConcurrentHashMap/3008359743, 3008359743
+org.openremote.modeler.client.rpc.TemplateRPCService, false, false, false, false, _, 398075290
+org.openremote.modeler.client.utils.ScreenFromTemplate, true, true, false, false, org.openremote.modeler.client.utils.ScreenFromTemplate/538738633, 538738633
+org.openremote.modeler.client.utils.SensorLink, true, true, true, true, org.openremote.modeler.client.utils.SensorLink/4269814072, 4269814072
+org.openremote.modeler.client.utils.SensorLink$LinkerChild, true, true, true, true, org.openremote.modeler.client.utils.SensorLink$LinkerChild/27101591, 27101591
+org.openremote.modeler.domain.Absolute, true, true, true, true, org.openremote.modeler.domain.Absolute/1752281128, 1752281128
+[Lorg.openremote.modeler.domain.Absolute;, true, true, true, true, [Lorg.openremote.modeler.domain.Absolute;/1241825450, 1241825450
+org.openremote.modeler.domain.Account, true, true, true, true, org.openremote.modeler.domain.Account/3242364263, 3242364263
+@ClientFields,org.openremote.modeler.domain.Account,users,devices,deviceMacros,sensors,switches,configs,sliders
+org.openremote.modeler.domain.Background, true, true, true, true, org.openremote.modeler.domain.Background/3204340619, 3204340619
+org.openremote.modeler.domain.Background$RelativeType, true, true, true, true, org.openremote.modeler.domain.Background$RelativeType/2316855127, 2316855127
+org.openremote.modeler.domain.BusinessEntity, true, false, true, false, org.openremote.modeler.domain.BusinessEntity/3982163427, 3982163427
+org.openremote.modeler.domain.Cell, true, true, true, true, org.openremote.modeler.domain.Cell/1605638487, 1605638487
+[Lorg.openremote.modeler.domain.Cell;, true, true, true, true, [Lorg.openremote.modeler.domain.Cell;/3813481773, 3813481773
+org.openremote.modeler.domain.CommandDelay, true, true, true, true, org.openremote.modeler.domain.CommandDelay/1030023584, 1030023584
+@ClientFields,org.openremote.modeler.domain.CommandDelay,delaySecond
+[Lorg.openremote.modeler.domain.CommandDelay;, true, true, true, true, [Lorg.openremote.modeler.domain.CommandDelay;/859780509, 859780509
+org.openremote.modeler.domain.CommandRefItem, true, true, true, true, org.openremote.modeler.domain.CommandRefItem/3137201426, 3137201426
+@ClientFields,org.openremote.modeler.domain.CommandRefItem,deviceCommand,deviceName
+org.openremote.modeler.domain.ControllerConfig, true, true, true, true, org.openremote.modeler.domain.ControllerConfig/1546118184, 1546118184
+@ClientFields,org.openremote.modeler.domain.ControllerConfig,category,name,value,hint,validation,options,account
+[Lorg.openremote.modeler.domain.ControllerConfig;, true, true, true, true, [Lorg.openremote.modeler.domain.ControllerConfig;/3091693464, 3091693464
+org.openremote.modeler.domain.CustomSensor, true, true, true, true, org.openremote.modeler.domain.CustomSensor/986141052, 986141052
+@ClientFields,org.openremote.modeler.domain.CustomSensor,states
+[Lorg.openremote.modeler.domain.CustomSensor;, true, true, true, true, [Lorg.openremote.modeler.domain.CustomSensor;/1826493902, 1826493902
+org.openremote.modeler.domain.Device, true, true, true, true, org.openremote.modeler.domain.Device/1628055629, 1628055629
+@ClientFields,org.openremote.modeler.domain.Device,name,vendor,model,deviceCommands,deviceAttrs,account,switchs,sliders,sensors
+org.openremote.modeler.domain.DeviceAttr, true, true, true, true, org.openremote.modeler.domain.DeviceAttr/2327046920, 2327046920
+@ClientFields,org.openremote.modeler.domain.DeviceAttr,name,value,device
+[Lorg.openremote.modeler.domain.DeviceAttr;, true, true, true, true, [Lorg.openremote.modeler.domain.DeviceAttr;/2940624764, 2940624764
+org.openremote.modeler.domain.DeviceCommand, true, true, true, true, org.openremote.modeler.domain.DeviceCommand/802864324, 802864324
+@ClientFields,org.openremote.modeler.domain.DeviceCommand,device,protocol,name,sectionId
+org.openremote.modeler.domain.DeviceCommandRef, true, true, true, true, org.openremote.modeler.domain.DeviceCommandRef/2987459484, 2987459484
+@ClientFields,org.openremote.modeler.domain.DeviceCommandRef,deviceCommand,deviceName
+[Lorg.openremote.modeler.domain.DeviceCommandRef;, true, true, true, true, [Lorg.openremote.modeler.domain.DeviceCommandRef;/1547270706, 1547270706
+[Lorg.openremote.modeler.domain.DeviceCommand;, true, true, true, true, [Lorg.openremote.modeler.domain.DeviceCommand;/1076631960, 1076631960
+org.openremote.modeler.domain.DeviceMacro, true, true, true, true, org.openremote.modeler.domain.DeviceMacro/2912974550, 2912974550
+@ClientFields,org.openremote.modeler.domain.DeviceMacro,deviceMacroItems,name,account
+org.openremote.modeler.domain.DeviceMacroItem, true, true, true, true, org.openremote.modeler.domain.DeviceMacroItem/925260180, 925260180
+@ClientFields,org.openremote.modeler.domain.DeviceMacroItem,parentDeviceMacro
+[Lorg.openremote.modeler.domain.DeviceMacroItem;, true, true, true, true, [Lorg.openremote.modeler.domain.DeviceMacroItem;/2344214062, 2344214062
+org.openremote.modeler.domain.DeviceMacroRef, true, true, true, true, org.openremote.modeler.domain.DeviceMacroRef/1921491601, 1921491601
+@ClientFields,org.openremote.modeler.domain.DeviceMacroRef,targetDeviceMacro
+[Lorg.openremote.modeler.domain.DeviceMacroRef;, true, true, true, true, [Lorg.openremote.modeler.domain.DeviceMacroRef;/1850455628, 1850455628
+[Lorg.openremote.modeler.domain.DeviceMacro;, true, true, true, true, [Lorg.openremote.modeler.domain.DeviceMacro;/2039806413, 2039806413
+[Lorg.openremote.modeler.domain.Device;, true, true, true, true, [Lorg.openremote.modeler.domain.Device;/560262484, 560262484
+org.openremote.modeler.domain.Group, true, true, true, true, org.openremote.modeler.domain.Group/1350905097, 1350905097
+org.openremote.modeler.domain.GroupRef, true, true, true, true, org.openremote.modeler.domain.GroupRef/307955599, 307955599
+[Lorg.openremote.modeler.domain.GroupRef;, true, true, true, true, [Lorg.openremote.modeler.domain.GroupRef;/824917290, 824917290
+org.openremote.modeler.domain.Panel, true, true, true, true, org.openremote.modeler.domain.Panel/959769049, 959769049
+org.openremote.modeler.domain.Protocol, true, true, true, true, org.openremote.modeler.domain.Protocol/219217042, 219217042
+@ClientFields,org.openremote.modeler.domain.Protocol,type,attributes,deviceCommand
+org.openremote.modeler.domain.ProtocolAttr, true, true, true, true, org.openremote.modeler.domain.ProtocolAttr/3505848565, 3505848565
+@ClientFields,org.openremote.modeler.domain.ProtocolAttr,name,value,protocol
+[Lorg.openremote.modeler.domain.ProtocolAttr;, true, true, true, true, [Lorg.openremote.modeler.domain.ProtocolAttr;/1197025824, 1197025824
+org.openremote.modeler.domain.RangeSensor, true, true, true, true, org.openremote.modeler.domain.RangeSensor/3550078075, 3550078075
+@ClientFields,org.openremote.modeler.domain.RangeSensor,min,max
+[Lorg.openremote.modeler.domain.RangeSensor;, true, true, true, true, [Lorg.openremote.modeler.domain.RangeSensor;/1789834124, 1789834124
+org.openremote.modeler.domain.RefedEntity, true, false, true, false, org.openremote.modeler.domain.RefedEntity/1194648036, 1194648036
+org.openremote.modeler.domain.Role, true, true, true, true, org.openremote.modeler.domain.Role/3392449085, 3392449085
+@ClientFields,org.openremote.modeler.domain.Role,name,users
+[Lorg.openremote.modeler.domain.Role;, true, true, true, true, [Lorg.openremote.modeler.domain.Role;/3295430035, 3295430035
+org.openremote.modeler.domain.Screen, true, true, true, true, org.openremote.modeler.domain.Screen/1367947131, 1367947131
+org.openremote.modeler.domain.ScreenPair, true, true, true, true, org.openremote.modeler.domain.ScreenPair/1297240745, 1297240745
+org.openremote.modeler.domain.ScreenPair$OrientationType, true, true, true, true, org.openremote.modeler.domain.ScreenPair$OrientationType/2199963025, 2199963025
+org.openremote.modeler.domain.ScreenPairRef, true, true, true, true, org.openremote.modeler.domain.ScreenPairRef/2843674366, 2843674366
+[Lorg.openremote.modeler.domain.ScreenPairRef;, true, true, true, true, [Lorg.openremote.modeler.domain.ScreenPairRef;/3098763232, 3098763232
+org.openremote.modeler.domain.Sensor, true, true, true, true, org.openremote.modeler.domain.Sensor/4245136057, 4245136057
+@ClientFields,org.openremote.modeler.domain.Sensor,name,sensorCommandRef,type,account,device
+org.openremote.modeler.domain.SensorCommandRef, true, true, true, true, org.openremote.modeler.domain.SensorCommandRef/2507657726, 2507657726
+@ClientFields,org.openremote.modeler.domain.SensorCommandRef,sensor
+org.openremote.modeler.domain.SensorRefItem, true, false, true, false, org.openremote.modeler.domain.SensorRefItem/3909619225, 3909619225
+@ClientFields,org.openremote.modeler.domain.SensorRefItem,sensor
+org.openremote.modeler.domain.SensorType, true, true, true, true, org.openremote.modeler.domain.SensorType/3755048058, 3755048058
+[Lorg.openremote.modeler.domain.Sensor;, true, true, true, true, [Lorg.openremote.modeler.domain.Sensor;/2638449156, 2638449156
+org.openremote.modeler.domain.Slider, true, true, true, true, org.openremote.modeler.domain.Slider/2720960420, 2720960420
+@ClientFields,org.openremote.modeler.domain.Slider,name,setValueCmd,sliderSensorRef,account,device
+org.openremote.modeler.domain.SliderCommandRef, true, true, true, true, org.openremote.modeler.domain.SliderCommandRef/504722752, 504722752
+@ClientFields,org.openremote.modeler.domain.SliderCommandRef,slider
+org.openremote.modeler.domain.SliderSensorRef, true, true, true, true, org.openremote.modeler.domain.SliderSensorRef/3578469350, 3578469350
+@ClientFields,org.openremote.modeler.domain.SliderSensorRef,slider
+[Lorg.openremote.modeler.domain.Slider;, true, true, true, true, [Lorg.openremote.modeler.domain.Slider;/651380524, 651380524
+org.openremote.modeler.domain.State, true, true, true, true, org.openremote.modeler.domain.State/1639789280, 1639789280
+@ClientFields,org.openremote.modeler.domain.State,name,value,sensor
+[Lorg.openremote.modeler.domain.State;, true, true, true, true, [Lorg.openremote.modeler.domain.State;/404990955, 404990955
+org.openremote.modeler.domain.Switch, true, true, true, true, org.openremote.modeler.domain.Switch/3180487164, 3180487164
+@ClientFields,org.openremote.modeler.domain.Switch,name,switchCommandOnRef,switchCommandOffRef,switchSensorRef,account,device
+org.openremote.modeler.domain.SwitchCommandOffRef, true, true, true, true, org.openremote.modeler.domain.SwitchCommandOffRef/2657606049, 2657606049
+@ClientFields,org.openremote.modeler.domain.SwitchCommandOffRef,offSwitch
+org.openremote.modeler.domain.SwitchCommandOnRef, true, true, true, true, org.openremote.modeler.domain.SwitchCommandOnRef/3474040345, 3474040345
+@ClientFields,org.openremote.modeler.domain.SwitchCommandOnRef,onSwitch
+org.openremote.modeler.domain.SwitchSensorRef, true, true, true, true, org.openremote.modeler.domain.SwitchSensorRef/3410081109, 3410081109
+@ClientFields,org.openremote.modeler.domain.SwitchSensorRef,switchToggle
+[Lorg.openremote.modeler.domain.Switch;, true, true, true, true, [Lorg.openremote.modeler.domain.Switch;/1926295892, 1926295892
+org.openremote.modeler.domain.Template, true, true, true, true, org.openremote.modeler.domain.Template/3105847979, 3105847979
+[Lorg.openremote.modeler.domain.Template;, true, true, false, false, [Lorg.openremote.modeler.domain.Template;/3556923740, 3556923740
+org.openremote.modeler.domain.UICommand, true, true, true, true, org.openremote.modeler.domain.UICommand/1397496979, 1397496979
+org.openremote.modeler.domain.User, true, true, true, true, org.openremote.modeler.domain.User/2472572811, 2472572811
+@ClientFields,org.openremote.modeler.domain.User,username,password,rawPassword,email,valid,account,roles,token
+[Lorg.openremote.modeler.domain.User;, true, true, true, true, [Lorg.openremote.modeler.domain.User;/4015164686, 4015164686
+org.openremote.modeler.domain.component.Gesture, true, true, true, true, org.openremote.modeler.domain.component.Gesture/411121321, 411121321
+org.openremote.modeler.domain.component.Gesture$GestureType, true, true, true, true, org.openremote.modeler.domain.component.Gesture$GestureType/3284064258, 3284064258
+[Lorg.openremote.modeler.domain.component.Gesture;, true, true, true, true, [Lorg.openremote.modeler.domain.component.Gesture;/123593163, 123593163
+org.openremote.modeler.domain.component.ImageSource, true, true, true, true, org.openremote.modeler.domain.component.ImageSource/660779416, 660779416
+org.openremote.modeler.domain.component.Navigate, true, true, true, true, org.openremote.modeler.domain.component.Navigate/3105039104, 3105039104
+org.openremote.modeler.domain.component.Navigate$ToLogicalType, true, true, true, true, org.openremote.modeler.domain.component.Navigate$ToLogicalType/1974246872, 1974246872
+org.openremote.modeler.domain.component.UIButton, true, true, true, true, org.openremote.modeler.domain.component.UIButton/4168579777, 4168579777
+org.openremote.modeler.domain.component.UIComponent, true, false, true, false, org.openremote.modeler.domain.component.UIComponent/1195031858, 1195031858
+org.openremote.modeler.domain.component.UIControl, true, false, true, false, org.openremote.modeler.domain.component.UIControl/266766016, 266766016
+org.openremote.modeler.domain.component.UIGrid, true, true, true, true, org.openremote.modeler.domain.component.UIGrid/211011366, 211011366
+[Lorg.openremote.modeler.domain.component.UIGrid;, true, true, true, true, [Lorg.openremote.modeler.domain.component.UIGrid;/4133890560, 4133890560
+org.openremote.modeler.domain.component.UIImage, true, true, true, true, org.openremote.modeler.domain.component.UIImage/603707364, 603707364
+org.openremote.modeler.domain.component.UILabel, true, true, true, true, org.openremote.modeler.domain.component.UILabel/3980858516, 3980858516
+org.openremote.modeler.domain.component.UISlider, true, true, true, true, org.openremote.modeler.domain.component.UISlider/4204866047, 4204866047
+org.openremote.modeler.domain.component.UISwitch, true, true, true, true, org.openremote.modeler.domain.component.UISwitch/240120889, 240120889
+org.openremote.modeler.domain.component.UITabbar, true, true, true, true, org.openremote.modeler.domain.component.UITabbar/2088776292, 2088776292
+org.openremote.modeler.domain.component.UITabbar$Scope, true, true, true, true, org.openremote.modeler.domain.component.UITabbar$Scope/377399583, 377399583
+org.openremote.modeler.domain.component.UITabbarItem, true, true, true, true, org.openremote.modeler.domain.component.UITabbarItem/1166387879, 1166387879
+[Lorg.openremote.modeler.domain.component.UITabbarItem;, true, true, true, true, [Lorg.openremote.modeler.domain.component.UITabbarItem;/4284113725, 4284113725
+org.openremote.modeler.exception.BeehiveNotAvailableException, true, true, false, false, org.openremote.modeler.exception.BeehiveNotAvailableException/1931861498, 1931861498
+org.openremote.modeler.exception.ResourceFileLostException, true, true, false, false, org.openremote.modeler.exception.ResourceFileLostException/2570811, 2570811
+org.openremote.modeler.shared.dto.DeviceCommandDTO, true, true, true, true, org.openremote.modeler.shared.dto.DeviceCommandDTO/4262483553, 4262483553
+org.openremote.modeler.shared.dto.MacroDTO, true, true, true, true, org.openremote.modeler.shared.dto.MacroDTO/456707216, 456707216
+org.openremote.modeler.shared.dto.MacroItemDTO, true, true, true, true, org.openremote.modeler.shared.dto.MacroItemDTO/1579342520, 1579342520
+org.openremote.modeler.shared.dto.MacroItemType, true, true, true, true, org.openremote.modeler.shared.dto.MacroItemType/1412240336, 1412240336
+org.openremote.modeler.shared.dto.SensorWithInfoDTO, true, true, true, true, org.openremote.modeler.shared.dto.SensorWithInfoDTO/1549866810, 1549866810
+org.openremote.modeler.shared.dto.SliderWithInfoDTO, true, true, true, true, org.openremote.modeler.shared.dto.SliderWithInfoDTO/3806386466, 3806386466
+org.openremote.modeler.shared.dto.SwitchWithInfoDTO, true, true, true, true, org.openremote.modeler.shared.dto.SwitchWithInfoDTO/1084365415, 1084365415
+org.openremote.modeler.touchpanel.TouchPanelCanvasDefinition, true, true, true, true, org.openremote.modeler.touchpanel.TouchPanelCanvasDefinition/2768106232, 2768106232
+org.openremote.modeler.touchpanel.TouchPanelDefinition, true, true, true, true, org.openremote.modeler.touchpanel.TouchPanelDefinition/3484241088, 3484241088
+org.openremote.modeler.touchpanel.TouchPanelTabbarDefinition, true, true, true, true, org.openremote.modeler.touchpanel.TouchPanelTabbarDefinition/2928304036, 2928304036

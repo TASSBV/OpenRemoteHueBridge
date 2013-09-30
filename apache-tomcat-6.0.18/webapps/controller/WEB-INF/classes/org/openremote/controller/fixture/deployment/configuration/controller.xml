@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!--
+  OpenRemote, the Home of the Digital Home.
+  Copyright 2008-2011, OpenRemote Inc.
+
+  See the contributors.txt file in the distribution for a
+  full listing of individual contributors.
+
+  This is free software; you can redistribute it and/or modify it
+  under the terms of the GNU General Public License as
+  published by the Free Software Foundation; either version 3.0 of
+  the License, or (at your option) any later version.
+
+  This software is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+  You should have received a copy of the GNU General Public
+  License along with this software; if not, write to the Free
+  Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+  02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
+<!--
+ |  Controller definition for testing account overrides for controller configuration.
+ |
+ |  Author: Juha Lindfors
+ +-->
+<openremote xmlns="http://www.openremote.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openremote.org ../../../../../config/controller-2.0-M6.xsd ">
+
+  <components/>
+
+  <sensors/>
+
+  <commands/>
+
+  <!--
+
+      CONTROLLER CONFIGURATION
+
+  -->
+  <config>
+    <property name="resource.path" value="/home/openremote/controller" />
+
+    <property name="controller.applicationname" value="controller1" />
+
+    <property name="copy.lircd.conf.on" value="false" />
+    <property name="lircd.conf.path" value="/etc/lircd.conf" />
+    <property name="irsend.path" value="/usr/local/bin/irsend" />
+    <property name="Macro.IR.Execution.Delay" value="500" />
+
+    <property name="beehive.REST.Root.Url" value="http://openremote.org/beehvie/rest/" />
+
+    <property name="webapp.ip" value="192.168.4.63" />
+    <property name="webapp.port" value="8888" />
+
+    <property name="multicast.port" value="3333" />
+    <property name="multicast.address" value="224.0.1.100" />
+  </config>
+	
+</openremote>

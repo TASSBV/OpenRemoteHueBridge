@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+	<display-name>Modeler</display-name>
+    	<!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>Modeler.jsp</welcome-file>
+	</welcome-file-list>
+    
+   <context-param>
+      <param-name>log4jExposeWebAppRoot</param-name>
+      <param-value>false</param-value>
+   </context-param>
+   
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath:spring-context.xml
+			classpath:applicationContext-security.xml
+       </param-value>
+	</context-param>
+
+	<servlet>
+		<servlet-name>annomvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet
+          </servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>
+				classpath:annomvc-servlet.xml
+            </param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>annomvc</servlet-name>
+		<url-pattern>*.smvc</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>annomvc</servlet-name>
+		<url-pattern>*.htm</url-pattern>
+	</servlet-mapping>
+	
+	<!-- SimpleCaptcha servlet -->
+	<servlet>
+        <servlet-name>CaptchaImageServlet</servlet-name>
+        <servlet-class>org.openremote.modeler.servlet.CaptchaImageServlet</servlet-class>
+        <init-param>
+            <param-name>width</param-name>
+            <param-value>155</param-value>
+        </init-param>
+        <init-param>
+            <param-name>height</param-name>
+            <param-value>50</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CaptchaImageServlet</servlet-name>
+        <url-pattern>/captchaImg</url-pattern>
+    </servlet-mapping>
+	
+	
+	<!-- GWT-dispatch -->
+	
+	<servlet>
+    <servlet-name>dispatch</servlet-name>
+    <servlet-class>net.customware.gwt.dispatch.server.spring.SpringStandardDispatchServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+	
+	<servlet-mapping>
+    <servlet-name>dispatch</servlet-name>
+    <url-pattern>/modeler/dispatch</url-pattern>
+  </servlet-mapping>
+	
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener
+           </listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>
+			org.springframework.web.util.Log4jConfigListener
+	        </listener-class>
+	</listener>
+	<listener>
+        <listener-class>
+            org.openremote.modeler.listener.ApplicationListener
+        </listener-class>
+    </listener>
+    
+    <filter>
+		<filter-name>userTimeoutFilter</filter-name>
+		<filter-class>
+			org.openremote.modeler.filter.UserTimeoutFilter
+        </filter-class>
+	</filter>
+	<filter-mapping>
+    	<filter-name>userTimeoutFilter</filter-name>
+    	<url-pattern>*.smvc</url-pattern>
+    </filter-mapping>
+	<filter-mapping>
+    	<filter-name>userTimeoutFilter</filter-name>
+    	<url-pattern>/modeler/fileUploadController.htm</url-pattern>
+    </filter-mapping>
+	<filter>
+		<filter-name>OpenSessionInViewFilter</filter-name>
+		<filter-class>
+			org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+		<init-param>
+			<param-name>singleSession</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>OpenSessionInViewFilter</filter-name>
+		<url-pattern>*.smvc</url-pattern>
+	</filter-mapping>
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>
+			org.springframework.web.filter.CharacterEncodingFilter
+        </filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	
+  <filter>
+    <filter-name>gwtCacheControlFilter</filter-name>
+    <filter-class>org.codehaus.groovy.grails.plugins.gwt.GwtCacheControlFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>gwtCacheControlFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+   
+   <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    <listener>
+        <listener-class>org.springframework.security.ui.session.HttpSessionEventPublisher</listener-class>
+    </listener>
+</web-app>

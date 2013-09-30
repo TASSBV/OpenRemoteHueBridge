@@ -1,0 +1,1037 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openremote xmlns="http://www.openremote.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openremote.org http://www.openremote.org/schemas/panel.xsd">
+  <panels>
+    <panel id="1" name="NoTab">
+      <include type="group" ref="2" />
+      <include type="group" ref="27" />
+      <include type="group" ref="331" />
+    </panel>
+    <panel id="141" name="GlobalTab">
+      <tabbar>
+        <item name="Livingroom">
+          <navigate toGroup="142" />
+          <image src="light1274952251695.png" />
+        </item>
+        <item name="Aircondition">
+          <navigate toGroup="142" toScreen="228" />
+          <image src="aircondition1274952362228.png" />
+        </item>
+        <item name="TV">
+          <navigate toGroup="142" toScreen="237" />
+          <image src="tvitem1274952294708.png" />
+        </item>
+        <item name="Bedroom">
+          <navigate toGroup="173" />
+          <image src="togroup1274952414154.png" />
+        </item>
+        <item name="Setting">
+          <navigate to="setting" />
+          <image src="setting1274952617279.png" />
+        </item>
+        <item name="Logout">
+          <navigate to="logout" />
+          <image src="logout1274952557426.png" />
+        </item>
+        <item name="Login">
+          <navigate to="login" />
+          <image src="login1274952785498.png" />
+        </item>
+        <item name="Back">
+          <navigate to="back" />
+          <image src="back1274952817159.png" />
+        </item>
+      </tabbar>
+      <include type="group" ref="142" />
+      <include type="group" ref="173" />
+    </panel>
+    <panel id="263" name="LocalTab">
+      <include type="group" ref="264" />
+      <include type="group" ref="293" />
+    </panel>
+    <panel id="394" name="EmptyPanel" />
+    <panel id="398" name="EmptyGroup">
+      <include type="group" ref="399" />
+    </panel>
+    <panel id="426" name="CustomPanel_360X500">
+      <tabbar>
+        <item name="Livingroom">
+          <navigate toGroup="427" />
+          <image src="togroup1275041012039.png" />
+        </item>
+        <item name="TV">
+          <navigate toGroup="427" toScreen="462" />
+          <image src="tvitem1275041050601.png" />
+        </item>
+        <item name="back">
+          <navigate to="back" />
+          <image src="back1275041070148.png" />
+        </item>
+        <item name="Previous">
+          <navigate to="previousScreen" />
+          <image src="previous1275041103316.png" />
+        </item>
+        <item name="Next">
+          <navigate to="nextScreen" />
+          <image src="next1275041123148.png" />
+        </item>
+      </tabbar>
+      <include type="group" ref="427" />
+      <include type="group" ref="491" />
+    </panel>
+  </panels>
+  <screens>
+    <screen id="3" name="Light" inverseScreenId="64">
+      <background fillScreen="true">
+        <image src="lightbackground1274950957643.png" />
+      </background>
+      <absolute left="43" top="108" width="86" height="52">
+        <button id="6" name="turn on" hasControlCommand="true" />
+      </absolute>
+      <absolute left="175" top="108" width="95" height="52">
+        <button id="8" name="turn off" hasControlCommand="true" />
+      </absolute>
+      <absolute left="127" top="174" width="185" height="54">
+        <label id="10" fontSize="14" color="#0000FF" text="light status">
+          <link type="sensor" ref="575">
+            <state name="off" value="light is off" />
+            <state name="on" value="light is on" />
+          </link>
+        </label>
+      </absolute>
+      <absolute left="195" top="240" width="50" height="50">
+        <switch id="12">
+          <link type="sensor" ref="575">
+            <state name="on" value="power.png" />
+            <state name="off" value="infrared.png" />
+          </link>
+        </switch>
+      </absolute>
+      <absolute left="117" top="16" width="70" height="62">
+        <image id="14" src="OpenRemote.Logo.30x32.png">
+          <link type="sensor" ref="575">
+            <state name="off" value="lightbulboff1274938256022.png" />
+            <state name="on" value="lightbulb1274938250976.png" />
+          </link>
+          <include type="label" ref="10" />
+        </image>
+      </absolute>
+      <absolute left="142" top="304" width="177" height="54">
+        <button id="29" name="To bedroom">
+          <navigate toGroup="27" />
+        </button>
+      </absolute>
+      <absolute left="142" top="361" width="176" height="52">
+        <button id="393" name="To background test">
+          <navigate toGroup="331" toScreen="332" />
+        </button>
+      </absolute>
+    </screen>
+    <screen id="64" name="Light" landscape="true" inverseScreenId="3">
+      <background relative="TOP">
+        <image src="500X3001274943015264.png" />
+      </background>
+      <absolute left="184" top="112" width="84" height="82">
+        <image id="66" src="OpenRemote.Logo.30x32.png">
+          <link type="sensor" ref="575">
+            <state name="off" value="lightbulboff1274943081675.png" />
+            <state name="on" value="lightbulb1274943077035.png" />
+          </link>
+        </image>
+      </absolute>
+      <absolute left="126" top="22" width="212" height="52">
+        <label id="68" fontSize="14" color="#FF6600" text="light state">
+          <link type="sensor" ref="575">
+            <state name="off" value="OFF" />
+            <state name="on" value="ON" />
+          </link>
+        </label>
+      </absolute>
+      <absolute left="151" top="240" width="150" height="50">
+        <label id="322" fontSize="14" color="#FFFFFF" text="Test gesture" />
+      </absolute>
+      <gesture id="105" hasControlCommand="true" type="swipe-bottom-to-top" />
+      <gesture id="102" hasControlCommand="true" type="swipe-top-to-bottom" />
+      <gesture id="127" hasControlCommand="true" type="swipe-left-to-right" />
+      <gesture id="132" hasControlCommand="true" type="swipe-right-to-left" />
+    </screen>
+    <screen id="15" name="Air_Condition">
+      <background fillScreen="true">
+        <image src="air1274951021940.png" />
+      </background>
+      <absolute left="139" top="32" width="110" height="52">
+        <label id="18" fontSize="14" color="#3366FF" text="value">
+          <link type="sensor" ref="573" />
+        </label>
+      </absolute>
+      <absolute left="59" top="86" width="198" height="44">
+        <slider id="20" vertical="false" passive="false">
+          <link type="sensor" ref="573" />
+          <min value="0" />
+          <max value="100" />
+        </slider>
+      </absolute>
+      <absolute left="267" top="178" width="44" height="198">
+        <slider id="24" thumbImage="vthumb1274939161708.png" vertical="true" passive="false">
+          <link type="sensor" ref="573" />
+          <min value="0" image="vmin1274939127956.png" trackImage="vminTrack1274939151356.png" />
+          <max value="100" image="vmax1274939183784.png" trackImage="vmaxTrack1274939173529.png" />
+        </slider>
+      </absolute>
+      <absolute left="59" top="130" width="198" height="44">
+        <slider id="26" thumbImage="thumbImage1274939361119.png" vertical="false" passive="false">
+          <link type="sensor" ref="573" />
+          <min value="0" image="low1274939314970.png" trackImage="red1274939338142.png" />
+          <max value="100" image="high1274939397163.png" trackImage="green1274939382473.png" />
+        </slider>
+      </absolute>
+      <absolute left="39" top="31" width="130" height="52">
+        <label id="63" fontSize="14" color="#FF6600" text="temperature:" />
+      </absolute>
+    </screen>
+    <screen id="71" name="TV">
+      <background fillScreen="true">
+        <image src="tvbackground1274951037399.png" />
+      </background>
+      <absolute left="9" top="7" width="284" height="54">
+        <label id="98" fontSize="14" color="#000000" text="Test grid layout" />
+      </absolute>
+      <absolute left="14" top="272" width="248" height="52">
+        <label id="405" fontSize="14" color="#000000" text="Button 'Vol+' is repeatable" />
+      </absolute>
+      <grid left="52" top="61" width="210" height="200" rows="4" cols="3">
+        <cell x="0" y="0" rowspan="1" colspan="1">
+          <button id="74" name="On" hasControlCommand="true" />
+        </cell>
+        <cell x="2" y="0" rowspan="1" colspan="1">
+          <button id="76" name="Off" hasControlCommand="true" />
+        </cell>
+        <cell x="1" y="0" rowspan="1" colspan="1">
+          <button id="78" name="Mute" hasControlCommand="true" />
+        </cell>
+        <cell x="0" y="2" rowspan="1" colspan="1">
+          <button id="80" name="Vol-" hasControlCommand="true" />
+        </cell>
+        <cell x="2" y="2" rowspan="1" colspan="1">
+          <button id="82" name="Vol+" hasControlCommand="true" repeat="true" />
+        </cell>
+        <cell x="1" y="1" rowspan="1" colspan="1">
+          <button id="84" name="Ch+" hasControlCommand="true" />
+        </cell>
+        <cell x="1" y="3" rowspan="1" colspan="1">
+          <button id="86" name="Ch-" hasControlCommand="true" />
+        </cell>
+        <cell x="1" y="2" rowspan="1" colspan="1">
+          <button id="88" name="Menu" hasControlCommand="true" />
+        </cell>
+      </grid>
+    </screen>
+    <screen id="30" name="Navigate_Buttons">
+      <background fillScreen="true">
+        <image src="yesanpoh1274939752102.jpg" />
+      </background>
+      <absolute left="15" top="242" width="26" height="25">
+        <image id="33" src="turtle1274939826027.png" />
+      </absolute>
+      <absolute left="72" top="22" width="150" height="50">
+        <label id="415" fontSize="14" color="#000000" text="Test gesture" />
+      </absolute>
+      <absolute left="97" top="76" width="161" height="109">
+        <image id="421" src="lightbackground1275028518260.jpg" />
+      </absolute>
+      <grid left="110" top="262" width="200" height="150" rows="3" cols="4">
+        <cell x="0" y="0" rowspan="1" colspan="2">
+          <button id="35" name="Login">
+            <navigate to="login" />
+          </button>
+        </cell>
+        <cell x="2" y="0" rowspan="1" colspan="2">
+          <button id="37" name="Logout">
+            <navigate to="logout" />
+          </button>
+        </cell>
+        <cell x="0" y="1" rowspan="1" colspan="2">
+          <button id="39" name="Setting">
+            <navigate to="setting" />
+          </button>
+        </cell>
+        <cell x="2" y="1" rowspan="1" colspan="2">
+          <button id="44" name="Back">
+            <navigate to="back" />
+          </button>
+        </cell>
+        <cell x="0" y="2" rowspan="1" colspan="4">
+          <button id="54" name="Next screen">
+            <navigate to="nextScreen" />
+          </button>
+        </cell>
+      </grid>
+      <gesture id="416" type="swipe-bottom-to-top">
+        <navigate to="logout" />
+      </gesture>
+      <gesture id="417" type="swipe-top-to-bottom">
+        <navigate to="login" />
+      </gesture>
+      <gesture id="418" type="swipe-left-to-right">
+        <navigate to="setting" />
+      </gesture>
+    </screen>
+    <screen id="45" name="Button_Image">
+      <background fillScreen="true">
+        <image src="whitebackground1274945911286.png" />
+      </background>
+      <absolute left="195" top="310" width="61" height="61">
+        <button id="48" name="Button">
+          <default>
+            <image src="default1274940676120.png" />
+          </default>
+          <pressed>
+            <image src="pressed1274940704199.png" />
+          </pressed>
+        </button>
+      </absolute>
+      <absolute left="185" top="23" width="64" height="60">
+        <image id="50" src="bluerobot1274941389772.png" />
+      </absolute>
+      <absolute left="77" top="90" width="168" height="54">
+        <button id="52" name="Previous Screen">
+          <navigate to="previousScreen" />
+        </button>
+      </absolute>
+      <absolute left="76" top="163" width="179" height="56">
+        <button id="56" name="To livingroom">
+          <navigate toGroup="2" />
+        </button>
+      </absolute>
+      <absolute left="81" top="245" width="168" height="54">
+        <button id="58" name="Air condition">
+          <navigate toGroup="2" toScreen="15" />
+        </button>
+      </absolute>
+      <absolute left="31" top="314" width="150" height="50">
+        <label id="318" fontSize="14" color="#000000" text="Pressed button:" />
+      </absolute>
+      <absolute left="23" top="22" width="150" height="50">
+        <label id="320" fontSize="14" color="#000000" text="Image:" />
+      </absolute>
+    </screen>
+    <screen id="332" name="Absolute_10">
+      <background absolute="10,10">
+        <image src="yesanpo1275017627763.jpg" />
+      </background>
+      <absolute left="127" top="92" width="161" height="52">
+        <label id="371" fontSize="14" color="#FF6600" text="Absolut (10,10)" />
+      </absolute>
+      <absolute left="93" top="350" width="150" height="52">
+        <button id="391" name="To livingroom">
+          <navigate toGroup="2" toScreen="3" />
+        </button>
+      </absolute>
+    </screen>
+    <screen id="335" name="Left">
+      <background relative="LEFT">
+        <image src="yesanpo1275017627763.jpg" />
+      </background>
+      <absolute left="128" top="73" width="150" height="50">
+        <label id="373" fontSize="14" color="#FF6600" text="Left" />
+      </absolute>
+    </screen>
+    <screen id="339" name="Top">
+      <background relative="TOP">
+        <image src="yesanpo1275017627763.jpg" />
+      </background>
+      <absolute left="84" top="82" width="150" height="50">
+        <label id="375" fontSize="14" color="#FF6600" text="Top" />
+      </absolute>
+    </screen>
+    <screen id="343" name="Right">
+      <background relative="RIGHT">
+        <image src="yesanpo1275017627763.jpg" />
+      </background>
+      <absolute left="46" top="73" width="150" height="50">
+        <label id="377" fontSize="14" color="#FF6600" text="Right" />
+      </absolute>
+    </screen>
+    <screen id="347" name="Bottom">
+      <background relative="BOTTOM">
+        <image src="yesanpo1275017627763.jpg" />
+      </background>
+      <absolute left="83" top="63" width="150" height="50">
+        <label id="379" fontSize="14" color="#FF6600" text="Bottom" />
+      </absolute>
+    </screen>
+    <screen id="351" name="Top_Left">
+      <background relative="TOP_LEFT">
+        <image src="yesanpo1275017627763.jpg" />
+      </background>
+      <absolute left="122" top="80" width="150" height="50">
+        <label id="381" fontSize="14" color="#FF6600" text="Top_Left" />
+      </absolute>
+    </screen>
+    <screen id="355" name="Top_Right">
+      <background relative="TOP_RIGHT">
+        <image src="yesanpo1275017627763.jpg" />
+      </background>
+      <absolute left="45" top="83" width="150" height="50">
+        <label id="383" fontSize="14" color="#FF6600" text="Top_Right" />
+      </absolute>
+    </screen>
+    <screen id="359" name="Center">
+      <background relative="CENTER">
+        <image src="yesanpo1275017627763.jpg" />
+      </background>
+      <absolute left="78" top="72" width="150" height="50">
+        <label id="385" fontSize="14" color="#FF6600" text="Center" />
+      </absolute>
+    </screen>
+    <screen id="363" name="Bottom_Left">
+      <background relative="BOTTOM_LEFT">
+        <image src="yesanpo1275017627763.jpg" />
+      </background>
+      <absolute left="128" top="65" width="150" height="50">
+        <label id="387" fontSize="14" color="#FF6600" text="Bottom_Left" />
+      </absolute>
+    </screen>
+    <screen id="367" name="Bottom_Right">
+      <background relative="BOTTOM_RIGHT">
+        <image src="yesanpo1275017627763.jpg" />
+      </background>
+      <absolute left="41" top="64" width="150" height="50">
+        <label id="389" fontSize="14" color="#FF6600" text="Bottom_Right" />
+      </absolute>
+    </screen>
+    <screen id="211" name="Light" inverseScreenId="218">
+      <background fillScreen="true">
+        <image src="lightbackground1274950957643.png" />
+      </background>
+      <absolute left="43" top="108" width="86" height="52">
+        <button id="212" name="turn on" hasControlCommand="true" />
+      </absolute>
+      <absolute left="175" top="108" width="95" height="52">
+        <button id="213" name="turn off" hasControlCommand="true" />
+      </absolute>
+      <absolute left="127" top="174" width="185" height="54">
+        <label id="214" fontSize="14" color="#0000FF" text="light status">
+          <link type="sensor" ref="574">
+            <state name="off" value="light is off" />
+            <state name="on" value="light is on" />
+          </link>
+        </label>
+      </absolute>
+      <absolute left="195" top="240" width="50" height="50">
+        <switch id="215">
+          <link type="sensor" ref="574">
+            <state name="on" value="power.png" />
+            <state name="off" value="infrared.png" />
+          </link>
+        </switch>
+      </absolute>
+      <absolute left="117" top="16" width="66" height="81">
+        <image id="216" src="OpenRemote.Logo.30x32.png">
+          <link type="sensor" ref="574">
+            <state name="off" value="lightbulboff1274951408852.png" />
+            <state name="on" value="lightbulb1274951401848.png" />
+          </link>
+          <include type="label" ref="214" />
+        </image>
+      </absolute>
+    </screen>
+    <screen id="218" name="Light" landscape="true" inverseScreenId="211">
+      <background relative="TOP">
+        <image src="500X3001274943015264.png" />
+      </background>
+      <absolute left="184" top="112" width="84" height="82">
+        <image id="219" src="OpenRemote.Logo.30x32.png">
+          <link type="sensor" ref="574">
+            <state name="off" value="lightbulboff1274951484491.png" />
+            <state name="on" value="lightbulb1274951481080.png" />
+          </link>
+        </image>
+      </absolute>
+      <absolute left="126" top="22" width="212" height="52">
+        <label id="220" fontSize="14" color="#FF6600" text="light state">
+          <link type="sensor" ref="574">
+            <state name="off" value="OFF" />
+            <state name="on" value="ON" />
+          </link>
+        </label>
+      </absolute>
+      <absolute left="143" top="209" width="150" height="50">
+        <label id="324" fontSize="14" color="#FFFFFF" text="Test gesture" />
+      </absolute>
+      <gesture id="221" hasControlCommand="true" type="swipe-bottom-to-top" />
+      <gesture id="222" hasControlCommand="true" type="swipe-top-to-bottom" />
+      <gesture id="223" hasControlCommand="true" type="swipe-left-to-right" />
+      <gesture id="224" hasControlCommand="true" type="swipe-right-to-left" />
+    </screen>
+    <screen id="228" name="Aircondition">
+      <background fillScreen="true">
+        <image src="air1274951021940.png" />
+      </background>
+      <absolute left="139" top="32" width="110" height="52">
+        <label id="229" fontSize="14" color="#3366FF" text="value">
+          <link type="sensor" ref="572" />
+        </label>
+      </absolute>
+      <absolute left="59" top="86" width="198" height="44">
+        <slider id="230" vertical="false" passive="false">
+          <link type="sensor" ref="572" />
+          <min value="0" />
+          <max value="100" />
+        </slider>
+      </absolute>
+      <absolute left="267" top="178" width="44" height="198">
+        <slider id="231" thumbImage="vthumb1274939161708.png" vertical="true" passive="false">
+          <link type="sensor" ref="572" />
+          <min value="0" image="vmin1274939127956.png" trackImage="vminTrack1274939151356.png" />
+          <max value="100" image="vmax1274939183784.png" trackImage="vmaxTrack1274939173529.png" />
+        </slider>
+      </absolute>
+      <absolute left="59" top="130" width="198" height="44">
+        <slider id="232" thumbImage="thumbImage1274939361119.png" vertical="false" passive="false">
+          <link type="sensor" ref="572" />
+          <min value="0" image="low1274939314970.png" trackImage="red1274939338142.png" />
+          <max value="100" image="high1274939397163.png" trackImage="green1274939382473.png" />
+        </slider>
+      </absolute>
+      <absolute left="39" top="31" width="130" height="52">
+        <label id="233" fontSize="14" color="#FF6600" text="temperature:" />
+      </absolute>
+    </screen>
+    <screen id="237" name="TV">
+      <background fillScreen="true">
+        <image src="tvbackground1274951037399.png" />
+      </background>
+      <absolute left="15" top="10" width="287" height="54">
+        <label id="238" fontSize="14" color="#000000" text="Test grid layout, Not send commnad" />
+      </absolute>
+      <grid left="51" top="65" width="210" height="200" rows="4" cols="3">
+        <cell x="0" y="0" rowspan="1" colspan="1">
+          <button id="239" name="On" />
+        </cell>
+        <cell x="2" y="0" rowspan="1" colspan="1">
+          <button id="240" name="Off" />
+        </cell>
+        <cell x="1" y="0" rowspan="1" colspan="1">
+          <button id="241" name="Mute" />
+        </cell>
+        <cell x="0" y="2" rowspan="1" colspan="1">
+          <button id="242" name="Vol-" />
+        </cell>
+        <cell x="2" y="2" rowspan="1" colspan="1">
+          <button id="243" name="Vol+" />
+        </cell>
+        <cell x="1" y="1" rowspan="1" colspan="1">
+          <button id="244" name="Ch+" />
+        </cell>
+        <cell x="1" y="3" rowspan="1" colspan="1">
+          <button id="245" name="Ch-" />
+        </cell>
+        <cell x="1" y="2" rowspan="1" colspan="1">
+          <button id="246" name="Menu" />
+        </cell>
+      </grid>
+    </screen>
+    <screen id="250" name="Navigate_Buttons">
+      <background fillScreen="true">
+        <image src="yesanpoh1274939752102.jpg" />
+      </background>
+      <absolute left="15" top="242" width="26" height="25">
+        <image id="251" src="turtle1274939826027.png" />
+      </absolute>
+      <grid left="110" top="262" width="200" height="150" rows="3" cols="4">
+        <cell x="0" y="0" rowspan="1" colspan="2">
+          <button id="252" name="Login">
+            <navigate to="login" />
+          </button>
+        </cell>
+        <cell x="2" y="0" rowspan="1" colspan="2">
+          <button id="253" name="Logout">
+            <navigate to="logout" />
+          </button>
+        </cell>
+        <cell x="0" y="1" rowspan="1" colspan="2">
+          <button id="254" name="Setting">
+            <navigate to="setting" />
+          </button>
+        </cell>
+        <cell x="2" y="1" rowspan="1" colspan="2">
+          <button id="255" name="Back">
+            <navigate to="back" />
+          </button>
+        </cell>
+      </grid>
+    </screen>
+    <screen id="268" name="Light" inverseScreenId="275">
+      <background fillScreen="true">
+        <image src="lightbackground1274950957643.png" />
+      </background>
+      <absolute left="43" top="108" width="86" height="52">
+        <button id="269" name="turn on" hasControlCommand="true" />
+      </absolute>
+      <absolute left="175" top="108" width="95" height="52">
+        <button id="270" name="turn off" hasControlCommand="true" />
+      </absolute>
+      <absolute left="68" top="24" width="185" height="54">
+        <label id="271" fontSize="14" color="#0000FF" text="light status">
+          <link type="sensor" ref="574">
+            <state name="off" value="light is off" />
+            <state name="on" value="light is on" />
+          </link>
+        </label>
+      </absolute>
+      <absolute left="127" top="179" width="50" height="50">
+        <switch id="272">
+          <link type="sensor" ref="574">
+            <state name="on" value="power.png" />
+            <state name="off" value="infrared.png" />
+          </link>
+        </switch>
+      </absolute>
+    </screen>
+    <screen id="275" name="Light" landscape="true" inverseScreenId="268">
+      <background relative="TOP">
+        <image src="500X3001274943015264.png" />
+      </background>
+      <absolute left="184" top="112" width="84" height="82">
+        <image id="276" src="OpenRemote.Logo.30x32.png">
+          <link type="sensor" ref="574">
+            <state name="off" value="lightbulboff1274954494750.png" />
+            <state name="on" value="lightbulb1274954490245.png" />
+          </link>
+        </image>
+      </absolute>
+      <absolute left="126" top="22" width="212" height="52">
+        <label id="277" fontSize="14" color="#FF6600" text="light state">
+          <link type="sensor" ref="574">
+            <state name="off" value="OFF" />
+            <state name="on" value="ON" />
+          </link>
+        </label>
+      </absolute>
+      <absolute left="162" top="212" width="150" height="50">
+        <label id="326" fontSize="14" color="#FFFFFF" text="Test gesture" />
+      </absolute>
+      <gesture id="278" hasControlCommand="true" type="swipe-bottom-to-top" />
+      <gesture id="279" hasControlCommand="true" type="swipe-top-to-bottom" />
+      <gesture id="280" hasControlCommand="true" type="swipe-left-to-right" />
+      <gesture id="281" hasControlCommand="true" type="swipe-right-to-left" />
+    </screen>
+    <screen id="285" name="Aircondition">
+      <background fillScreen="true">
+        <image src="air1274951021940.png" />
+      </background>
+      <absolute left="139" top="32" width="110" height="52">
+        <label id="286" fontSize="14" color="#3366FF" text="value">
+          <link type="sensor" ref="572" />
+        </label>
+      </absolute>
+      <absolute left="59" top="86" width="198" height="44">
+        <slider id="287" vertical="false" passive="false">
+          <link type="sensor" ref="572" />
+          <min value="0" />
+          <max value="100" />
+        </slider>
+      </absolute>
+      <absolute left="267" top="178" width="44" height="198">
+        <slider id="288" thumbImage="vthumb1274939161708.png" vertical="true" passive="false">
+          <link type="sensor" ref="572" />
+          <min value="0" image="vmin1274939127956.png" trackImage="vminTrack1274939151356.png" />
+          <max value="100" image="vmax1274939183784.png" trackImage="vmaxTrack1274939173529.png" />
+        </slider>
+      </absolute>
+      <absolute left="59" top="130" width="198" height="44">
+        <slider id="289" thumbImage="thumbImage1274939361119.png" vertical="false" passive="false">
+          <link type="sensor" ref="572" />
+          <min value="0" image="low1274939314970.png" trackImage="red1274939338142.png" />
+          <max value="100" image="high1274939397163.png" trackImage="green1274939382473.png" />
+        </slider>
+      </absolute>
+      <absolute left="39" top="31" width="130" height="52">
+        <label id="290" fontSize="14" color="#FF6600" text="temperature:" />
+      </absolute>
+    </screen>
+    <screen id="295" name="Navigate_Buttons">
+      <background fillScreen="true">
+        <image src="yesanpoh1274939752102.jpg" />
+      </background>
+      <absolute left="15" top="242" width="26" height="25">
+        <image id="296" src="turtle1274939826027.png" />
+      </absolute>
+      <grid left="110" top="262" width="200" height="150" rows="3" cols="4">
+        <cell x="0" y="0" rowspan="1" colspan="2">
+          <button id="297" name="Login">
+            <navigate to="login" />
+          </button>
+        </cell>
+        <cell x="2" y="0" rowspan="1" colspan="2">
+          <button id="298" name="Logout">
+            <navigate to="logout" />
+          </button>
+        </cell>
+        <cell x="0" y="1" rowspan="1" colspan="2">
+          <button id="299" name="Setting">
+            <navigate to="setting" />
+          </button>
+        </cell>
+        <cell x="2" y="1" rowspan="1" colspan="2">
+          <button id="300" name="Back">
+            <navigate to="back" />
+          </button>
+        </cell>
+      </grid>
+    </screen>
+    <screen id="305" name="TV">
+      <background fillScreen="true">
+        <image src="tvbackground1274951037399.png" />
+      </background>
+      <absolute left="21" top="10" width="280" height="54">
+        <label id="306" fontSize="14" color="#000000" text="Test grid layout, Not send commnad" />
+      </absolute>
+      <grid left="58" top="67" width="210" height="200" rows="4" cols="3">
+        <cell x="0" y="0" rowspan="1" colspan="1">
+          <button id="307" name="On" />
+        </cell>
+        <cell x="2" y="0" rowspan="1" colspan="1">
+          <button id="308" name="Off" />
+        </cell>
+        <cell x="1" y="0" rowspan="1" colspan="1">
+          <button id="309" name="Mute" />
+        </cell>
+        <cell x="0" y="2" rowspan="1" colspan="1">
+          <button id="310" name="Vol-" />
+        </cell>
+        <cell x="2" y="2" rowspan="1" colspan="1">
+          <button id="311" name="Vol+" />
+        </cell>
+        <cell x="1" y="1" rowspan="1" colspan="1">
+          <button id="312" name="Ch+" />
+        </cell>
+        <cell x="1" y="3" rowspan="1" colspan="1">
+          <button id="313" name="Ch-" />
+        </cell>
+        <cell x="1" y="2" rowspan="1" colspan="1">
+          <button id="314" name="Menu" />
+        </cell>
+      </grid>
+    </screen>
+    <screen id="428" name="Light" inverseScreenId="448">
+      <background fillScreen="true">
+        <image src="dreamyworld1275038854819.jpg" />
+      </background>
+      <absolute left="43" top="166" width="86" height="52">
+        <button id="433" name="Turn on" hasControlCommand="true" />
+      </absolute>
+      <absolute left="198" top="167" width="101" height="52">
+        <button id="435" name="Turn off" hasControlCommand="true" />
+      </absolute>
+      <absolute left="120" top="64" width="87" height="85">
+        <image id="437" src="OpenRemote.Logo.30x32.png">
+          <link type="sensor" ref="575">
+            <state name="off" value="lightbulboff1275039257027.png" />
+            <state name="on" value="lightbulb1275039253552.png" />
+          </link>
+        </image>
+      </absolute>
+      <absolute left="42" top="252" width="87" height="52">
+        <label id="439" fontSize="14" color="#000000" text="Switch:" />
+      </absolute>
+      <absolute left="143" top="259" width="50" height="50">
+        <switch id="441">
+          <link type="sensor" ref="575">
+            <state name="on" value="power.png" />
+            <state name="off" value="infrared.png" />
+          </link>
+        </switch>
+      </absolute>
+      <absolute left="28" top="6" width="288" height="52">
+        <label id="443" fontSize="14" color="#FFFFFF" text="Background is fill screen" />
+      </absolute>
+    </screen>
+    <screen id="448" name="Light" landscape="true" inverseScreenId="428">
+      <background fillScreen="true">
+        <image src="500X3001275039449628.png" />
+      </background>
+      <absolute left="125" top="7" width="187" height="52">
+        <label id="450" fontSize="14" color="#FFFFFF" text="Test gesture" />
+      </absolute>
+      <absolute left="152" top="118" width="150" height="50">
+        <label id="452" fontSize="14" color="#FF6600" text="Light state">
+          <link type="sensor" ref="575">
+            <state name="off" value="OFF" />
+            <state name="on" value="ON" />
+          </link>
+        </label>
+      </absolute>
+      <gesture id="453" hasControlCommand="true" type="swipe-bottom-to-top" />
+      <gesture id="458" hasControlCommand="true" type="swipe-top-to-bottom" />
+      <gesture id="459" hasControlCommand="true" type="swipe-left-to-right" />
+      <gesture id="460" hasControlCommand="true" type="swipe-right-to-left" />
+    </screen>
+    <screen id="445" name="Air_Condition">
+      <background absolute="10,10">
+        <image src="dreamyworld1275038854819.jpg" />
+      </background>
+      <absolute left="56" top="21" width="260" height="52">
+        <label id="466" fontSize="14" color="#FFFFFF" text="Background is absolute(10,10)" />
+      </absolute>
+      <absolute left="106" top="228" width="198" height="44">
+        <slider id="468" vertical="false" passive="false">
+          <link type="sensor" ref="573" />
+          <min value="10" />
+          <max value="30" />
+        </slider>
+      </absolute>
+      <absolute left="127" top="137" width="161" height="52">
+        <label id="470" fontSize="14" color="#FF6600" text="temperature state">
+          <link type="sensor" ref="573" />
+        </label>
+      </absolute>
+      <absolute left="43" top="72" width="44" height="198">
+        <slider id="472" vertical="true" passive="false">
+          <link type="sensor" ref="573" />
+          <min value="10" />
+          <max value="30" />
+        </slider>
+      </absolute>
+    </screen>
+    <screen id="462" name="TV">
+      <background relative="CENTER">
+        <image src="dreamyworld1275038854819.jpg" />
+      </background>
+      <absolute left="61" top="9" width="189" height="52">
+        <label id="474" fontSize="14" color="#FF6600" text="Background is center" />
+      </absolute>
+      <absolute left="65" top="290" width="208" height="52">
+        <label id="486" fontSize="14" color="#FF6600" text="Button 'Vol+' is repeatable" />
+      </absolute>
+      <absolute left="50" top="367" width="118" height="52">
+        <label id="488" fontSize="14" color="#FF6600" text="Pressed button:" />
+      </absolute>
+      <absolute left="178" top="366" width="60" height="61">
+        <button id="490" name="Button">
+          <default>
+            <image src="default1275040054974.png" />
+          </default>
+          <pressed>
+            <image src="pressed1275040074955.png" />
+          </pressed>
+        </button>
+      </absolute>
+      <grid left="64" top="132" width="210" height="150" rows="3" cols="3">
+        <cell x="1" y="0" rowspan="1" colspan="1">
+          <button id="476" name="Ch+" hasControlCommand="true" />
+        </cell>
+        <cell x="1" y="2" rowspan="1" colspan="1">
+          <button id="478" name="Ch-" hasControlCommand="true" />
+        </cell>
+        <cell x="0" y="1" rowspan="1" colspan="1">
+          <button id="480" name="Vol-" hasControlCommand="true" />
+        </cell>
+        <cell x="2" y="1" rowspan="1" colspan="1">
+          <button id="482" name="Vol+" hasControlCommand="true" repeat="true" />
+        </cell>
+        <cell x="1" y="1" rowspan="1" colspan="1">
+          <button id="484" name="Menu" hasControlCommand="true" />
+        </cell>
+      </grid>
+    </screen>
+    <screen id="493" name="Top">
+      <background relative="TOP">
+        <image src="dreamyworld1275038854819.jpg" />
+      </background>
+      <absolute left="71" top="38" width="238" height="52">
+        <label id="497" fontSize="14" color="#FFFFFF" text="Background is top" />
+      </absolute>
+      <absolute left="105" top="340" width="150" height="50">
+        <label id="511" fontSize="14" color="#FFFFFF" text="Test gesture" />
+      </absolute>
+      <absolute left="106" top="276" width="150" height="50">
+        <label id="513" fontSize="14" color="#FF6600" text="Light state">
+          <link type="sensor" ref="575" />
+        </label>
+      </absolute>
+      <gesture id="514" hasControlCommand="true" type="swipe-bottom-to-top" />
+      <gesture id="515" hasControlCommand="true" type="swipe-top-to-bottom" />
+      <gesture id="516" hasControlCommand="true" type="swipe-left-to-right" />
+      <gesture id="517" hasControlCommand="true" type="swipe-right-to-left" />
+    </screen>
+    <screen id="499" name="Top_Left">
+      <background relative="TOP_LEFT">
+        <image src="dreamyworld1275038854819.jpg" />
+      </background>
+      <absolute left="36" top="16" width="262" height="52">
+        <label id="503" fontSize="14" color="#FFFFFF" text="Background is top_left" />
+      </absolute>
+    </screen>
+    <screen id="505" name="Top_Right">
+      <background relative="TOP_RIGHT">
+        <image src="dreamyworld1275038854819.jpg" />
+      </background>
+      <absolute left="66" top="16" width="221" height="52">
+        <label id="509" fontSize="14" color="#FFFFFF" text="Background is top_right" />
+      </absolute>
+    </screen>
+    <screen id="519" name="Left">
+      <background relative="LEFT">
+        <image src="dreamyworld1275038854819.jpg" />
+      </background>
+      <absolute left="65" top="45" width="236" height="52">
+        <label id="523" fontSize="14" color="#FF6600" text="Background is left" />
+      </absolute>
+    </screen>
+    <screen id="525" name="Right">
+      <background relative="RIGHT">
+        <image src="dreamyworld1275038854819.jpg" />
+      </background>
+      <absolute left="47" top="28" width="223" height="52">
+        <label id="529" fontSize="14" color="#FF6600" text="Background is right" />
+      </absolute>
+    </screen>
+    <screen id="531" name="Bottom">
+      <background relative="BOTTOM">
+        <image src="dreamyworld1275038854819.jpg" />
+      </background>
+      <absolute left="83" top="17" width="188" height="52">
+        <label id="535" fontSize="14" color="#FF6600" text="Background is bottom" />
+      </absolute>
+    </screen>
+    <screen id="537" name="Bottom_Left">
+      <background relative="BOTTOM_LEFT">
+        <image src="dreamyworld1275038854819.jpg" />
+      </background>
+      <absolute left="78" top="15" width="211" height="52">
+        <label id="541" fontSize="14" color="#FF6600" text="Background is bottom_left" />
+      </absolute>
+    </screen>
+    <screen id="543" name="Bottom_Right">
+      <background relative="BOTTOM_RIGHT">
+        <image src="dreamyworld1275038854819.jpg" />
+      </background>
+      <absolute left="77" top="22" width="203" height="52">
+        <label id="547" fontSize="14" color="#FF6600" text="Background is bottom_right" />
+      </absolute>
+    </screen>
+  </screens>
+  <groups>
+    <group id="2" name="Livingroom">
+      <include type="screen" ref="3" />
+      <include type="screen" ref="64" />
+      <include type="screen" ref="15" />
+      <include type="screen" ref="71" />
+    </group>
+    <group id="27" name="Bedroom">
+      <include type="screen" ref="30" />
+      <include type="screen" ref="45" />
+    </group>
+    <group id="331" name="BackgroundTest">
+      <include type="screen" ref="332" />
+      <include type="screen" ref="335" />
+      <include type="screen" ref="339" />
+      <include type="screen" ref="343" />
+      <include type="screen" ref="347" />
+      <include type="screen" ref="351" />
+      <include type="screen" ref="355" />
+      <include type="screen" ref="359" />
+      <include type="screen" ref="363" />
+      <include type="screen" ref="367" />
+    </group>
+    <group id="142" name="Livingroom">
+      <include type="screen" ref="211" />
+      <include type="screen" ref="218" />
+      <include type="screen" ref="228" />
+      <include type="screen" ref="237" />
+    </group>
+    <group id="173" name="Bedroom">
+      <include type="screen" ref="250" />
+    </group>
+    <group id="264" name="Livingroom">
+      <tabbar>
+        <item name="Bedroom">
+          <navigate toGroup="293" />
+          <image src="togroup1274953661849.png" />
+        </item>
+        <item name="TV">
+          <navigate toGroup="293" toScreen="305" />
+          <image src="tvitem1274953579631.png" />
+        </item>
+        <item name="Setting">
+          <navigate to="setting" />
+          <image src="setting1274953697183.png" />
+        </item>
+        <item name="Login">
+          <navigate to="login" />
+          <image src="login1274953749858.png" />
+        </item>
+        <item name="Logout">
+          <navigate to="logout" />
+          <image src="logout1274953784798.png" />
+        </item>
+      </tabbar>
+      <include type="screen" ref="268" />
+      <include type="screen" ref="275" />
+      <include type="screen" ref="285" />
+    </group>
+    <group id="293" name="Bedroom">
+      <tabbar>
+        <item name="Livingroom">
+          <navigate toGroup="264" />
+          <image src="light1274953911207.png" />
+        </item>
+        <item name="Aircondition">
+          <navigate toGroup="264" toScreen="285" />
+          <image src="aircondition1274953936002.png" />
+        </item>
+        <item name="Back">
+          <navigate to="back" />
+          <image src="back1274953997789.png" />
+        </item>
+        <item name="Previous">
+          <navigate to="previousScreen" />
+          <image src="previous1274954272585.png" />
+        </item>
+        <item name="next">
+          <navigate to="nextScreen" />
+          <image src="next1274954246754.png" />
+        </item>
+      </tabbar>
+      <include type="screen" ref="295" />
+      <include type="screen" ref="305" />
+    </group>
+    <group id="399" name="Default Group" />
+    <group id="427" name="Livingroom">
+      <tabbar>
+        <item name="BackgroundTest">
+          <navigate toGroup="491" toScreen="493" />
+          <image src="togroup1275040774653.png" />
+        </item>
+        <item name="Setting">
+          <navigate to="setting" />
+          <image src="setting1275040843516.png" />
+        </item>
+        <item name="Login">
+          <navigate to="login" />
+          <image src="login1275040886978.png" />
+        </item>
+        <item name="Logout">
+          <navigate to="logout" />
+          <image src="logout1275040904919.png" />
+        </item>
+      </tabbar>
+      <include type="screen" ref="428" />
+      <include type="screen" ref="448" />
+      <include type="screen" ref="445" />
+      <include type="screen" ref="462" />
+    </group>
+    <group id="491" name="BackgroundTest">
+      <include type="screen" ref="493" />
+      <include type="screen" ref="499" />
+      <include type="screen" ref="505" />
+      <include type="screen" ref="519" />
+      <include type="screen" ref="525" />
+      <include type="screen" ref="531" />
+      <include type="screen" ref="537" />
+      <include type="screen" ref="543" />
+    </group>
+  </groups>
+</openremote>
+

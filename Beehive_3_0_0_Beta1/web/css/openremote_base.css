@@ -1,0 +1,114 @@
+/* Setup defaults since variable in browsers
+
+dd, dt, dl, img, ul, ol, li, p, h1, h2, h3, h4, h5,
+----------------------------------------------- */
+body, div, form, hr, fieldset {
+	margin: 0;
+	padding: 0;
+}
+/* Element Defaults
+----------------------------------------------- */
+html {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+img {
+	border: 0;
+}
+body {
+	font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+	line-height: 1.25em;
+	margin: 0;
+	padding: 0;
+    background-color: #fff;
+}
+input, textarea, select {
+	border: 1px solid #7d858b;
+    background: #fff url(../img/input.bg.gif) 0 0 no-repeat;
+    font-size: 85%;
+    padding: 2px;
+    font-family: Andale Mono, Courier New, monospace;
+}
+ol, ul {
+	margin: 10px 0 10px 6px;
+}
+li {
+	margin: 10px 12px;
+}
+fieldset {
+	border: 0;
+}
+
+a,a:link,a:link,a:link,a:hover {
+	color: #668b18;
+	background: transparent;
+	text-decoration:none;
+	cursor: pointer
+}
+
+h1 {
+    font-size: 150%;
+    font-weight: normal;
+}
+
+h2 {
+    font-size: 125%;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 110%;
+    font-weight: bold;
+}
+
+
+h4 {
+    font-size: 100%;
+    font-weight: bold;
+}
+
+q {
+    font-style: italic;
+}
+
+blockquote {
+    background-color: #d7e9b1;
+    padding: 5px;
+    padding-right: 10px;
+    margin: 10px;
+}
+
+blockquote blockquote {
+    background: #c5df8f;
+}
+
+blockquote blockquote blockquote {
+    background: #e7e9eb;
+}
+
+blockquote blockquote blockquote blockquote {
+    background: #dee1e3;
+}
+
+pre {
+    padding: 5px;
+    font-family: Andale Mono, Courier New, monospace;
+    font-size: 90%;
+    overflow-x: auto;
+}
+
+hr {
+    width: 100%;
+    border-width: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 1px;
+    color: #BCAE79;
+    background-color: #BCAE79;
+}
+
+ul {
+    list-style: square;
+}

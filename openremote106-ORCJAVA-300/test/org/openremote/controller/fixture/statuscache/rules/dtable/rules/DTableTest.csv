@@ -1,0 +1,14 @@
+
+
+Ruleset,     My CSV Rules Examples
+Import,      org.openremote.controller.protocol.Event
+Variables,   org.openremote.controller.statuscache.CommandFacade execute
+
+,RuleTable,Event Mod
+,CONDITION,ACTION
+,evt: Event,
+(descriptions),sourceID,"execute.command(""count"", ""$param"");"
+Case,            Event Source ID,   New Source ID
+Fire Alarm,555,triggered
+Ice Age,666,started
+Comfort,777,good

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!--
+  OpenRemote, the Home of the Digital Home.
+  Copyright 2008-2011, OpenRemote Inc.
+
+  See the contributors.txt file in the distribution for a
+  full listing of individual contributors.
+
+  This is free software; you can redistribute it and/or modify it
+  under the terms of the GNU General Public License as
+  published by the Free Software Foundation; either version 3.0 of
+  the License, or (at your option) any later version.
+
+  This software is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+  You should have received a copy of the GNU General Public
+  License along with this software; if not, write to the Free
+  Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+  02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
+<!--
+ |  Controller definition to test round robin configuration from online account.
+ |
+ |  Author: Juha Lindfors
+ +-->
+<openremote xmlns="http://www.openremote.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openremote.org ../../../../../config/controller-2.0-M6.xsd ">
+
+  <components/>
+
+  <sensors/>
+
+  <commands/>
+
+  <!--
+
+      CONTROLLER CONFIGURATION
+
+  -->
+  <config>
+    <property name="controller.applicationname" value="controller1" />
+    <property name="controller.groupmember.autodetect.on" value="true" />
+    <property name="controller.roundrobin.multicast.address" value="224.0.1.200" />
+    <property name="controller.roundrobin.multicast.port" value="20000" />
+    <property name="controller.groupname" value="openremote-office" />
+    <property name="controller.roundrobin.tcpserver.port" value="10000" />
+    <property name="controller.groupmember.candidate.urls" value="http://192.168.1.5:8080/controller/,http://192.168.1.100:8080/controller/,http://192.168.1.105:8080/controller/" />
+  </config>
+
+</openremote>

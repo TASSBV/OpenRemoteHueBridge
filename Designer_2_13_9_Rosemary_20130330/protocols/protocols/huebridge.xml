@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ 
+ OpenRemote, the Home of the Digital Home.
+ Copyright 2008-2012, OpenRemote Inc.
+ 
+ See the contributors.txt file in the distribution for a
+ full listing of individual contributors.
+ 
+ This is free software; you can redistribute it and/or modify it
+ under the terms of the GNU General Public License as
+ published by the Free Software Foundation; either version 3.0 of
+ the License, or (at your option) any later version.
+ 
+ This software is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ 
+ You should have received a copy of the GNU General Public
+ License along with this software; if not, write to the Free
+ Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+ 
+ -->
+
+<!--
+ |  HUE Bridge protocol configuration for OpenRemote Designer.
+ |
+ |  Author: TASS Technology Solutions - www.tass.nl
+ +-->
+<openremote xmlns = "http://www.openremote.org"
+    xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation = "http://www.openremote.org protocol.xsd">
+    
+    <protocol displayName = "Hue bridge" tagName = "huebridge">
+        
+		 <!--
+         |  IP of the Hue bridge, this field can be left empty when set in the config for controller.
+         +-->
+        <attr name = "bridgeip" label = "Bridge Ip" tooltipMessage="The Ip address of the Hue Bridge">
+            <validations>
+                <allowBlank>true</allowBlank>
+                <maxLength>16</maxLength>
+                <regex message = "Enter valid IP (IPV4) address">\b^$|(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b</regex>
+            </validations>
+        </attr>
+
+		 <!--
+         |  Key/Username of the Hue bridge, this field can be left empty when set in the config for controller.
+         +-->
+        <attr name = "key" label = "Bridge Key" tooltipMessage="The Key provided by the Hue Bridge after authenticating the controller">
+            <validations>
+                <allowBlank>true</allowBlank>
+                <maxLength>32</maxLength>              
+            </validations>
+        </attr>
+		
+		 <!--
+         |  ID of the light that needs to be controlled.
+         +-->		
+		<attr name = "lightid" label = "Id of the lamp" tooltipMessage="The id of the light that the hue bridge creates and uses for controlling the light. (id normally starts at 1)">
+            <validations>
+                <allowBlank>false</allowBlank>
+                <maxLength>3</maxLength>              
+            </validations>
+        </attr>
+
+		 <!--
+         |  Put the light on or off.
+         +-->		
+        <attr name = "power" label = "On or OFF" options="On,Off" tooltipMessage="Should the light turn on or Off">
+            <validations>
+                <allowBlank>true</allowBlank>
+            </validations>
+        </attr>        
+		
+		 <!--
+         |  What Hue Color should the lamp be set to
+         +-->		
+		<attr name = "color" label = "Hue Color" tooltipMessage = "Sets the color of the light to this value, must be between 0 and 65535." >
+            <validations>
+                <allowBlank>true</allowBlank>
+               	<!--<regex message = "Enter valid Hue value"></regex>-->
+            </validations>
+        </attr>
+		
+		 <!--
+         |  Set the brightness of the lamp
+         +-->		
+		<attr name = "brightness" label = "Brightness"  tooltipMessage = "Sets the brightness of the light to this value, must be between 0 and 255." >
+            <validations>
+                <allowBlank>true</allowBlank>            
+				<!--<regex message = "Enter valid Hue value"></regex>-->
+            </validations>
+        </attr>
+		
+		 <!--
+         |  Set the saturation of the lamp
+         +-->		
+		<attr name = "saturation" label = "Saturation"  tooltipMessage = "Sets the saturarion of the light to this value, must be between 0 and 255.">
+            <validations>
+                <allowBlank>true</allowBlank>          
+			
+            </validations>
+        </attr>		
+
+		 <!--
+         |  Is this command used for a sensor? yes then a sensor for what
+         +-->		
+		 <attr name="sensor" label="Sensor setting" options="Power,Color,Brightness,Saturation" tooltipMessage = "Needs to be set when creating a sensor.">
+            <validations>			
+                <allowBlank>true</allowBlank>
+            </validations>
+        </attr>
+
+		 <!--
+         |  Polling interval of the sensor
+         +-->		
+        <attr name="pollingInterval" label="Polling interval" tooltipMessage = "Polling interval in form of (1s, 1m, 1h) or just milliseconds. Needs to be set when creating a sensor.">
+            <validations>
+                <allowBlank>true</allowBlank>
+            </validations>
+        </attr>
+        
+    </protocol>
+    
+</openremote>

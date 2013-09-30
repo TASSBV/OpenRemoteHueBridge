@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:security="http://www.springframework.org/schema/security"
+     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+             http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-2.0.1.xsd">
+
+    <security:http lowercase-comparisons="false">
+        <security:intercept-url pattern="/login.jsp" filters="none"/>
+        <security:intercept-url pattern="/changes.htm" access="ROLE_ADMIN"/>
+        <security:intercept-url pattern="/sync.htm" access="ROLE_ADMIN"/>
+        <security:intercept-url pattern="/history.htm" access="ROLE_ADMIN"/>
+        <security:form-login login-page="/login.jsp" default-target-url="/changes.htm" login-processing-url="/j_security_check" authentication-failure-url="/login.jsp?fail=true"/>
+        <security:logout logout-success-url="/login.jsp" logout-url="/j_security_logout" invalidate-session="true"/>
+    </security:http>
+
+   <security:authentication-manager alias="authenticationManager"/>
+
+    <security:authentication-provider>
+      <security:user-service>
+         <security:user name="admin" password="" authorities="ROLE_ADMIN" />
+      </security:user-service>
+   </security:authentication-provider>
+
+    <bean id="accessDecisionManager" class="org.springframework.security.vote.AffirmativeBased">
+        <property name="allowIfAllAbstainDecisions" value="false"/>
+        <property name="decisionVoters">
+            <list>
+                <bean class="org.springframework.security.vote.RoleVoter"/>
+                <bean class="org.springframework.security.vote.AuthenticatedVoter"/>
+            </list>
+        </property>
+    </bean>
+
+<!--
+
+    Atlassian Crowd SSO based security
+    ==================================
+
+	<security:global-method-security secured-annotations="enabled">
+		<!- AspectJ pointcut expression that locates our "post" method and applies security that way
+		<protect-pointcut expression="execution(* bigbank.*Service.post*(..))" access="ROLE_TELLER"/>
+		->
+	</security:global-method-security>
+
+   <security:http lowercase-comparisons="false" entry-point-ref="crowdAuthenticationProcessingFilterEntryPoint" access-denied-page="/accessDenied.jsp">
+	    <security:intercept-url pattern="/login.jsp" filters="none"/>
+       <security:intercept-url pattern="/*.html" access="ROLE_openremote-administrators"/>
+	 </security:http>
+
+    <bean id="crowdUserDetailsService" class="com.atlassian.crowd.integration.springsecurity.user.CrowdUserDetailsServiceImpl">
+        <property name="authenticationManager" ref="crowdAuthenticationManager"/>
+        <property name="groupMembershipManager" ref="crowdGroupMembershipManager"/>
+        <property name="userManager" ref="crowdUserManager"/>
+        <property name="authorityPrefix" value="ROLE_"/>
+   </bean>
+
+   <bean id="crowdAuthenticationProvider" class="com.atlassian.crowd.integration.springsecurity.RemoteCrowdAuthenticationProvider">
+	   <security:custom-authentication-provider />
+	   <constructor-arg ref="crowdAuthenticationManager"/>
+	   <constructor-arg ref="httpAuthenticator"/>
+	   <constructor-arg ref="crowdUserDetailsService"/>
+	</bean>
+
+   <security:authentication-manager alias="authenticationManager"/>
+
+	<bean id="crowdAuthenticationProcessingFilterEntryPoint" class="org.springframework.security.ui.webapp.AuthenticationProcessingFilterEntryPoint">
+	   <property name="loginFormUrl" value="/login.jsp"/>
+	</bean>
+
+	<bean id="crowdAuthenticationProcessingFilter" class="com.atlassian.crowd.integration.springsecurity.CrowdSSOAuthenticationProcessingFilter">
+	    <security:custom-filter position="AUTHENTICATION_PROCESSING_FILTER"/>
+	    <property name="httpAuthenticator" ref="httpAuthenticator"/>
+	    <property name="authenticationManager" ref="authenticationManager"/>
+	    <property name="authenticationFailureUrl" value="/login.jsp?login_error=true"/>
+	    <property name="defaultTargetUrl" value="/index.html"/>
+	    <property name="filterProcessesUrl" value="/j_security_check"/>
+	</bean>
+
+   <bean id="crowdLogoutHandler" class="com.atlassian.crowd.integration.springsecurity.CrowdLogoutHandler">
+       <property name="httpAuthenticator" ref="httpAuthenticator"/>
+   </bean>
+
+	<bean id="logoutFilter" class="org.springframework.security.ui.logout.LogoutFilter">
+	    <security:custom-filter position="LOGOUT_FILTER"/>
+	    <constructor-arg value="/login.jsp"/>
+	    <constructor-arg>
+	        <list>
+	            <ref bean="crowdLogoutHandler"/>
+	            <bean class="org.springframework.security.ui.logout.SecurityContextLogoutHandler"/>
+	        </list>
+	    </constructor-arg>
+	    <property name="filterProcessesUrl" value="/j_security_logout"/>
+	</bean>
+
+	<bean id="filterInvocationInterceptor" class="org.springframework.security.intercept.web.FilterSecurityInterceptor">
+        <property name="authenticationManager" ref="authenticationManager"/>
+        <property name="accessDecisionManager" ref="accessDecisionManager"/>
+        <property name="objectDefinitionSource">
+            <value>
+                CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
+                PATTERN_TYPE_APACHE_ANT
+                /console/secure/**=ROLE_openremote-administrators
+                /console/user/**=IS_AUTHENTICATED_FULLY
+            </value>
+        </property>
+    </bean>
+
+    <bean id="accessDecisionManager" class="org.springframework.security.vote.AffirmativeBased">
+        <property name="allowIfAllAbstainDecisions" value="false"/>
+        <property name="decisionVoters">
+            <list>
+                <bean class="org.springframework.security.vote.RoleVoter"/>
+                <bean class="org.springframework.security.vote.AuthenticatedVoter"/>
+            </list>
+        </property>
+    </bean>
+-->
+
+</beans>
+

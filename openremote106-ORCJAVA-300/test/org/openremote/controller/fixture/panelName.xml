@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openremote xmlns="http://www.openremote.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openremote.org http://www.openremote.org/schemas/panel.xsd">
+  <panels>
+    <panel id="16" name="&apos;my panel&apos;">
+      <include type="group" ref="17" />
+    </panel>
+    <panel id="20" name="'his panel'">
+      <include type="group" ref="21" />
+    </panel>
+    <panel id="40" name="test" />
+    <panel id="41" name="&quot;test&quot;" />
+    <panel id="41" name="'test&quot;" />
+    <panel id="42" name="&quot;test test&quot;" />
+    <panel id="43" name="&quot;'test test&quot;" />
+    <panel id="44" name="'test" />
+  </panels>
+  <screens>
+    <screen id="18" name="Starting Screen" />
+    <screen id="22" name="Starting Screen" />
+  </screens>
+  <groups>
+    <group id="17" name="Default Group">
+      <include type="screen" ref="18" />
+    </group>
+    <group id="21" name="Default Group">
+      <include type="screen" ref="22" />
+    </group>
+  </groups>
+</openremote>
+

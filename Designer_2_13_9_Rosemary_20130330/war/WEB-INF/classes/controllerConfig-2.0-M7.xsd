@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.openremote.org" targetNamespace="http://www.openremote.org">
+	<xsd:annotation>
+		<xsd:documentation><![CDATA[
+			OpenRemote Controller Configuration XML Schema, version 1.0.
+			Authors:Javen Zhang.
+						
+			This defines how to render Controller configuration view for Building Modeler.
+			Controller configurations are orginized by categories and will finally be saved into controller.xml.
+			These configurations are used to override default system configurations of Controller for Building Modeler.
+			That means custom configurations won't be used by Controller by default, because Controller won't know there's such configuration.
+			
+			a category has:
+				1. name: category name.
+				2. description: category description.
+				3. many configurations.
+			
+			a configuration has:
+				1. name: configuration name.
+				2. value: configuration value.
+				3. validation regexp: validation regular expression. (optional)
+				4. options: all valid value for this configuration, seperated by comma, 
+					can be rendered as a drop list for selection on view. (optional)
+				5. hint: show description when get focus.
+			
+		]]></xsd:documentation>
+	</xsd:annotation>
+	
+	<xsd:element name="configs">
+		<xsd:annotation>
+			<xsd:documentation><![CDATA[
+				The top level (typically root) element. Allows the definition
+				of categories.
+			]]></xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:element name="category">
+		<xsd:annotation>
+			<xsd:documentation><![CDATA[
+				The second level element. Defines a category.
+			]]></xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="description" minOccurs="1" maxOccurs="1"/>
+				<xsd:element ref="config" minOccurs="1" maxOccurs="unbounded" />
+			</xsd:sequence>
+			<xsd:attribute name="name" type="xsd:string" use="required" />
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="description" type="xsd:string" >
+		<xsd:annotation>
+			<xsd:documentation><![CDATA[
+				The third level element. Defines a category description string.
+			]]></xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:element name="config">
+		<xsd:annotation>
+			<xsd:documentation><![CDATA[
+				The third level element. Defines a configuration.
+			]]></xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="hint" maxOccurs="1" minOccurs="1" />
+			</xsd:sequence>
+			<xsd:attribute name="name" type="xsd:string" use="required"/>
+			<xsd:attribute name="value" type="xsd:string" use="required" />
+			<xsd:attribute name="validation" type="xsd:string" use="optional"/>
+			<xsd:attribute name="options" type="xsd:string" use="optional" />
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="hint" type="xsd:string" >
+		<xsd:annotation>
+			<xsd:documentation><![CDATA[
+				The forth level element. Defines a configuration hint string.
+			]]></xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+</xsd:schema>

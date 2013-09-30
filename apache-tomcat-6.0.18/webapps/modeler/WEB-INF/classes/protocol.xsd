@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.openremote.org" targetNamespace="http://www.openremote.org">
+	<xsd:annotation>
+		<xsd:documentation><![CDATA[
+			OpenRemote protocol plugin describe XML, version 1.0.
+			Authors:Allen Wei.
+						
+			This document describe all the useful infomation for the protocol plugin.
+		]]></xsd:documentation>
+	</xsd:annotation>
+
+	<xsd:element name="openremote">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="protocol" minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="protocol">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="attr" minOccurs="1" maxOccurs="unbounded" />
+			</xsd:sequence>
+			<xsd:attribute name="displayName" type="xsd:string" use="required" />
+			<xsd:attribute name="tagName" type="xsd:string" use="required" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="attr">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="validations" minOccurs="0" maxOccurs="1" />
+			</xsd:sequence>
+			<xsd:attribute name="name" type="xsd:string" use="required" />
+			<xsd:attribute name="label" type="xsd:string" use="required" />
+      <xsd:attribute name="tooltipMessage" type="xsd:string" use="optional"/>
+			<xsd:attribute name="value" type="xsd:string" use="optional" />
+			<xsd:attribute name="options" type="xsd:string" use="optional" />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="validations">
+		<xsd:complexType>
+			<xsd:all>
+				<xsd:element ref="allowBlank" minOccurs="0" maxOccurs="1"></xsd:element>
+				<xsd:element ref="maxLength" minOccurs="0" maxOccurs="1"></xsd:element>
+				<xsd:element ref="minLength" minOccurs="0" maxOccurs="1"></xsd:element>
+				<xsd:element ref="regex" minOccurs="0" maxOccurs="1"></xsd:element>
+			</xsd:all>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="allowBlank">
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:extension base="xsd:boolean">
+					<xsd:attribute name="message" type="xsd:string" use="optional" />
+				</xsd:extension>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="maxLength">
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:extension base="xsd:integer">
+					<xsd:attribute name="message" type="xsd:string" use="optional" />
+				</xsd:extension>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="minLength">
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:extension base="xsd:integer">
+					<xsd:attribute name="message" type="xsd:string" use="optional" />
+				</xsd:extension>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="regex">
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:extension base="xsd:string">
+					<xsd:attribute name="message" type="xsd:string" use="optional" />
+				</xsd:extension>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>
