@@ -3,7 +3,7 @@ OpenRemoteHueBridge
 
 
 This project is on Github to help people setup OpenRemote fast and simple. 
-We did this because we had some problems ourselfs. 
+We did this because we had some problems ourselves. 
 After following the description you will have the following parts running:
 - Designer 2.13.9
 - Controller 1.0.6
@@ -60,7 +60,7 @@ Configuring the Controller
 --------------------------
 
 To configure the controller you need to change the settings in the config.properties file. This file can be found in openremote106inteli\config.
-At the bottom of the file you can change the urls to point to your own beehive and designer. It is also possible to point to the official website if you wish to only adjust the controller. The official beehive url is composed different then the local beehive as is seen in the beehive rest url below. The online official modeler url is composed normally but starts with http://designer.openremote.com/. Use localhostif you run beehive and designer locally.
+At the bottom of the file you can change the urls to point to your own beehive and designer. It is also possible to point to the official website if you wish to only adjust the controller. The official beehive url is composed different then the local beehive as is seen in the beehive rest url below. The online official modeler url is composed normally but starts with http://designer.openremote.com/. Use localhost if you run beehive and designer locally.
 In the config.properties
 
 Change the beehive REST Url with the ip address where beehive is hosted.
@@ -110,7 +110,7 @@ When all the projects are configured, you can use the build and run script to bu
 - Open the script by double clicking
 - Follow the steps in the script
  
-Authorzing user without mail
+Authorizing user without mail
 ------------------------------
 
 When the designer cant send a verification mail for whatever reason the error handling is not optimal. A new user can still register at the designer you host but the user will get the message that the username is not available. 
