@@ -17,7 +17,7 @@ The "Beehive" requires this 3rd party software:
 
 - For the project Tomcat is used as server, a runable version is located in the repository 
 - Java EE 6 JDK was used in the project, make sure to set the "JAVA\_HOME" Environment variables in windows (EXAMPLE: JAVA\_HOME C:\Program Files\Java\jdk1.6.0_45)
-- MySQL 5.6.13 was used for the project (the installer can be found in the repository
+- MySQL 5.6.13 was used for the project (http://dev.mysql.com/downloads/mysql/)
 - Ant 1.9.2 was used (a version can be found in the repository)
 
 After you installed/found all requirements follow the following steps ->> 
